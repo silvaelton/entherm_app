@@ -1,0 +1,12 @@
+= simple_form_for @supplier do |f|
+	.row
+		.col-md-8
+			= f.input :name
+	.row
+		.col-md-8
+			= f.input :cnpj
+	%hr/
+	.row
+		.col-md-12
+			= f.button :submit, class: 'btn btn-primary btn-sm'
+			= link_to "Voltar", suppliers_path, class: 'btn btn-default btn-sm'

@@ -1,0 +1,12 @@
+= simple_form_for @contract do |f|
+  .row
+    .col-md-8
+      = f.input :title
+  .row
+    .col-md-4
+      = f.input :status, as: :select, include_blank: false
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-primary btn-sm'
+      = link_to "Voltar", contracts_path, class: 'btn btn-default btn-sm'

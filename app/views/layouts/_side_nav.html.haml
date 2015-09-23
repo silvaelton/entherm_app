@@ -1,0 +1,40 @@
+#sidebar-nav
+  %ul#dashboard-menu
+    %li
+      %a{:href => "#{dashboard.root_path}"}
+        %i.icon-home
+        %span Início
+    %li
+      %a.dropdown-toggle{:href => "#"}
+        %i.icon-group
+        %span Acessos
+        %i.icon-chevron-down
+      %ul.submenu
+        %li
+          %a{:href => "#{access.users_path}"} Usuários
+        %li
+          %a{:href => "new-user.html"} Permissões
+        %li
+          %a{:href => "user-profile.html"} Log de acessos
+    %li
+      %a.dropdown-toggle{:href => "#"}
+        %i.icon-edit
+        %span Comercial
+        %i.icon-chevron-down
+      %ul.submenu
+        %li
+          %a{:href => "#{commercial.contracts_path}"} Contratos    
+    %li
+      %a.dropdown-toggle{:href => "#"}
+        %i.icon-edit
+        %span Compras
+        %i.icon-chevron-down
+      %ul.submenu
+        %li
+          %a{:href => "#{deal.suppliers_path}"} Visão Geral
+          %a{:href => "#{deal.suppliers_path}"} Fornecedores
+          %a{:href => "#{deal.suppliers_path}"} Compras
+          %a{:href => "#{deal.suppliers_path}"} Cotações
+          %a{:href => "#{deal.suppliers_path}"} Pedidos
+          %a{:href => "#{deal.suppliers_path}"} Estoque
+          %a{:href => "#{deal.suppliers_path}"} Patrimônio

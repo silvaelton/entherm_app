@@ -1,0 +1,29 @@
+= simple_form_for @user do |f|
+	.row
+		.col-md-8
+			= f.input :name
+	.row
+		.col-md-8
+			= f.input :email
+	- if @user.new_record?
+		.row
+			.col-md-4
+				= f.input :password
+			.col-md-4
+				= f.input :password_confirmation
+	.row
+		.col-md-4
+			= f.input :user_type, as: :select, collection: Access::User.user_types.keys.to_a, include_blank: false
+		.col-md-4
+			= f.input :status, as: :select, include_blank: false
+	%hr/
+	.row
+		.col-md-12
+			= f.simple_fields_for :user_contracts do |builder|
+				= render 'user_contract_fields', f: builder 
+			= link_to_add_fields "adicionar accesso a contratos", f, :user_contracts
+	%hr/
+	.row
+		.col-md-12
+			= f.button :submit, class: 'btn btn-primary btn-sm'
+			= link_to "Voltar", users_path, class: 'btn btn-default btn-sm'
