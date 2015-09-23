@@ -1,0 +1,13 @@
+#sidebar-nav
+  %ul#dashboard-menu
+    %li.active
+      %a.dropdown-toggle{:href => "#"}
+        %i.icon-share-alt
+        %span Pedidos
+        %i.icon-chevron-down
+      %ul.submenu{:style => 'display: block;'}
+        %li
+          %a{:href => "#{deal.new_order_path}"} Novo Pedido
+        %li
+          %a{:href => "#{deal.orders_path}"} Meus Pedidos
+  

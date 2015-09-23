@@ -1,0 +1,18 @@
+= simple_form_for @order do |f|
+  .row
+    .col-md-3
+      = f.association :contract, as: :select, collection: current_user.contracts, include_blank: false
+  .row
+    .col-md-8
+      = f.input :description
+  %hr/
+  .row
+    .col-md-12
+      = f.simple_fields_for :order_items do |builder|
+        = render 'order_item_fields', f: builder 
+      = link_to_add_fields "adicionar produto", f, :order_items
+  %hr/
+  .row
+    .col-md-8
+      = f.button :submit, class: 'btn btn-success btn-sm'
+      = link_to "Voltar", orders_path, class: 'btn btn-default btn-sm'

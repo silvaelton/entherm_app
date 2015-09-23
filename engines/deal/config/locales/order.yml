@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'deal/order': "Pedido"
+    attributes:
+      'deal/order':
+        contract: "Contrato"
+        description: "Descrição"
+        

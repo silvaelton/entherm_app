@@ -12,18 +12,18 @@ class CreateDealSuppliers < ActiveRecord::Migration
       t.string :cnpj
 
       t.string :contact_name
-      t.string :contact_name_optional
       
+      t.string :contact_email
+
       t.string :contact_telephone
       t.string :contact_telephone_optional
       
       t.string :contact_celphone
       t.string :contact_celphone_optional
 
-      t.string :location_gps
       t.string :observation
       
-      t.string :supplier_category, index: true
+      t.references :supplier_category, index: true
 
       t.timestamps null: false
     end

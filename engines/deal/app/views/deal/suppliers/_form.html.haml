@@ -1,10 +1,49 @@
 = simple_form_for @supplier do |f|
 	.row
-		.col-md-8
-			= f.input :name
+		.col-md-4
+			= f.association :supplier_category, prompt: "selecione a categoria..."
+			= f.hint link_to "gerenciar categorias", supplier_categories_path
+	%hr/
+	.row
+		.col-md-2
+			= f.input :cnpj
 	.row
 		.col-md-8
-			= f.input :cnpj
+			= f.input :name
+	%hr/
+	.row
+		.col-md-3
+			= f.association :state, prompt: 'selecione...', input_html: { id: 'state'}
+		.col-md-3
+			= f.association :city, prompt: 'selecione o estado...', collection: @supplier.state_id.present? ? @supplier.state.cities : {}, input_html: { id: 'city'}
+	.row
+		.col-md-8
+			= f.input :address
+	.row
+		.col-md-4
+			= f.input :address_complement
+		.col-md-2
+			= f.input :cep
+	%hr/
+	.row
+		.col-md-5
+			= f.input :contact_name
+		.col-md-3
+			= f.input :contact_email
+	.row
+		.col-md-2
+			= f.input :contact_telephone
+		.col-md-2
+			= f.input :contact_telephone_optional
+		.col-md-2
+			= f.input :contact_celphone
+		.col-md-2
+			= f.input :contact_celphone_optional
+	
+	%hr/
+	.row
+		.col-md-8
+			= f.input :observation
 	%hr/
 	.row
 		.col-md-12

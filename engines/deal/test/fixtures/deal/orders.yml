@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  contract_id: 
+  description: MyText
+  status: 1
+  image_path: MyString
+
+two:
+  user_id: 
+  contract_id: 
+  description: MyText
+  status: 1
+  image_path: MyString

@@ -6,7 +6,7 @@
         %span Início
     %li
       %a.dropdown-toggle{:href => "#"}
-        %i.icon-group
+        %i.icon-signin
         %span Acessos
         %i.icon-chevron-down
       %ul.submenu
@@ -18,7 +18,7 @@
           %a{:href => "user-profile.html"} Log de acessos
     %li
       %a.dropdown-toggle{:href => "#"}
-        %i.icon-edit
+        %i.icon-briefcase
         %span Comercial
         %i.icon-chevron-down
       %ul.submenu
@@ -26,7 +26,7 @@
           %a{:href => "#{commercial.contracts_path}"} Contratos    
     %li
       %a.dropdown-toggle{:href => "#"}
-        %i.icon-edit
+        %i.icon-shopping-cart
         %span Compras
         %i.icon-chevron-down
       %ul.submenu
@@ -35,6 +35,6 @@
           %a{:href => "#{deal.suppliers_path}"} Fornecedores
           %a{:href => "#{deal.suppliers_path}"} Compras
           %a{:href => "#{deal.suppliers_path}"} Cotações
-          %a{:href => "#{deal.suppliers_path}"} Pedidos
+          %a{:href => "#{deal.control_orders_path}"} Pedidos
           %a{:href => "#{deal.suppliers_path}"} Estoque
           %a{:href => "#{deal.suppliers_path}"} Patrimônio

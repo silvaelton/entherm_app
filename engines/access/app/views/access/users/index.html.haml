@@ -25,6 +25,9 @@
             %td= user.created_at.strftime("%d/%m/%Y às %H:%M")
             %td= user.last_sign_in_at.strftime("%d/%m/%Y") if user.last_sign_in_at.present?
             %td.col-md-2
-              = link_to "editar", edit_user_path(user), class: 'btn btn-primary btn-xs'
-              = link_to "remover", user_path(user), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-xs'
+              - if user.email == "dev@dev.com" && current_user.id != user.id
+                sem ações
+              - else
+                = link_to "editar", edit_user_path(user), class: 'btn btn-primary btn-xs'
+                = link_to "remover", user_path(user), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-xs'
        

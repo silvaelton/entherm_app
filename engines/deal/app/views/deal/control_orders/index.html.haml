@@ -1,0 +1,37 @@
+.row.title-row
+  .col-md-12
+    %h4.title 
+      Pedidos
+      = link_to "novo pedido", new_order_path, class: 'btn btn-success btn-sm pull-right'
+.row
+  = simple_form_for control_orders_path, method: :get do |f|
+    .col-md-2
+      = f.input :contract, as: :select, name: params[:contract_id], include_blank: false, collection: Commercial::Contract.all.order(:title)
+    .col-md-2
+      = f.input :start_date, name: params[:start_date]
+    .col-md-2
+      = f.input :end_date, name: params[:end_date]
+    .col-md-2
+      = f.input :status, as: :select, name: params[:status_id], include_blank: false, collection: Deal::Order::statuses
+    .col-md-2{:style => 'margin-top: 23px'}
+      = f.submit "Filtrar pedidos", name: nil, class: 'btn btn-primary btn-sm'
+%hr/
+.row
+  .col-md-12
+    %table.datatable.table-bordered.table-condensed
+      %thead
+        %tr
+          %th Contrato
+          %th Descrição
+          %th Status
+          %th Realizado em
+          %th Ações
+      %tbody
+        - @orders.each do |order|
+          %tr
+            %td.col-md-2= order.contract.title if order.contract.present?
+            %td= order.description
+            %td.col-md-2= status_helper order.status
+            %td.col-md-2= order.created_at.strftime("%d/%m/%Y às %H:%M")
+            %td.col-md-2
+              = link_to "visualizar", control_order_path(order), class: 'btn btn-primary btn-xs'

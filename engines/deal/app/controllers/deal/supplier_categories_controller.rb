@@ -27,7 +27,8 @@ module Deal
       @supplier_category = SupplierCategory.new(supplier_category_params)
 
       if @supplier_category.save
-        redirect_to @supplier_category, notice: 'Supplier category was successfully created.'
+        flash[:success] = t :success
+        redirect_to action: 'index'
       else
         render :new
       end
@@ -36,7 +37,8 @@ module Deal
     # PATCH/PUT /supplier_categories/1
     def update
       if @supplier_category.update(supplier_category_params)
-        redirect_to @supplier_category, notice: 'Supplier category was successfully updated.'
+        flash[:success] = t :success
+        redirect_to action: 'index'
       else
         render :edit
       end
@@ -44,8 +46,10 @@ module Deal
 
     # DELETE /supplier_categories/1
     def destroy
-      @supplier_category.destroy
-      redirect_to supplier_categories_url, notice: 'Supplier category was successfully destroyed.'
+      if @supplier_category.destroy
+        flash[:success] = t :success
+        redirect_to action: 'index'
+      end
     end
 
     private
@@ -56,7 +60,7 @@ module Deal
 
       # Only allow a trusted parameter "white list" through.
       def supplier_category_params
-        params[:supplier_category]
+        params.require(:supplier_category).permit(:title, :status)
       end
   end
 end

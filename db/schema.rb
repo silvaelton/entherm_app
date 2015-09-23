@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923022257) do
+ActiveRecord::Schema.define(version: 20150923180220) do
 
   create_table "access_user_contracts", force: :cascade do |t|
     t.integer  "user_id"
@@ -30,6 +30,43 @@ ActiveRecord::Schema.define(version: 20150923022257) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "deal_order_items", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "product_id"
+    t.string   "unit"
+    t.integer  "quantity"
+    t.string   "goal"
+    t.text     "observation"
+    t.string   "image_path"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "deal_order_items", ["order_id"], name: "index_deal_order_items_on_order_id"
+  add_index "deal_order_items", ["product_id"], name: "index_deal_order_items_on_product_id"
+
+  create_table "deal_orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "contract_id"
+    t.text     "description"
+    t.integer  "status",      default: 0
+    t.string   "image_path"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "deal_orders", ["contract_id"], name: "index_deal_orders_on_contract_id"
+  add_index "deal_orders", ["user_id"], name: "index_deal_orders_on_user_id"
+
+  create_table "deal_products", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.text     "observation"
+    t.string   "image_path"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "deal_supplier_categories", force: :cascade do |t|
     t.string   "title"
     t.boolean  "status"
@@ -46,21 +83,37 @@ ActiveRecord::Schema.define(version: 20150923022257) do
     t.integer  "state_id"
     t.string   "cnpj"
     t.string   "contact_name"
-    t.string   "contact_name_optional"
+    t.string   "contact_email"
     t.string   "contact_telephone"
     t.string   "contact_telephone_optional"
     t.string   "contact_celphone"
     t.string   "contact_celphone_optional"
-    t.string   "location_gps"
     t.string   "observation"
-    t.string   "supplier_category"
+    t.integer  "supplier_category_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
 
   add_index "deal_suppliers", ["city_id"], name: "index_deal_suppliers_on_city_id"
   add_index "deal_suppliers", ["state_id"], name: "index_deal_suppliers_on_state_id"
-  add_index "deal_suppliers", ["supplier_category"], name: "index_deal_suppliers_on_supplier_category"
+  add_index "deal_suppliers", ["supplier_category_id"], name: "index_deal_suppliers_on_supplier_category_id"
+
+  create_table "information_cities", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "capital"
+    t.integer  "state_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "information_cities", ["state_id"], name: "index_information_cities_on_state_id"
+
+  create_table "information_states", force: :cascade do |t|
+    t.string   "name"
+    t.string   "acronym"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

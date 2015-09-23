@@ -5,16 +5,16 @@ module Access
 		before_action :set_user, only: [:edit, :show, :update, :destroy]
 
 		def index
-			@users = User.all
+			@users = Access::User.all
 		end
 
 		def new
-			@user = User.new
+			@user = Access::User.new
 			@user.user_contracts.build
 		end
 
 		def create
-			@user = User.new(set_params)
+			@user = Access::User.new(set_params)
 			if @user.save
 				flash[:success] = t :success
 				redirect_to action: 'index'

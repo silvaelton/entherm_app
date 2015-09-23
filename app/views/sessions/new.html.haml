@@ -1,0 +1,10 @@
+.login-wrapper
+  %a{:href => "index.html"}
+    %img.logo{:alt => "logo", :src => "img/logo-white.png"}/
+  .box
+    .content-wrap
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        %h6 Área Restrita
+        = f.input :email, label: false, required: false, autofocus: true, placeholder: "Digite seu e-mail"
+        = f.input :password, required: false, label: false, placeholder: "Digite sua senha"
+        = f.button :submit, 'Realizar Acesso', class: 'btn btn-primary'

@@ -5,7 +5,7 @@
       %span.icon-bar
       %span.icon-bar
       %span.icon-bar
-    %a.navbar-brand{:href => "index.html"}
+    %a.navbar-brand{:href => "#{dashboard.root_path}"}
       %img{:alt => "logo", :src => "img/logo.png"}/
   %ul.nav.navbar-nav.pull-right.hidden-xs
     %li.hidden-xs
@@ -55,61 +55,12 @@
                 1 day.
             .footer
               %a.logout{:href => "#"} View all notifications
-    %li.notification-dropdown.hidden-xs.hidden-sm
-      %a.trigger{:href => "#"}
-        %i.icon-envelope
-      .pop-dialog
-        .pointer.right
-          .arrow
-          .arrow_border
-        .body
-          %a.close-icon{:href => "#"}
-            %i.icon-remove-sign
-          .messages
-            %a.item{:href => "#"}
-              %img.display{:alt => "user", :src => "img/contact-img.png"}/
-              .name Alejandra Galván
-              .msg
-                There are many variations of available, but the majority have suffered alterations.
-              %span.time
-                %i.icon-time
-                13 min.
-            %a.item{:href => "#"}
-              %img.display{:alt => "user", :src => "img/contact-img2.png"}/
-              .name Alejandra Galván
-              .msg
-                There are many variations of available, have suffered alterations.
-              %span.time
-                %i.icon-time
-                26 min.
-            %a.item.last{:href => "#"}
-              %img.display{:alt => "user", :src => "img/contact-img.png"}/
-              .name Alejandra Galván
-              .msg
-                There are many variations of available, but the majority have suffered alterations.
-              %span.time
-                %i.icon-time
-                48 min.
-            .footer
-              %a.logout{:href => "#"} View all messages
     %li.dropdown
       %a.dropdown-toggle.hidden-xs.hidden-sm{"data-toggle" => "dropdown", :href => "#"}
-        Your account
+        = current_user.name.humanize
         %b.caret
       %ul.dropdown-menu
         %li
-          %a{:href => "personal-info.html"} Personal info
+          = link_to "Minha conta", main_app.edit_user_registration_path
         %li
-          %a{:href => "#"} Account settings
-        %li
-          %a{:href => "#"} Billing
-        %li
-          %a{:href => "#"} Export your data
-        %li
-          %a{:href => "#"} Send feedback
-    %li.settings.hidden-xs.hidden-sm
-      %a{:href => "personal-info.html", :role => "button"}
-        %i.icon-cog
-    %li.settings.hidden-xs.hidden-sm
-      %a{:href => "signin.html", :role => "button"}
-        %i.icon-share-alt
+          = link_to "Sair", main_app.destroy_user_session_path, method: :delete

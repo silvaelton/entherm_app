@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'deal/order_item': "Item do pedido"
+    attributes:
+      'deal/order_item':
+        product_title: "Item"
+        unit: "Unidade"
+        quantity: "Quantidade"
+        goal: "Razão"
