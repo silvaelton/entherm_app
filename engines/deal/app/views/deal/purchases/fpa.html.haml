@@ -1,0 +1,86 @@
+%br/
+.container{style: "font-size:12px"}
+  %table.table.table-bordered.table-striped
+    %tbody
+      %tr
+        %td.col-md-2{:style => "font-size: 15px;"} Entherm Engenharia
+        %td.col-md-8{:style => "text-align:center"} 
+          %h3 
+            %b Fluxo de Processo de Arquisição
+        %td.col-md-2
+          %b{:style => "font-size: 25px;"} 001/2015
+  %table.table.table-bordered.table-condensed.table-striped
+    %tbody
+      %tr
+        %th Quem requisitou?
+        %th Departamento / Centro de custo
+        %th Quem receberá?
+        %th Tipo de FPA
+        %th Quantidade de Itens?
+        %th Número da FPA
+      %tr
+        %td {{nome}}
+        %td {{contrato}}
+        %td {{funcionário}}
+        %td {{tipos}}
+        %td {{total_itens}}
+        %td {{id}}
+      %tr
+        %td{:colspan => 6}
+      %tr
+        %th Data da FPA
+        %th Data de x
+        %th Local para Recebimento
+        %th{:colspan => 3} Utilização do pedido
+      %tr
+        %td 01/01/2001
+        %td 01/01/2001
+        %td Local
+        %td{:colspan => 3} -
+      %tr
+        %td{:colspan => 6}
+      %tr
+        %th Condições de pagamento
+        %th Prazo de entrega
+        %th Fornecedor
+        %th Local / Endereço
+        %th Vendedor
+        %th Fone/Fax
+      %tr
+        %td Condições de pagamento
+        %td Prazo de entrega
+        %td Fornecedor
+        %td Local / Endereço
+        %td Vendedor
+        %td Fone/Fax
+      %tr
+        %td{:colspan => 6}
+      %tr
+        %th Comentário da Diretoria
+        %th QTD de AFs
+        %th{:colspan => 2} Rubrica de Aprovação
+        %th{:colspan => 2} R$ Total de Compra Efetuada
+      %tr
+        %td 
+        %td 
+        %td{:colspan => 2}
+        %td{:colspan => 2}
+          %b{style: "font-size: 25px"} R$ 0.00
+
+  %table.table.table-bordered.table-condensed.table-striped
+    %tbody
+      %tr
+        %th Item 
+        %th QTD
+        %th Unidade
+        %th Descrição
+        %th Valor Unitário
+        %th Valor Total
+      - 10.times do
+        %tr
+          %td.col-md-1
+          %td.col-md-1
+          %td.col-md-1
+          %td.col-md-6
+          %td.col-md-1
+          %td.col-md-1
