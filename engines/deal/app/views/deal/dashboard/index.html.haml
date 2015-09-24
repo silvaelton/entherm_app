@@ -1,0 +1,63 @@
+:javascript
+  var Chartkick = {"language": "pt-BR"};
+= javascript_include_tag "https://www.google.com/jsapi", "chartkick"
+
+.row.title-row
+  .col-md-12
+    %h4.title 
+      Visão Geral - Compras
+.row
+  = simple_form_for :search, url: dashboard_path, method: :get do |f|
+    .col-md-2
+      = f.label "Data início"
+      = f.input :date_start, label: false, input_html: { value: (params[:search].present?) ? params[:search][:date_start] : Date.today.beginning_of_month.strftime('%d/%m/%Y') , class: 'date'}
+    .col-md-2
+      = f.label "Data fim"
+      = f.input :date_end, label: false, name: 'date_end', input_html: { value: (params[:search].present?) ? params[:search][:date_end] : Date.today.end_of_month.strftime('%d/%m/%Y'),  class: 'date' }
+    .col-md-2{style: "padding-top:24px"}
+      = f.submit "Filtrar Compras", name: nil, class: 'btn btn-primary btn-sm'
+%hr/
+.row
+  .col-md-6
+    %h4 (%) de compras por contrato
+    = pie_chart Deal::Purchase.search(params[:search]).where(status: 1).joins(:contract).group('commercial_contracts.title').count
+  .col-md-6
+    %h4 Valor de compras por contrato
+    %br/
+    %table.table.table-condensed.table-striped.table-bordered
+      %thead
+        %tr
+          %th Contrato
+          %th Quantidade de compras
+          %th Valor total de compras
+      %tbody
+        - Commercial::Contract.all.each do |contract|
+          %tr
+            %td= contract.title
+            %td= contract.purchases.search(params[:search]).where(status: 1).count
+            %td= number_to_currency contract.purchases.search(params[:search]).joins(:purchase_items).sum('deal_purchase_items.total_value')
+%hr/
+.row
+  .col-md-12
+    %h4 Todas as compras no período
+    %br/
+    %table.table.table-condensed.table-striped.table-bordered.datatable
+      %thead
+        %tr
+          %th Contrato
+          %th Descrição
+          %th Data da compra
+          %th Status
+          %th Valor total
+      %tbody
+        - Deal::Purchase.search(params[:search]).where(status: 1).order('created_at DESC').each do |purchase|
+          %tr
+            %td= purchase.contract.title
+            %td= purchase.description
+            %td= purchase.created_at.strftime('%d/%m/%Y às %H:%M')
+            %td= status_purchase_helper purchase.status
+            %td= number_to_currency purchase.purchase_items.sum(:total_value)
+      %tfoot 
+        %tr 
+          %th{colspan: 4} Total em compras no período
+          %th= number_to_currency Deal::Purchase.search(params[:search]).where(status: 1).joins(:purchase_items).sum('deal_purchase_items.total_value')

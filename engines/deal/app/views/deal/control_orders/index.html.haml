@@ -1,18 +1,21 @@
 .row.title-row
   .col-md-12
     %h4.title 
-      Pedidos
-      = link_to "novo pedido", new_order_path, class: 'btn btn-success btn-sm pull-right'
+      Listagem de pedidos
 .row
   = simple_form_for control_orders_path, method: :get do |f|
     .col-md-2
-      = f.input :contract, as: :select, name: params[:contract_id], include_blank: false, collection: Commercial::Contract.all.order(:title)
+      = f.label "Contrato"
+      = f.input :contract, label: false, as: :select, name: params[:contract_id], include_blank: true, collection: Commercial::Contract.all.order(:title)
     .col-md-2
-      = f.input :start_date, name: params[:start_date]
+      = f.label "Data início"
+      = f.input :date_start, label: false, input_html: { value: (params[:search].present?) ? params[:search][:date_start] : Date.today.beginning_of_month.strftime('%d/%m/%Y') , class: 'date'}
     .col-md-2
-      = f.input :end_date, name: params[:end_date]
+      = f.label "Data fim"
+      = f.input :date_end, label: false, name: 'date_end', input_html: { value: (params[:search].present?) ? params[:search][:date_end] : Date.today.end_of_month.strftime('%d/%m/%Y'),  class: 'date' }
     .col-md-2
-      = f.input :status, as: :select, name: params[:status_id], include_blank: false, collection: Deal::Order::statuses
+      = f.label "Status"
+      = f.input :status,label: false,  as: :select, name: params[:status_id], include_blank: false, collection: Deal::Order::statuses
     .col-md-2{:style => 'margin-top: 23px'}
       = f.submit "Filtrar pedidos", name: nil, class: 'btn btn-primary btn-sm'
 %hr/
