@@ -1,0 +1,40 @@
+.row
+  %fieldset
+    .col-md-3
+      = f.label :product_title
+      = f.text_field :product_title, data: {autocomplete_source: products_path}, id: 'product_title', class: 'product_title form-control', autocomplete: 'on'
+    .col-md-1
+      = f.input :unit, as: :select, collection: Deal::PurchaseItem.units.keys.to_a, include_blank: false
+    .col-md-1
+      = f.input :quantity, as: :string, input_html: { id: "quantity_#{f.options[:child_index]}"}
+    .col-md-1
+      = f.input :unit_value, as: :string, input_html: { id: "unit_value_#{f.options[:child_index]}", class: 'coin_mask'}
+    .col-md-1
+      = f.input :total_value, as: :string, input_html: { id: "unit_total_value_#{f.options[:child_index]}", readonly: true, class: 'coin_mask'}
+    .col-md-2{:style => "margin-top:25px"}
+      = f.hidden_field :_destroy
+      = link_to "remover", '#', class: "remove_fields btn btn-danger btn-sm"
+
+
+:javascript
+  
+  $(document).ready(function() {
+    $('.product_title').autocomplete({source: $('#product_title').data('autocomplete-source')});
+    $('.coin_mask').maskMoney({prefix:'R$ ', allowNegative: true, allowZero:true, thousands:'', decimal:'.', affixesStay: false});
+
+    
+    $("#unit_value_#{f.options[:child_index]}").on('change', function() {
+      var current_value = $(this).val();
+      var quantity      = $("#quantity_#{f.options[:child_index]}").val();
+      var total_value   = current_value * quantity;
+      
+      $("#unit_total_value_#{f.options[:child_index]}").val(total_value.toFixed(2))
+    });
+
+    $("#quantity_#{f.options[:child_index]}").on('change', function() {
+      current_value = $("#unit_value_#{f.options[:child_index]}").val();
+      quantity      = $("#quantity_#{f.options[:child_index]}").val();
+      total_value   = current_value * quantity;
+      $("#unit_total_value_#{f.options[:child_index]}").val(total_value.toFixed(2));
+    });
+  });

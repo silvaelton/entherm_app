@@ -23,5 +23,17 @@ module Deal
       end
         
     end
+
+    def status_purchase_helper(status)
+      case status
+      when 'aguardando'
+        "<span class='label label-primary'>Aguardando</span>".html_safe
+      when 'efetuada'
+        "<span class='label label-success'>Efetuada</span>".html_safe
+      when 'cancelado'
+        "<span class='label label-danger'>Cancelada</span>".html_safe
+      end
+        
+    end
   end
 end

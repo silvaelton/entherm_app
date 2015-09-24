@@ -14,11 +14,11 @@ module BRPopulate
 
   def self.populate
     states.each do |state|
-      state_obj = Address::State.new(:acronym => state["acronym"], :name => state["name"])
+      state_obj = Information::State.new(:acronym => state["acronym"], :name => state["name"])
       state_obj.save!
       
       state["cities"].each do |city|
-        c = Address::City.new
+        c = Information::City.new
         c.name = city
         c.state = state_obj
         c.capital = capital?(city, state)
@@ -28,7 +28,7 @@ module BRPopulate
   end
 end
 
-namespace :address do
+namespace :cities do
 
   desc "Migração de cidades"
   task :migrate => :environment do

@@ -1,0 +1,38 @@
+= simple_form_for @purchase do |f|
+  .row
+    .col-md-2
+      = hidden_field_tag :search, params[:search] if params[:search].present?
+      = f.input :purchase_type, as: :select, collection: Deal::Purchase.purchase_types.keys.to_a, include_blank: false
+    .col-md-2
+      = f.input :status, as: :select, collection: Deal::Purchase.statuses.keys.to_a, include_blank: false
+  %hr/
+  .row
+    .col-md-3
+      = f.association :contract, as: :select, prompt: 'selecione...'
+    .col-md-2
+      = f.association :quotation, as: :select, prompt: 'selecione...'
+  .row
+    .col-md-3
+      = f.association :supplier, prompt: 'selecione...'
+    .col-md-2
+      = f.input :invoice_number
+    .col-md-2
+      = f.input :invoice_file, as: :file
+  %hr/
+  .row
+    .col-md-8
+      = f.input :description
+  %hr/
+  .row
+    .col-md-12
+      = f.simple_fields_for :purchase_items do |builder|
+        = render 'purchase_item_fields', f: builder 
+      = link_to_add_fields "adicionar produto", f, :purchase_items
+  %hr/
+  .row
+    .col-md-8
+      = f.button :submit, class: 'btn btn-success btn-sm'
+      - if params[:search].present?
+        = link_to "Voltar", purchases_path(search: params[:search]), class: 'btn btn-default btn-sm'
+      - else
+        = link_to "Voltar", purchases_path, class: 'btn btn-default btn-sm'

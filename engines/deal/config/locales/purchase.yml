@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      'deal/purchase': "Compra"
+    attributes:
+      'deal/purchase':
+        contract: "Contrato"
+        description: "Descrição"
+        purchase_type: "Tipo"
+        status: "Status"
+        quotation: "Cotação"
+        supplier: "Fornecedor"
+        invoice_number: "Número da nota"
+        invoice_file: "Upload da nota"
+        
+        

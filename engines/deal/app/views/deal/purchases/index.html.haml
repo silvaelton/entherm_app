@@ -1,0 +1,65 @@
+.row.title-row
+  .col-md-12
+    %h4.title 
+      Listagem de Compras
+      - if params[:search].present?
+        = link_to "novo compra", new_purchase_path(search: params[:search]), class: 'btn btn-success btn-sm pull-right'
+      - else
+        = link_to "novo compra", new_purchase_path, class: 'btn btn-success btn-sm pull-right'
+
+.row
+  = simple_form_for :search, url: purchases_path, method: :get do |f|
+    .col-md-2
+      = f.label "Data início"
+      = f.input :date_start, label: false, input_html: { value: (params[:search].present?) ? params[:search][:date_start] : Date.today.beginning_of_month.strftime('%d/%m/%Y') , class: 'date'}
+    .col-md-2
+      = f.label "Data fim"
+      = f.input :date_end, label: false, name: 'date_end', input_html: { value: (params[:search].present?) ? params[:search][:date_end] : Date.today.end_of_month.strftime('%d/%m/%Y'),  class: 'date' }
+    .col-md-2
+      = f.label "Contrato"
+      = f.input :contract_id, label: false, name: 'filter[contract_id]', collection: Commercial::Contract.all.order(:title), prompt: 'todos', selected: (params[:search].present?) ? params[:search][:contract_id] : ''
+    .col-md-2
+      = f.label "Status"
+      = f.input :status_id, label: false, name: 'status_id', collection: Deal::Purchase.statuses, prompt: 'todos', selected: params[:search].present? ? params[:search][:status_id] : ''
+    .col-md-2{style: "padding-top:24px"}
+      = f.submit "Filtrar Compras", name: nil, class: 'btn btn-primary btn-sm'
+%hr/
+.row
+  .col-md-12
+    %table.datatable.table-bordered.table-condensed
+      %thead
+        %tr
+          %th Tipo
+          %th Status
+          %th Contrato
+          %th Descrição
+          %th Fornecedor
+          %th Valor
+          %th Data da Compra
+          %th Ações
+      %tbody
+        - @total_purchase = 0
+        - @purchases.each do |purchase|
+          %tr
+            %td= purchase.purchase_type
+            %td= status_purchase_helper purchase.status
+            %td= purchase.contract.title if purchase.contract.present?
+            %td= purchase.description
+            %td= purchase.supplier.name if purchase.supplier.present?
+            - @total_purchase += purchase.purchase_items.sum(:total_value) if purchase.purchase_items.present?
+            %td= number_to_currency purchase.purchase_items.sum(:total_value)
+            %td= purchase.created_at.strftime('%d/%m/%Y às %H:%M')
+            %td.col-md-2
+              - if params[:search].present?
+                = link_to "Editar", edit_purchase_path(id: purchase, search: params[:search]), class: 'btn btn-primary btn-xs'
+                = link_to "Visualizar", purchase_path(id: purchase, search: params[:search]), class: 'btn btn-success btn-xs'
+                = link_to "Emitir FPA", purchase_fpa_path(purchase_id: purchase, search: params[:search]), class: 'btn btn-warning btn-xs'
+              - else
+                = link_to "Editar", edit_purchase_path(purchase), class: 'btn btn-primary btn-xs'
+                = link_to "Visualizar", purchase_path(purchase), class: 'btn btn-success btn-xs'
+                = link_to "Emitir FPA", purchase_fpa_path(purchase), class: 'btn btn-warning btn-xs'
+      %tfoot 
+        %tr
+          %th{colspan: 5} Total em Compras
+          %th
+            %h5= number_to_currency @total_purchase

@@ -1,0 +1,22 @@
+pt-BR:
+  activerecord:
+    models:
+      'deal/supplier': "Fornecedor"
+    attributes:
+      'deal/supplier':
+        supplier_category: "Categoria"
+        name: "Nome"
+        cnpj: "CNPJ"
+        state: "Estado"
+        city: "Cidade"
+        address: "Endereço"
+        address_complement: "Complemento"
+        cep: "CEP"
+        contact_name: "Contato"
+        contact_email: "E-mail"
+        contact_telephone: "Telefone"
+        contact_telephone_optional: "Telefone opcional"
+        contact_celphone: "Celular"
+        contact_celphone_optional: "Celular opcional"
+        observation: "Observação"
+        

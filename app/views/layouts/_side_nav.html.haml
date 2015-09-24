@@ -4,36 +4,36 @@
       %a{:href => "#{dashboard.root_path}"}
         %i.icon-home
         %span Início
-    %li
+    %li{class: params[:module] == 'access' ? 'active' : ''}
       %a.dropdown-toggle{:href => "#"}
         %i.icon-signin
         %span Acessos
         %i.icon-chevron-down
-      %ul.submenu
+      %ul.submenu{style: params[:module] == 'access' ? 'display:block;' : ''}
         %li
           %a{:href => "#{access.users_path}"} Usuários
         %li
           %a{:href => "new-user.html"} Permissões
         %li
           %a{:href => "user-profile.html"} Log de acessos
-    %li
+    %li{class: params[:module] == 'commercial' ? 'active' : ''}
       %a.dropdown-toggle{:href => "#"}
         %i.icon-briefcase
         %span Comercial
         %i.icon-chevron-down
-      %ul.submenu
+      %ul.submenu{style: params[:module] == 'commercial' ? 'display:block;' : ''}
         %li
           %a{:href => "#{commercial.contracts_path}"} Contratos    
-    %li
+    %li{class: params[:module] == 'deal' ? 'active' : ''}
       %a.dropdown-toggle{:href => "#"}
         %i.icon-shopping-cart
         %span Compras
         %i.icon-chevron-down
-      %ul.submenu
+      %ul.submenu{style: params[:module] == 'deal' ? 'display:block;' : ''}
         %li
           %a{:href => "#{deal.suppliers_path}"} Visão Geral
           %a{:href => "#{deal.suppliers_path}"} Fornecedores
-          %a{:href => "#{deal.suppliers_path}"} Compras
+          %a{:href => "#{deal.purchases_path}"} Compras
           %a{:href => "#{deal.suppliers_path}"} Cotações
           %a{:href => "#{deal.control_orders_path}"} Pedidos
           %a{:href => "#{deal.suppliers_path}"} Estoque
