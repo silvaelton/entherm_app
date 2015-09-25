@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'commercial/contract': "Contrato"
+    attributes:
+      'commercial/contract':
+        title: "Título"
+        company: "Empresa"
+        status: "Ativo?"
+        

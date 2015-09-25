@@ -6,7 +6,7 @@
   = simple_form_for control_orders_path, method: :get do |f|
     .col-md-2
       = f.label "Contrato"
-      = f.input :contract, label: false, as: :select, name: params[:contract_id], include_blank: true, collection: Commercial::Contract.all.order(:title)
+      = f.input :contract, label: false, as: :select, name: params[:contract_id], include_blank: true, collection: Commercial::Contract.all.order(:title), prompt: "Selecione.."
     .col-md-2
       = f.label "Data início"
       = f.input :date_start, label: false, input_html: { value: (params[:search].present?) ? params[:search][:date_start] : Date.today.beginning_of_month.strftime('%d/%m/%Y') , class: 'date'}

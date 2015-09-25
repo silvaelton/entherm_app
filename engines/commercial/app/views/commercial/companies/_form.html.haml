@@ -1,0 +1,32 @@
+= simple_form_for @company do |f|
+  .row
+    .col-md-8
+      = f.input :name
+  .row
+    .col-md-2
+      = f.input :cnpj
+    .col-md-3
+      = f.association :state, prompt: 'selecione...', input_html: { id: 'state'}
+    .col-md-3
+      = f.association :city, prompt: 'selecione o estado...', collection: @company.state_id.present? ? @company.state.cities : {}, input_html: { id: 'city'}
+  .row
+    .col-md-8
+      = f.input :address
+  .row
+    .col-md-6
+      = f.input :address_complement
+    .col-md-2
+      = f.input :cep
+  %hr/
+  .row
+    .col-md-3
+      = f.input :telephone
+    .col-md-3
+      = f.input :telephone_optional
+
+
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-primary btn-sm'
+      = link_to "Voltar", companies_path, class: 'btn btn-default btn-sm'

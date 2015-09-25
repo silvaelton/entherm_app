@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      'deal/patrimony': "Patrimônio"
+    attributes:
+      'deal/patrimony':
+        contract: "Contrato"
+        description: "Descrição"
+        title: "Título"
+        state: "Estado do item"
+        original_value: "Valor original"
+        estimated_value: "Valor estimado"
+        location: "Localização"
+        image_path: "Imagem"
+        
+        

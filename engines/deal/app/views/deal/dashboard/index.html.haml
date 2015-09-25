@@ -52,7 +52,7 @@
       %tbody
         - Deal::Purchase.search(params[:search]).where(status: 1).order('created_at DESC').each do |purchase|
           %tr
-            %td= purchase.contract.title
+            %td= purchase.contract.title if purchase.contract.present?
             %td= purchase.description
             %td= purchase.created_at.strftime('%d/%m/%Y às %H:%M')
             %td= status_purchase_helper purchase.status

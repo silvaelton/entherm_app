@@ -1,0 +1,28 @@
+= simple_form_for @patrimony do |f|
+  .row
+    .col-md-3
+      = f.association :contract, as: :select, collection: Commercial::Contract.all, include_blank: false
+  .row
+    .col-md-8
+      = f.input :title
+  .row
+    .col-md-8
+      = f.input :description
+  .row
+    .col-md-4
+      = f.input :location
+    .col-md-4
+      = f.label :image_path
+      = f.input :image_path, label: false, as: :file
+  .row
+    .col-md-4
+      = f.input :state, as: :select, collection: Deal::Patrimony.states.keys.to_a, include_blank: false
+    .col-md-2
+      = f.input :original_value, as: :string, input_html: { class: 'coin_mask'}
+    .col-md-2
+      = f.input :estimated_value, as: :string, input_html: { class: 'coin_mask'}
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success btn-sm'
+      = link_to "Voltar", patrimonies_path, class: 'btn btn-default btn-sm'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924135803) do
+ActiveRecord::Schema.define(version: 20150925131033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,24 +26,46 @@ ActiveRecord::Schema.define(version: 20150924135803) do
   add_index "access_user_contracts", ["contract_id"], name: "index_access_user_contracts_on_contract_id", using: :btree
   add_index "access_user_contracts", ["user_id"], name: "index_access_user_contracts_on_user_id", using: :btree
 
+  create_table "commercial_companies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cnpj"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.string   "address"
+    t.string   "address_complement"
+    t.string   "cep"
+    t.string   "telephone"
+    t.string   "telephone_optional"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "commercial_companies", ["city_id"], name: "index_commercial_companies_on_city_id", using: :btree
+  add_index "commercial_companies", ["state_id"], name: "index_commercial_companies_on_state_id", using: :btree
+
   create_table "commercial_contracts", force: :cascade do |t|
     t.string   "title"
     t.boolean  "status",     default: true
+    t.integer  "company_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
 
-  create_table "deal_invetories", force: :cascade do |t|
+  add_index "commercial_contracts", ["company_id"], name: "index_commercial_contracts_on_company_id", using: :btree
+
+  create_table "deal_inventories", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "quantity"
     t.text     "observation"
     t.text     "location"
     t.string   "image_path"
+    t.integer  "contract_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "deal_invetories", ["product_id"], name: "index_deal_invetories_on_product_id", using: :btree
+  add_index "deal_inventories", ["contract_id"], name: "index_deal_inventories_on_contract_id", using: :btree
+  add_index "deal_inventories", ["product_id"], name: "index_deal_inventories_on_product_id", using: :btree
 
   create_table "deal_order_items", force: :cascade do |t|
     t.integer  "order_id"

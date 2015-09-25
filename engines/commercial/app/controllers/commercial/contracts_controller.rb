@@ -47,7 +47,7 @@ module Commercial
     private
 
     def set_params
-      params.require(:contract).permit(:title, :status)
+      params.require(:contract).permit(:title, :status, :company_id)
     end
 
     def set_contract

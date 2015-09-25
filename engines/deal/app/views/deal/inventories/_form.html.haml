@@ -1,0 +1,29 @@
+= simple_form_for @inventory do |f|
+  .row
+    .col-md-3
+      = f.association :contract, as: :select, collection: Commercial::Contract.all, include_blank: false
+  .row
+    .col-md-6
+      = f.label :product_title
+      = f.text_field :product_title, data: {autocomplete_source: products_path}, id: 'product_title', class: 'product_title form-control', autocomplete: 'on'
+    .col-md-2
+      = f.input :quantity
+  .row
+    .col-md-8
+      = f.input :observation
+  .row
+    .col-md-4
+      = f.input :location
+    .col-md-4
+      = f.label :image_path
+      = f.input :image_path, label: false, as: :file
+  %hr/
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-success btn-sm'
+      = link_to "Voltar", inventories_path, class: 'btn btn-default btn-sm'
+
+:javascript
+  $(document).ready(function() {
+    $('.product_title').autocomplete({source: $('#product_title').data('autocomplete-source')});
+  })

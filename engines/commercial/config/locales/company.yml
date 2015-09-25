@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      'commercial/company': "Empresa"
+    attributes:
+      'commercial/company':
+        name: "Nome"
+        cnpj: "CNPJ"
+        city: "Cidade"
+        state: "Estado"
+        address: "Endereço"
+        address_complement: "Complemento do endereço"
+        cep: "CEP"
+        telephone: "Telefone"
+        telephone_optional: "Telefone Opcional"
+        
+        
