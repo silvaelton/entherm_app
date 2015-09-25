@@ -8,23 +8,23 @@
     %table.datatable.table-bordered.table-condensed
       %thead
         %tr
+          %th Categoria
           %th Nome
-          %th E-mail
-          %th Status
-          %th Privilégio
-          %th Data de criação
-          %th Último acesso
+          %th Cidade/UF
+          %th Contato
+          %th Telefones
+          %th Celulares
           %th Ações
       %tbody
-        - @suppliers.each do |user|
+        - @suppliers.each do |supplier|
           %tr
-            %td= user.name
-            %td= user.email
-            %td= user.status ? 'ativo' : 'inativo'
-            %td= user.user_type
-            %td= user.created_at.strftime("%d/%m/%Y às %H:%M")
-            %td= user.last_sign_in_at.strftime("%d/%m/%Y") if user.last_sign_in_at.present?
+            %td= supplier.supplier_category.title if supplier.supplier_category.present?
+            %td= supplier.name
+            %td= "#{supplier.city.name} / #{supplier.state.acronym}" if supplier.city.present? && supplier.state.present?
+            %td= supplier.contact_name
+            %td= "#{supplier.contact_telephone} / #{supplier.contact_telephone_optional}"
+            %td= "#{supplier.contact_celphone} / #{supplier.contact_celphone_optional}"
             %td.col-md-2
-              = link_to "editar", edit_user_path(user), class: 'btn btn-primary btn-xs'
-              = link_to "remover", user_path(user), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-xs'
+              = link_to "editar", edit_supplier_path(supplier), class: 'btn btn-primary btn-xs'
+              = link_to "remover", supplier_path(supplier), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-xs'
        

@@ -47,12 +47,14 @@ $(document).ready(function() {
       var html = "";
 
       for(var i = 0; i < data.length; i++) {
-        html += "<option value="+date[i].id+">"+data[i].name+"</option>";
+        html += "<option value="+data[i].id+">"+data[i].name+"</option>";
       }
 
       $("#city").html(html);
     });
   });
+
+  $('.date').mask("00/00/0000", {placeholder: "__/__/____"});
 
 
 });

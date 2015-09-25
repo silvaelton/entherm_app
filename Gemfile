@@ -18,6 +18,8 @@ gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
 gem 'email_validator'
 
+gem "chartkick"
+
 group :development, :test do
   gem 'byebug'
 	gem 'sqlite3'

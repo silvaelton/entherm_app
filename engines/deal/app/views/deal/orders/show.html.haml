@@ -48,7 +48,7 @@
         - @order.order_items.each do |order|
           %tr
             %td= order.product.title
-            %td.col-md-2= order.unit
+            %td.col-md-1= order.unit
             %td.col-md-2= order.quantity
             %td= order.goal
             

@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923180220) do
+ActiveRecord::Schema.define(version: 20150924135803) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "access_user_contracts", force: :cascade do |t|
     t.integer  "user_id"
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20150923180220) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "access_user_contracts", ["contract_id"], name: "index_access_user_contracts_on_contract_id"
-  add_index "access_user_contracts", ["user_id"], name: "index_access_user_contracts_on_user_id"
+  add_index "access_user_contracts", ["contract_id"], name: "index_access_user_contracts_on_contract_id", using: :btree
+  add_index "access_user_contracts", ["user_id"], name: "index_access_user_contracts_on_user_id", using: :btree
 
   create_table "commercial_contracts", force: :cascade do |t|
     t.string   "title"
@@ -29,6 +32,18 @@ ActiveRecord::Schema.define(version: 20150923180220) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  create_table "deal_invetories", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.text     "observation"
+    t.text     "location"
+    t.string   "image_path"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "deal_invetories", ["product_id"], name: "index_deal_invetories_on_product_id", using: :btree
 
   create_table "deal_order_items", force: :cascade do |t|
     t.integer  "order_id"
@@ -42,8 +57,8 @@ ActiveRecord::Schema.define(version: 20150923180220) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "deal_order_items", ["order_id"], name: "index_deal_order_items_on_order_id"
-  add_index "deal_order_items", ["product_id"], name: "index_deal_order_items_on_product_id"
+  add_index "deal_order_items", ["order_id"], name: "index_deal_order_items_on_order_id", using: :btree
+  add_index "deal_order_items", ["product_id"], name: "index_deal_order_items_on_product_id", using: :btree
 
   create_table "deal_orders", force: :cascade do |t|
     t.integer  "user_id"
@@ -55,8 +70,23 @@ ActiveRecord::Schema.define(version: 20150923180220) do
     t.datetime "updated_at",              null: false
   end
 
-  add_index "deal_orders", ["contract_id"], name: "index_deal_orders_on_contract_id"
-  add_index "deal_orders", ["user_id"], name: "index_deal_orders_on_user_id"
+  add_index "deal_orders", ["contract_id"], name: "index_deal_orders_on_contract_id", using: :btree
+  add_index "deal_orders", ["user_id"], name: "index_deal_orders_on_user_id", using: :btree
+
+  create_table "deal_patrimonies", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image_path"
+    t.string   "location"
+    t.float    "estimated_value"
+    t.float    "original_value"
+    t.integer  "state",           default: 0
+    t.integer  "contract_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "deal_patrimonies", ["contract_id"], name: "index_deal_patrimonies_on_contract_id", using: :btree
 
   create_table "deal_products", force: :cascade do |t|
     t.string   "title"
@@ -66,6 +96,55 @@ ActiveRecord::Schema.define(version: 20150923180220) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "deal_purchase_items", force: :cascade do |t|
+    t.integer  "purchase_id"
+    t.integer  "product_id"
+    t.integer  "quantity",    default: 0
+    t.integer  "unit",        default: 0
+    t.float    "unit_value",  default: 0.0
+    t.float    "total_value"
+    t.text     "observation"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "deal_purchase_items", ["product_id"], name: "index_deal_purchase_items_on_product_id", using: :btree
+  add_index "deal_purchase_items", ["purchase_id"], name: "index_deal_purchase_items_on_purchase_id", using: :btree
+
+  create_table "deal_purchases", force: :cascade do |t|
+    t.integer  "quotation_id"
+    t.integer  "purchase_type",  default: 0
+    t.integer  "contract_id"
+    t.string   "description"
+    t.text     "observation"
+    t.string   "invoice_number"
+    t.string   "invoice_file"
+    t.integer  "status",         default: 0
+    t.integer  "supplier_id"
+    t.integer  "order_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "deal_purchases", ["contract_id"], name: "index_deal_purchases_on_contract_id", using: :btree
+  add_index "deal_purchases", ["order_id"], name: "index_deal_purchases_on_order_id", using: :btree
+  add_index "deal_purchases", ["quotation_id"], name: "index_deal_purchases_on_quotation_id", using: :btree
+  add_index "deal_purchases", ["supplier_id"], name: "index_deal_purchases_on_supplier_id", using: :btree
+
+  create_table "deal_quotations", force: :cascade do |t|
+    t.string   "description"
+    t.integer  "contract_id"
+    t.integer  "status",       default: 0
+    t.integer  "order_id"
+    t.integer  "file_path_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "deal_quotations", ["contract_id"], name: "index_deal_quotations_on_contract_id", using: :btree
+  add_index "deal_quotations", ["file_path_id"], name: "index_deal_quotations_on_file_path_id", using: :btree
+  add_index "deal_quotations", ["order_id"], name: "index_deal_quotations_on_order_id", using: :btree
 
   create_table "deal_supplier_categories", force: :cascade do |t|
     t.string   "title"
@@ -94,9 +173,9 @@ ActiveRecord::Schema.define(version: 20150923180220) do
     t.datetime "updated_at",                 null: false
   end
 
-  add_index "deal_suppliers", ["city_id"], name: "index_deal_suppliers_on_city_id"
-  add_index "deal_suppliers", ["state_id"], name: "index_deal_suppliers_on_state_id"
-  add_index "deal_suppliers", ["supplier_category_id"], name: "index_deal_suppliers_on_supplier_category_id"
+  add_index "deal_suppliers", ["city_id"], name: "index_deal_suppliers_on_city_id", using: :btree
+  add_index "deal_suppliers", ["state_id"], name: "index_deal_suppliers_on_state_id", using: :btree
+  add_index "deal_suppliers", ["supplier_category_id"], name: "index_deal_suppliers_on_supplier_category_id", using: :btree
 
   create_table "information_cities", force: :cascade do |t|
     t.string   "name"
@@ -106,7 +185,7 @@ ActiveRecord::Schema.define(version: 20150923180220) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "information_cities", ["state_id"], name: "index_information_cities_on_state_id"
+  add_index "information_cities", ["state_id"], name: "index_information_cities_on_state_id", using: :btree
 
   create_table "information_states", force: :cascade do |t|
     t.string   "name"
@@ -134,7 +213,7 @@ ActiveRecord::Schema.define(version: 20150923180220) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

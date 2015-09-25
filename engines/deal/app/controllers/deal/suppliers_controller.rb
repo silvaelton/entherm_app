@@ -25,9 +25,9 @@ module Deal
     # POST /suppliers
     def create
       @supplier = Supplier.new(supplier_params)
-
       if @supplier.save
-        redirect_to @supplier, notice: 'Supplier was successfully created.'
+        flash[:success] = t :success
+        redirect_to action: 'index'
       else
         render :new
       end
@@ -36,7 +36,8 @@ module Deal
     # PATCH/PUT /suppliers/1
     def update
       if @supplier.update(supplier_params)
-        redirect_to @supplier, notice: 'Supplier was successfully updated.'
+        flash[:success] = t :success
+        redirect_to action: 'index'
       else
         render :edit
       end
@@ -44,8 +45,10 @@ module Deal
 
     # DELETE /suppliers/1
     def destroy
-      @supplier.destroy
-      redirect_to suppliers_url, notice: 'Supplier was successfully destroyed.'
+      if @supplier.destroy
+        flash[:success] = t :success
+        redirect_to action: 'index'
+      end
     end
 
     private
@@ -56,7 +59,10 @@ module Deal
 
       # Only allow a trusted parameter "white list" through.
       def supplier_params
-        params[:supplier]
+        params.require(:supplier).permit(:supplier_category_id, :cnpj, :name, :state_id, :city_id, :address, 
+                                         :address_complement, :cep, :contact_name, :contact_email, :contact_telephone,
+                                         :contact_telephone_optional, :contact_celphone, :contact_celphone_optional,
+                                         :observation)
       end
   end
 end

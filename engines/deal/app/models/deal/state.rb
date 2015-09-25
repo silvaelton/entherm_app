@@ -1,2 +1,2 @@
-class Deal::State < Information::City
+class Deal::State < Information::State
 end

@@ -4,4 +4,6 @@
 //= require detail/js/bootstrap.min
 //= require detail/js/jquery.dataTables
 //= require detail/js/theme
+//= require detail/js/mask.money.jquery.min
+//= require detail/js/mask.jquery.min
 //= require custom
