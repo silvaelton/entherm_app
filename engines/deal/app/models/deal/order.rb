@@ -13,6 +13,10 @@ module Deal
 
     validate :user_contract?
 
+    def protocol
+      "P#{self.id}/#{self.created_at.strftime('%Y')}"
+    end
+
     def set_user(user)
       self.user_id = user.id
     end

@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      'deal/inventory': "Estoque"
+    attributes:
+      'deal/inventory':
+        contract: "Contrato"
+        observation: "Observação"
+        product_title: "Item"
+        quantity: "Quantidade"
+        location: "Localização"
+        image_path: "Imagem"
+        
+        

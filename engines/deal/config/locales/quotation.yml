@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'deal/quotation': "Cotação"
+    attributes:
+      'deal/quotation':
+        contract: "Contrato"
+        description: "Descrição"
+        order: "Pedido"
+        status: "Status"        

@@ -21,6 +21,7 @@
         %i.icon-chevron-down
       %ul.submenu{style: params[:module] == 'commercial' ? 'display:block;' : ''}
         %li
+          %a{:href => "#{commercial.companies_path}"} Empresas    
           %a{:href => "#{commercial.contracts_path}"} Contratos    
     %li{class: params[:module] == 'deal' ? 'active' : ''}
       %a.dropdown-toggle{:href => "#"}

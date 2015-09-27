@@ -4,6 +4,9 @@
       = f.input :title
   .row
     .col-md-4
+      = f.association :company, as: :select, include_blank: false, prompt: 'Selecione a Empresa..'
+  .row
+    .col-md-4
       = f.input :status, as: :select, include_blank: false
   %hr/
   .row

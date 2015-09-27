@@ -51,13 +51,13 @@
             %td= purchase.created_at.strftime('%d/%m/%Y às %H:%M')
             %td.col-md-2
               - if params[:search].present?
-                = link_to "Editar", edit_purchase_path(id: purchase, search: params[:search]), class: 'btn btn-primary btn-xs'
-                = link_to "Visualizar", purchase_path(id: purchase, search: params[:search]), class: 'btn btn-success btn-xs'
-                = link_to "Emitir FPA", purchase_fpa_path(purchase_id: purchase, search: params[:search]), class: 'btn btn-warning btn-xs'
+                = link_to "", edit_purchase_path(id: purchase, search: params[:search]), class: 'icon-edit btn btn-primary btn-sm', title: "Editar"
+                = link_to "", purchase_path(id: purchase, search: params[:search]),  class: 'icon-external-link btn btn-success btn-sm', title: "Visualizar"
+                = link_to "", purchase_fpa_path(purchase_id: purchase, search: params[:search]), class: 'icon-tag btn btn-warning btn-sm', title: "Emitir FPA"
               - else
-                = link_to "Editar", edit_purchase_path(purchase), class: 'btn btn-primary btn-xs'
-                = link_to "Visualizar", purchase_path(purchase), class: 'btn btn-success btn-xs'
-                = link_to "Emitir FPA", purchase_fpa_path(purchase), class: 'btn btn-warning btn-xs'
+                = link_to "", edit_purchase_path(purchase),  class: 'icon-edit btn btn-primary btn-sm', title: "Editar"
+                = link_to "", purchase_path(purchase),  class: 'icon-external-link btn btn-success btn-sm', title: "Visualizar"
+                = link_to "", purchase_fpa_path(purchase), class: 'icon-tag btn btn-warning btn-sm', title: "Emitir FPA"
       %tfoot 
         %tr
           %th{colspan: 5} Total em Compras

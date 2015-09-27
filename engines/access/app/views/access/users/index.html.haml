@@ -28,6 +28,6 @@
               - if user.email == "dev@dev.com" && current_user.id != user.id
                 sem ações
               - else
-                = link_to "editar", edit_user_path(user), class: 'btn btn-primary btn-xs'
-                = link_to "remover", user_path(user), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-xs'
+                = link_to "", edit_user_path(user), class: 'btn btn-primary btn-sm icon-edit', title: "Editar"
+                = link_to "", user_path(user), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm icon-remove', title: "Remover"
        
