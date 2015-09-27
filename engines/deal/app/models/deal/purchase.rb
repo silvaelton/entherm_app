@@ -4,6 +4,7 @@ module Deal
     belongs_to :contract, class_name: "Commercial::Contract"
     belongs_to :supplier
     belongs_to :order
+    belongs_to :carrier, class_name: "Deal::Supplier"
 
     has_many :purchase_items
     accepts_nested_attributes_for :purchase_items, allow_destroy: true
@@ -15,9 +16,10 @@ module Deal
     enum freight: ['cif', 'fob']
     enum form_payment: ['dinheiro', 'boleto', 'cheque', 'cartão', 'depósito']
     enum delivery: ['imediato','7_dias', '30_dias', '60_dias','90_dias','120_dias']
-    
-    validates :description, :purchase_type, :contract, :supplier, :status, presence: true
+    enum buy_type: ['compras', 'serviços', 'locações']
 
+    validates :description, :purchase_type, :contract, :supplier, :status, presence: true
+    validates :buy_type, :seller, :requester, :deadline_payment, presence: true
 
     def self.search(search_params)
       

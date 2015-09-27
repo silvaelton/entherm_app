@@ -149,11 +149,16 @@ ActiveRecord::Schema.define(version: 20150925131033) do
     t.integer  "delivery",         default: 0
     t.integer  "form_payment",     default: 0
     t.string   "deadline_payment"
+    t.integer  "buy_type",         default: 0
+    t.string   "seller"
+    t.string   "requester"
+    t.integer  "carrier_id"
     t.integer  "freight",          default: 0
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
   end
 
+  add_index "deal_purchases", ["carrier_id"], name: "index_deal_purchases_on_carrier_id", using: :btree
   add_index "deal_purchases", ["contract_id"], name: "index_deal_purchases_on_contract_id", using: :btree
   add_index "deal_purchases", ["order_id"], name: "index_deal_purchases_on_order_id", using: :btree
   add_index "deal_purchases", ["quotation_id"], name: "index_deal_purchases_on_quotation_id", using: :btree
