@@ -148,9 +148,9 @@ ActiveRecord::Schema.define(version: 20150924135803) do
 
   create_table "deal_supplier_categories", force: :cascade do |t|
     t.string   "title"
-    t.boolean  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "status",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "deal_suppliers", force: :cascade do |t|
