@@ -6,7 +6,8 @@ class CreateDealPurchaseItems < ActiveRecord::Migration
       t.integer :quantity, default: 0
       t.integer :unit, default: 0
       t.float :unit_value, default: 0.00
-      t.float :total_value, defaul: 0.00
+      t.float :total_value, default: 0.00
+      t.float :contract_value, default: 0.00
       t.text :observation
 
       t.timestamps null: false

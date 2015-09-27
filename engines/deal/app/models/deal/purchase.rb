@@ -12,7 +12,10 @@ module Deal
 
     enum purchase_type: ['orçamento','compra']
     enum status: ['aguardando','efetuada','cancelada']
-
+    enum freight: ['cif', 'fob']
+    enum form_payment: ['dinheiro', 'boleto', 'cheque', 'cartão', 'depósito']
+    enum delivery: ['imediato','7_dias', '30_dias', '60_dias','90_dias','120_dias']
+    
     validates :description, :purchase_type, :contract, :supplier, :status, presence: true
 
 

@@ -12,6 +12,12 @@ class CreateDealPurchases < ActiveRecord::Migration
       t.references :supplier, index: true#, foreign_key: true
       t.references :order, index: true#, foreign_key: true
 
+      t.integer :delivery, default: 0
+      t.integer :form_payment, default: 0
+      t.string  :deadline_payment
+
+      t.integer :freight, default: 0
+
       t.timestamps null: false
     end
   end

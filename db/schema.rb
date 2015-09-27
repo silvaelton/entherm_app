@@ -122,13 +122,14 @@ ActiveRecord::Schema.define(version: 20150925131033) do
   create_table "deal_purchase_items", force: :cascade do |t|
     t.integer  "purchase_id"
     t.integer  "product_id"
-    t.integer  "quantity",    default: 0
-    t.integer  "unit",        default: 0
-    t.float    "unit_value",  default: 0.0
-    t.float    "total_value"
+    t.integer  "quantity",       default: 0
+    t.integer  "unit",           default: 0
+    t.float    "unit_value",     default: 0.0
+    t.float    "total_value",    default: 0.0
+    t.float    "contract_value", default: 0.0
     t.text     "observation"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "deal_purchase_items", ["product_id"], name: "index_deal_purchase_items_on_product_id", using: :btree
@@ -136,17 +137,21 @@ ActiveRecord::Schema.define(version: 20150925131033) do
 
   create_table "deal_purchases", force: :cascade do |t|
     t.integer  "quotation_id"
-    t.integer  "purchase_type",  default: 0
+    t.integer  "purchase_type",    default: 0
     t.integer  "contract_id"
     t.string   "description"
     t.text     "observation"
     t.string   "invoice_number"
     t.string   "invoice_file"
-    t.integer  "status",         default: 0
+    t.integer  "status",           default: 0
     t.integer  "supplier_id"
     t.integer  "order_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "delivery",         default: 0
+    t.integer  "form_payment",     default: 0
+    t.string   "deadline_payment"
+    t.integer  "freight",          default: 0
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "deal_purchases", ["contract_id"], name: "index_deal_purchases_on_contract_id", using: :btree
@@ -157,15 +162,13 @@ ActiveRecord::Schema.define(version: 20150925131033) do
   create_table "deal_quotations", force: :cascade do |t|
     t.string   "description"
     t.integer  "contract_id"
-    t.integer  "status",       default: 0
+    t.integer  "status",      default: 0
     t.integer  "order_id"
-    t.integer  "file_path_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "deal_quotations", ["contract_id"], name: "index_deal_quotations_on_contract_id", using: :btree
-  add_index "deal_quotations", ["file_path_id"], name: "index_deal_quotations_on_file_path_id", using: :btree
   add_index "deal_quotations", ["order_id"], name: "index_deal_quotations_on_order_id", using: :btree
 
   create_table "deal_supplier_categories", force: :cascade do |t|

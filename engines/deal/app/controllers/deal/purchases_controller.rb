@@ -67,8 +67,8 @@ module Deal
 
     def set_params
       params.require(:purchase).permit(:description, :contract_id, :status, :purchase_type, :quotation_id, :supplier_id,
-                                       :invoice_number, :invoice_file,
-                                        purchase_items_attributes: [:product_title, :unit_value, :total_value, :unit, :quantity, :id, :_destroy])
+                                       :invoice_number, :invoice_file, :form_payment, :deadline_payment, :delivery, :freight,:contract_value,
+                                        purchase_items_attributes: [:product_title, :unit_value, :contract_value, :total_value, :unit, :quantity, :id, :_destroy])
     end
   end
 end

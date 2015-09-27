@@ -12,5 +12,9 @@ pt-BR:
         supplier: "Fornecedor"
         invoice_number: "Número da nota"
         invoice_file: "Upload da nota"
+        form_payment: "Forma de pagamento"
+        deadline_payment: "Prazo para pagamento"
+        freight: "Tipo de frete"
+        delivery: "Prazo para entrega"
         
         
