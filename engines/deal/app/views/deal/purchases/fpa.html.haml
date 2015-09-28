@@ -11,7 +11,7 @@
         %td.col-md-2
           %br/
           %br/
-          %b{:style => "font-size: 25px; padding-top: 35px;"} 001/2015
+          %b{:style => "font-size: 25px; padding-top: 35px;"}= "#{@purchase.id}#{@purchase.created_at.strftime('%Y')}"
   %table.table.table-bordered.table-condensed.table-striped
     %tbody
       %tr
