@@ -27,11 +27,11 @@
         %td{colspan: 2}= @purchase.id
       %tr
         %th Data e Hora de Emissão da FPA
-        %th Data e Hora p/ Conclusão da FPA
+        %th Número da Nota Fiscal
         %th{:colspan => 4} Utilização do pedido
       %tr
         %td= @purchase.created_at.strftime('%d/%m/%Y às %H:%M')
-        %td -
+        %td= @purchase.invoice_number
         %td{:colspan => 4}= @purchase.description.to_s.upcase
       %tr
         %th Forma de pagamento
