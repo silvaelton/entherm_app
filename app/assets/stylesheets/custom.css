@@ -24,3 +24,24 @@ ul.ui-autocomplete {
     }
   }
 }
+
+body {
+  background-color: #F9F9F9  !important;
+  font-size: 12px !important;
+}
+
+#sidebar-nav #dashboard-menu > li.active > a, #sidebar-nav #dashboard-menu > li > a:hover {
+  color: #000000 !important;
+}
+
+#sidebar-nav #dashboard-menu > li.active > a, #sidebar-nav #dashboard-menu > li > a {
+  color: #000000 !important;
+}
+
+.navbar-inverse {
+  background: linear-gradient(to bottom, #7AB2E2 0%,#428BCA 100%) !important;
+}
+
+.navbar-inverse .nav > li > a {
+  color: rgb(255, 255, 255);
+}

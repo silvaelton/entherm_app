@@ -1,17 +1,18 @@
 = simple_form_for @purchase do |f|
   .row
-    .col-md-2
+    .col-md-3
       = hidden_field_tag :search, params[:search] if params[:search].present?
       = f.input :purchase_type, as: :select, collection: Deal::Purchase.purchase_types.keys.to_a, include_blank: false
     .col-md-2
       = f.input :status, as: :select, collection: Deal::Purchase.statuses.keys.to_a, include_blank: false
+    .col-md-2
+      = f.input :buy_type, as: :select, collection: Deal::Purchase.buy_types.keys.to_a, include_blank: false
   %hr/
   .row
     .col-md-3
       = f.association :contract, as: :select, prompt: 'selecione...'
     .col-md-2
       = f.association :quotation, as: :select, prompt: 'selecione...'
-  .row
     .col-md-3
       = f.association :supplier, prompt: 'selecione...'
     .col-md-2
@@ -20,8 +21,27 @@
       = f.input :invoice_file, as: :file
   %hr/
   .row
+    .col-md-3
+      = f.input :form_payment, as: :select, include_blank: false, collection: Deal::Purchase.form_payments.keys.to_a
+    .col-md-2
+      = f.input :deadline_payment, placeholder: "Informe um prazo..."
+    .col-md-3
+      = f.input :delivery, as: :select, include_blank: false, collection: Deal::Purchase.deliveries.keys.map { |key| [key.humanize, key]}
+    .col-md-2
+      = f.input :freight, as: :select, include_blank: false, collection: Deal::Purchase.freights.keys.to_a
+  .row
+    .col-md-3
+      = f.association :carrier, prompt: 'própria'
+  %hr/
+  .row
+    .col-md-3
+      = f.input :seller, placeholder: "Digite o nome do vendedor"
+    .col-md-3
+      = f.input :requester, placeholder: "Digite o nome do solicitante"
+  %hr/
+  .row
     .col-md-8
-      = f.input :description
+      = f.input :description, placeholder: "Digite uma descrição para sua compra"
   %hr/
   .row
     .col-md-12

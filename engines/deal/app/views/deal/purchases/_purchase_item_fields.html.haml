@@ -1,4 +1,5 @@
 .row
+.row
   %fieldset
     .col-md-3
       = f.label :product_title
@@ -7,11 +8,13 @@
       = f.input :unit, as: :select, collection: Deal::PurchaseItem.units.keys.to_a, include_blank: false
     .col-md-1
       = f.input :quantity, as: :string, input_html: { id: "quantity_#{f.options[:child_index]}"}
-    .col-md-1
+    .col-md-2
       = f.input :unit_value, as: :string, input_html: { id: "unit_value_#{f.options[:child_index]}", class: 'coin_mask'}
-    .col-md-1
+    .col-md-2
       = f.input :total_value, as: :string, input_html: { id: "unit_total_value_#{f.options[:child_index]}", readonly: true, class: 'coin_mask'}
-    .col-md-2{:style => "margin-top:25px"}
+    .col-md-2
+      = f.input :contract_value, as: :string, input_html: { class: 'coin_mask'}
+    .col-md-1{:style => "margin-top:25px"}
       = f.hidden_field :_destroy
       = link_to "remover", '#', class: "remove_fields btn btn-danger btn-sm"
 

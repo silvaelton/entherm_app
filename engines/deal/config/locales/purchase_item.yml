@@ -6,6 +6,7 @@ pt-BR:
       'deal/purchase_item':
         product_title: "Item"
         unit: "Unidade"
-        quantity: "Quantidade"
+        quantity: "Quant."
         unit_value: "Valor un."
         total_value: "Valor total"
+        contract_value: "Valor no Contrato"

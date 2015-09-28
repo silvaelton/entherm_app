@@ -1,7 +1,7 @@
 .row.title-row
   .col-md-12
     %h4.title 
-      Listagem de Compras
+      Resumo de Compras
       - if params[:search].present?
         = link_to "novo compra", new_purchase_path(search: params[:search]), class: 'btn btn-success btn-sm pull-right'
       - else

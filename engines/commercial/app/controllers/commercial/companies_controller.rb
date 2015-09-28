@@ -60,7 +60,7 @@ module Commercial
 
       # Only allow a trusted parameter "white list" through.
       def company_params
-        params.require(:company).permit(:name, :cnpj, :city_id, :state_id, :address, :addres_complement, :cep, :telephone, :telephone_optional)
+        params.require(:company).permit(:name, :cnpj, :city_id, :state_id, :address, :address_complement, :cep, :telephone, :telephone_optional)
       end
   end
 end
