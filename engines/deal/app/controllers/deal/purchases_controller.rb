@@ -33,7 +33,8 @@ module Deal
 
 
     def fpa
-       render layout: 'blank_print'
+      @purchase = Purchase.find(params[:purchase_id])
+      render layout: 'blank_print'
     end
 
     def edit

@@ -3,69 +3,66 @@
   %table.table.table-bordered.table-striped
     %tbody
       %tr
-        %td.col-md-2{:style => "font-size: 15px;"} Entherm Engenharia
+        %td.col-md-2{:style => "font-size: 15px;"}
+          = image_tag '/images/logo-basic.png', width: 175
         %td.col-md-8{:style => "text-align:center"} 
-          %h3 
+          %h2 
             %b Fluxo de Processo de Arquisição
         %td.col-md-2
-          %b{:style => "font-size: 25px;"} 001/2015
+          %br/
+          %br/
+          %b{:style => "font-size: 25px; padding-top: 35px;"} 001/2015
   %table.table.table-bordered.table-condensed.table-striped
     %tbody
       %tr
         %th Quem requisitou?
         %th Departamento / Centro de custo
-        %th Quem receberá?
         %th Tipo de FPA
         %th Quantidade de Itens?
-        %th Número da FPA
+        %th{colspan: 2} Número da FPA
       %tr
-        %td {{nome}}
-        %td {{contrato}}
-        %td {{funcionário}}
-        %td {{tipos}}
-        %td {{total_itens}}
-        %td {{id}}
-      %tr
-        %td{:colspan => 6}
-      %tr
-        %th Data da FPA
-        %th Data de x
-        %th Local para Recebimento
-        %th{:colspan => 3} Utilização do pedido
-      %tr
-        %td 01/01/2001
-        %td 01/01/2001
-        %td Local
-        %td{:colspan => 3} -
+        %td= @purchase.requester.upcase
+        %td= @purchase.contract.title.upcase if @purchase.contract.present?
+        %td= @purchase.buy_type.upcase
+        %td= @purchase.purchase_items.count
+        %td{colspan: 2}= @purchase.id
       %tr
         %td{:colspan => 6}
       %tr
-        %th Condições de pagamento
+        %th Data e Hora de Emissão da FPA
+        %th Data e Hora p/ Conclusão da FPA
+        %th{:colspan => 4} Utilização do pedido
+      %tr
+        %td= @purchase.created_at.strftime('%d/%m/%Y às %H:%M')
+        %td -
+        %td{:colspan => 4} -
+      %tr
+        %td{:colspan => 6}
+      %tr
+        %th Forma de pagamento
+        %th Prazo de pagamento
         %th Prazo de entrega
         %th Fornecedor
-        %th Local / Endereço
         %th Vendedor
         %th Fone/Fax
       %tr
-        %td Condições de pagamento
-        %td Prazo de entrega
-        %td Fornecedor
-        %td Local / Endereço
-        %td Vendedor
-        %td Fone/Fax
+        %td= @purchase.form_payment.upcase
+        %td= @purchase.deadline_payment.upcase
+        %td= @purchase.delivery.upcase
+        %td= @purchase.supplier.name.upcase if @purchase.supplier.present?
+        %td= @purchase.seller.upcase
+        %td= @purchase.supplier.contact_telephone if @purchase.supplier.present?
       %tr
         %td{:colspan => 6}
       %tr
-        %th Comentário da Diretoria
-        %th QTD de AFs
-        %th{:colspan => 2} Rubrica de Aprovação
+        %th Rubrica de Aprovação 
+        %th{:colspan => 3} Comentário da Diretoria
         %th{:colspan => 2} R$ Total de Compra Efetuada
       %tr
         %td 
-        %td 
+        %td{:colspan => 3}
         %td{:colspan => 2}
-        %td{:colspan => 2}
-          %b{style: "font-size: 25px"} R$ 0.00
+          %b{style: "font-size: 25px"}= number_to_currency @purchase.purchase_items.sum(:total_value)
 
   %table.table.table-bordered.table-condensed.table-striped
     %tbody
@@ -76,11 +73,20 @@
         %th Descrição
         %th Valor Unitário
         %th Valor Total
-      - 10.times do
+        %th Valor Contrato
+      - @purchase.purchase_items.each_with_index do |item, index|
         %tr
           %td.col-md-1
+            = index + 1
           %td.col-md-1
+            = item.quantity
           %td.col-md-1
+            = item.unit.upcase
           %td.col-md-6
+            = item.product_title.upcase
           %td.col-md-1
+            = number_to_currency item.unit_value
           %td.col-md-1
+            = number_to_currency item.total_value
+          %td.col-md-1
+            = number_to_currency item.contract_value
