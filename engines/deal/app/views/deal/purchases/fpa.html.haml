@@ -1,15 +1,14 @@
 %br/
-.container{style: "font-size:12px"}
+.container
   %table.table.table-bordered.table-striped
     %tbody
       %tr
-        %td.col-md-2{:style => "font-size: 15px;"}
-          = image_tag '/images/logo-basic.png', width: 175
-        %td.col-md-8{:style => "text-align:center"} 
-          %h2 
+        %td
+          = image_tag '/images/logo-basic.png', width: 100
+        %td{colspan: 4, :style => "text-align:center"} 
+          %h3
             %b Fluxo de Processo de Arquisição
         %td.col-md-2
-          %br/
           %br/
           %b{:style => "font-size: 25px; padding-top: 35px;"}= "#{@purchase.id}/#{@purchase.created_at.strftime('%Y')}"
   %table.table.table-bordered.table-condensed.table-striped
@@ -27,8 +26,6 @@
         %td= @purchase.purchase_items.count
         %td{colspan: 2}= @purchase.id
       %tr
-        %td{:colspan => 6}
-      %tr
         %th Data e Hora de Emissão da FPA
         %th Data e Hora p/ Conclusão da FPA
         %th{:colspan => 4} Utilização do pedido
@@ -36,8 +33,6 @@
         %td= @purchase.created_at.strftime('%d/%m/%Y às %H:%M')
         %td -
         %td{:colspan => 4} -
-      %tr
-        %td{:colspan => 6}
       %tr
         %th Forma de pagamento
         %th Prazo de pagamento
@@ -52,8 +47,6 @@
         %td= @purchase.supplier.name.upcase if @purchase.supplier.present?
         %td= @purchase.seller.upcase
         %td= @purchase.supplier.contact_telephone if @purchase.supplier.present?
-      %tr
-        %td{:colspan => 6}
       %tr
         %th Rubrica de Aprovação 
         %th{:colspan => 3} Comentário da Diretoria
