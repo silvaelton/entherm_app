@@ -3,6 +3,7 @@ module Access
     belongs_to :user
     belongs_to :contract
 
-    validates :contract, presence: true, uniqueness: {scope: :user}
+    validates :contract, uniqueness: {scope: :user}, allow_blank: true
+    
   end
 end

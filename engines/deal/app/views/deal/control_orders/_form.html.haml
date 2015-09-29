@@ -1,0 +1,8 @@
+= simple_form_for @order, url: control_order_path(@order) do |f|
+  .row
+    .col-md-3
+      = f.input :status, as: :select, collection: Deal::Order.statuses.keys.to_a, include_blank: false
+  .row
+    .col-md-8
+      = f.button :submit, class: 'btn btn-success btn-sm'
+      = link_to "Voltar", control_orders_path, class: 'btn btn-default btn-sm'

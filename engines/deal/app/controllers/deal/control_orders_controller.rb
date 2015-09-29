@@ -1,11 +1,34 @@
 module Deal
   class ControlOrdersController < ApplicationController
-    
+    before_action :set_order, only: [:edit, :update, :destroy]
+
     def index
-      if params[:status].present?
-        @orders = Order.where(status: params[:status].to_i)
+      if params[:search]
+        @orders = Order.search(params[:search])
       else
-        @orders = Order.where(status: 0)
+        @orders = Order.this_month
+      end
+    end
+
+
+    def edit
+    end
+    
+    def update
+      if @order.update(set_params)
+        flash[:success] = t :success
+        redirect_to action: 'index'
+      else
+        render action: 'edit'
+      end
+    end
+
+    def destroy
+      if @order.destroy
+        flash[:success] = t :success
+        redirect_to action: 'index'
+      else
+        render action: 'edit'
       end
     end
 
@@ -13,5 +36,14 @@ module Deal
       @order = Order.find(params[:id])
     end
 
+    private
+
+    def set_order
+      @order = Order.find(params[:id])
+    end
+
+    def set_params
+      params.require(:order).permit(:status)
+    end
   end
 end
