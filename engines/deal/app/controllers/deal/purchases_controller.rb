@@ -2,7 +2,7 @@ require_dependency 'deal/application_controller'
 module Deal
   class PurchasesController < ApplicationController
     before_action :set_purchase, only: [:edit, :destroy, :update, :show]
-    before_action :set_session, only: [:edit, :show]
+    before_action :set_session, only: [:edit, :show, :destroy]
 
 
     def index
@@ -52,7 +52,7 @@ module Deal
     def destroy
       if @purchase.destroy
         flash[:success] = t :success
-        redirect_to action: 'index'
+        redirect_to purchases_path(search: session[:search])
       end
     end
 
@@ -68,7 +68,7 @@ module Deal
 
     def set_params
       params.require(:purchase).permit(:description, :contract_id, :status, :purchase_type, :quotation_id, :supplier_id,
-                                       :invoice_number, :invoice_file, :seller, :requester, :carrier_id, :buy_type, :form_payment, :deadline_payment, :delivery, :freight,:contract_value,
+                                       :invoice_number, :invoice_file, :created_at, :seller, :requester, :carrier_id, :buy_type, :form_payment, :deadline_payment, :delivery, :freight,:contract_value,
                                         purchase_items_attributes: [:product_title, :unit_value, :contract_value, :total_value, :unit, :quantity, :id, :_destroy])
     end
   end

@@ -9,7 +9,7 @@ module Deal
     has_many :purchase_items
     accepts_nested_attributes_for :purchase_items, allow_destroy: true
     
-    scope :this_month, -> { where(created_at: Date.today.beginning_of_month..Date.today.end_of_month).order('created_at DESC')}
+    scope :this_month, -> { where(created_at: (Date.today.beginning_of_month - 1.day)..(Date.today.end_of_month - 1.day)).order('created_at DESC')}
 
     enum purchase_type: ['orçamento','compra']
     enum status: ['aguardando','efetuada','cancelada']
@@ -20,7 +20,8 @@ module Deal
 
     validates :description, :purchase_type, :contract, :supplier, :status, presence: true
     validates :buy_type, :seller, :requester, :deadline_payment, presence: true
-
+    validates_date :created_at, presence: true
+    
     def self.search(search_params)
       
       date_start = Date.today.beginning_of_month 

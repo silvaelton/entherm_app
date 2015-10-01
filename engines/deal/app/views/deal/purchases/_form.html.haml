@@ -7,6 +7,8 @@
       = f.input :status, as: :select, collection: Deal::Purchase.statuses.keys.to_a, include_blank: false
     .col-md-2
       = f.input :buy_type, as: :select, collection: Deal::Purchase.buy_types.keys.to_a, include_blank: false
+    .col-md-2
+      = f.input :created_at, as: :string, input_html: { class: 'date', value: f.object.created_at.nil? ? Date.today.strftime('%d/%m/%Y') : f.object.created_at.strftime('%d/%m/%Y') }
   %hr/
   .row
     .col-md-3

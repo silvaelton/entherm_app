@@ -48,14 +48,16 @@
             %td= purchase.supplier.name if purchase.supplier.present?
             - @total_purchase += purchase.purchase_items.sum(:total_value) if purchase.purchase_items.present?
             %td= number_to_currency purchase.purchase_items.sum(:total_value)
-            %td= purchase.created_at.strftime('%d/%m/%Y às %H:%M')
+            %td= purchase.created_at.strftime('%d/%m/%Y')
             %td.col-md-2
               - if params[:search].present?
                 = link_to "", edit_purchase_path(id: purchase, search: params[:search]), class: 'icon-edit btn btn-primary btn-sm', title: "Editar"
+                = link_to "", purchase_path(id: purchase, search: params[:search]),method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'icon-remove btn btn-danger btn-sm', title: "Remover"
                 = link_to "", purchase_path(id: purchase, search: params[:search]),  class: 'icon-external-link btn btn-success btn-sm', title: "Visualizar"
                 = link_to "", purchase_fpa_path(purchase_id: purchase, search: params[:search]), class: 'icon-tag btn btn-warning btn-sm', title: "Emitir FPA"
               - else
                 = link_to "", edit_purchase_path(purchase),  class: 'icon-edit btn btn-primary btn-sm', title: "Editar"
+                = link_to "", purchase_path(purchase),method: :delete, data: { confirm: t(:confirm_destroy)},class: 'icon-remove btn btn-danger btn-sm', title: "Remover"
                 = link_to "", purchase_path(purchase),  class: 'icon-external-link btn btn-success btn-sm', title: "Visualizar"
                 = link_to "", purchase_fpa_path(purchase), class: 'icon-tag btn btn-warning btn-sm', title: "Emitir FPA"
       %tfoot 
