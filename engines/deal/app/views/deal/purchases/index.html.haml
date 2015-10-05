@@ -49,7 +49,7 @@
             - @total_purchase += purchase.purchase_items.sum(:total_value) if purchase.purchase_items.present?
             %td= number_to_currency purchase.purchase_items.sum(:total_value)
             %td= purchase.created_at.strftime('%d/%m/%Y')
-            %td.col-md-2.not-print
+            %td.col-md-2
               - if params[:search].present?
                 = link_to "", edit_purchase_path(id: purchase, search: params[:search]), class: 'icon-edit btn btn-primary btn-sm', title: "Editar"
                 = link_to "", purchase_path(id: purchase, search: params[:search]),method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'icon-remove btn btn-danger btn-sm', title: "Remover"

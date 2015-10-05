@@ -20,3 +20,7 @@ body {
 .print {
   display: block;
 }
+
+.btn {
+  display: none;
+}
