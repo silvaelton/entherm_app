@@ -1,4 +1,4 @@
-.row.title-row
+.row.title-row.not-print
   .col-md-12
     %h4.title 
       Resumo de Compras
@@ -7,7 +7,7 @@
       - else
         = link_to "novo compra", new_purchase_path, class: 'btn btn-success btn-sm pull-right'
 
-.row
+.row.not-print
   = simple_form_for :search, url: purchases_path, method: :get do |f|
     .col-md-2
       = f.label "Data início"
@@ -24,7 +24,7 @@
     .col-md-2{style: "padding-top:24px"}
       = f.submit "Filtrar Compras", name: nil, class: 'btn btn-primary btn-sm'
 %hr/
-.row
+.row.print
   .col-md-12
     %table.datatable.table-bordered.table-condensed
       %thead
