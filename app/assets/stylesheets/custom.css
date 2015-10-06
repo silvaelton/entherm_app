@@ -1,3 +1,6 @@
+input[type='text'], select {
+  color: black !important;
+}
 .brand {
   background-color: #FFFFFF !important;
 }
