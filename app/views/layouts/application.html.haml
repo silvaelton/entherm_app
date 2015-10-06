@@ -8,10 +8,10 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    .not-print
+    %section#container
       = render 'layouts/top_nav'   
       = render 'layouts/side_nav' if current_user.simples? || current_user.administrador?
       = render 'layouts/side_nav_request' if current_user.solicitante?
-    .content
-      #pad-wrapper
-        = yield
+      %section#main-content
+        %section.wrapper
+          = yield

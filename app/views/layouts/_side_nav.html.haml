@@ -1,39 +1,47 @@
-#sidebar-nav
-  %ul#dashboard-menu
-    %li
-      %a{:href => "#{dashboard.root_path}"}
-        %i.icon-home
-        %span Início
-    %li{class: params[:module] == 'access' ? 'active' : ''}
-      %a.dropdown-toggle{:href => "#"}
-        %i.icon-signin
-        %span Acessos
-        %i.icon-chevron-down
-      %ul.submenu{style: params[:module] == 'access' ? 'display:block;' : ''}
+%aside
+  #sidebar.nav-collapse
+    / sidebar menu start
+    .leftside-navigation
+      %ul#nav-accordion.sidebar-menu
         %li
-          %a{:href => "#{access.users_path}"} Usuários
-        %li
-          %a{:href => "#{access.logs_path}"} Log de acessos
-    %li{class: params[:module] == 'commercial' ? 'active' : ''}
-      %a.dropdown-toggle{:href => "#"}
-        %i.icon-briefcase
-        %span Comercial
-        %i.icon-chevron-down
-      %ul.submenu{style: params[:module] == 'commercial' ? 'display:block;' : ''}
-        %li
-          %a{:href => "#{commercial.companies_path}"} Empresas    
-          %a{:href => "#{commercial.contracts_path}"} Contratos    
-    %li{class: params[:module] == 'deal' ? 'active' : ''}
-      %a.dropdown-toggle{:href => "#"}
-        %i.icon-shopping-cart
-        %span Compras
-        %i.icon-chevron-down
-      %ul.submenu{style: params[:module] == 'deal' ? 'display:block;' : ''}
-        %li
-          %a{:href => "#{deal.dashboard_path}"} Relatório Geral
-          %a{:href => "#{deal.suppliers_path}"} Fornecedores
-          %a{:href => "#{deal.purchases_path}"} Compras
-          %a{:href => "#{deal.quotations_path}"} Cotações
-          %a{:href => "#{deal.control_orders_path}"} Pedidos
-          %a{:href => "#{deal.inventories_path}"} Estoque
-          %a{:href => "#{deal.patrimonies_path}"} Patrimônio
+          %a.active{:href => "#{main_app.root_path}"}
+            %i.fa.fa-dashboard
+            %span Início
+        %li.sub-menu
+          %a{:href => "javascript:;"}
+            %i.fa.fa-laptop
+            %span Acessos
+          %ul.sub
+            %li
+              %a{:href => "#{access.users_path}"} Usuários
+            %li
+              %a{:href => "#{access.logs_path}"} Log de acessos
+        %li.sub-menu
+          %a{:href => "javascript:;"}
+            %i.fa.fa-book
+            %span Comercial
+          %ul.sub
+            %li
+              %a{:href => "#{commercial.companies_path}"} Empresas    
+            %li
+              %a{:href => "#{commercial.contracts_path}"} Contratos  
+        %li.sub-menu
+          %a{:href => "javascript:;"}
+            %i.fa.fa-th
+            %span Compras
+          %ul.sub
+            %li
+              %a{:href => "#{deal.dashboard_path}"} Relatório Geral
+            %li
+              %a{:href => "#{deal.suppliers_path}"} Fornecedores
+            %li
+              %a{:href => "#{deal.purchases_path}"} Compras
+            %li
+              %a{:href => "#{deal.quotations_path}"} Cotações
+            %li
+              %a{:href => "#{deal.control_orders_path}"} Pedidos
+            %li
+              %a{:href => "#{deal.inventories_path}"} Estoque
+            %li
+              %a{:href => "#{deal.patrimonies_path}"} Patrimônio
+       

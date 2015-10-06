@@ -1,11 +1,9 @@
 /*
- *= require detail/css/bootstrap/bootstrap
- *= require detail/css/bootstrap/bootstrap-overrides
+ *= require bucket/bs3/css/bootstrap.min
  *= require jquery-ui
- *= require detail/css/compiled/layout
- *= require detail/css/compiled/elements
- *= require detail/css/compiled/icons
- *= require detail/css/compiled/signin
+ *= require bucket/css/bootstrap-reset
+ *= require bucket/css/style.css
+ *= require bucket/css/style-responsive.css
  *= require detail/css/lib/font-awesome
  *= require detail/css/lib/jquery.dataTables
  *= require custom

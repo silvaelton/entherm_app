@@ -26,7 +26,7 @@ ul.ui-autocomplete {
 }
 
 body {
-  background-color: #F9F9F9  !important;
+  background-color: #E8E8E8  !important;
   font-size: 12px !important;
 }
 
@@ -44,4 +44,8 @@ body {
 
 .navbar-inverse .nav > li > a {
   color: rgb(255, 255, 255);
+}
+
+a.logo {
+  margin: 0 !important;
 }
