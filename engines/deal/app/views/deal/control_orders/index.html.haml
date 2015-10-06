@@ -1,44 +1,47 @@
-.row.title-row
-  .col-md-12
-    %h4.title 
-      Listagem de pedidos
 .row
-  = simple_form_for :search, url: control_orders_path, method: :get do |f|
-    .col-md-2
-      = f.label "Data início"
-      = f.input :date_start, label: false, input_html: { value: (params[:search].present?) ? params[:search][:date_start] : Date.today.beginning_of_month.strftime('%d/%m/%Y') , class: 'date'}
-    .col-md-2
-      = f.label "Data fim"
-      = f.input :date_end, label: false, name: 'date_end', input_html: { value: (params[:search].present?) ? params[:search][:date_end] : Date.today.end_of_month.strftime('%d/%m/%Y'),  class: 'date' }
-    .col-md-2
-      = f.label "Contrato"
-      = f.input :contract_id, label: false, name: 'filter[contract_id]', collection: Commercial::Contract.all.order(:title), prompt: 'todos', selected: (params[:search].present?) ? params[:search][:contract_id] : ''
-    .col-md-2
-      = f.label "Status"
-      = f.input :status_id, label: false, name: 'status_id', collection: Deal::Order.statuses, prompt: 'todos', selected: params[:search].present? ? params[:search][:status_id] : 0
-    .col-md-2{style: "padding-top:24px"}
-      = f.submit "Filtrar Pedidos", name: nil, class: 'btn btn-primary btn-sm'
-%hr/
-.row
-  .col-md-12
-    %table.datatable.table-bordered.table-condensed
-      %thead
-        %tr
-          %th Nº
-          %th Contrato
-          %th Descrição
-          %th Status
-          %th Realizado em
-          %th Ações
-      %tbody
-        - @orders.each do |order|
-          %tr
-            %td.col-md-1= order.protocol
-            %td.col-md-2= order.contract.title if order.contract.present?
-            %td= order.description
-            %td.col-md-2= status_helper order.status
-            %td.col-md-2= order.created_at.strftime("%d/%m/%Y às %H:%M")
-            %td.col-md-2
-              = link_to "visualizar", control_order_path(order), class: 'btn btn-warning btn-xs'
-              = link_to "editar",   edit_control_order_path(order), class: 'btn btn-primary btn-xs'
-              = link_to "excluir", control_order_path(order), method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: t(:confirm_destroy)}
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        %b Resumo de Pedidos
+      .panel-body
+        .row
+          = simple_form_for :search, url: control_orders_path, method: :get do |f|
+            .col-md-2
+              = f.label "Data início"
+              = f.input :date_start, label: false, input_html: { value: (params[:search].present?) ? params[:search][:date_start] : Date.today.beginning_of_month.strftime('%d/%m/%Y') , class: 'date'}
+            .col-md-2
+              = f.label "Data fim"
+              = f.input :date_end, label: false, name: 'date_end', input_html: { value: (params[:search].present?) ? params[:search][:date_end] : Date.today.end_of_month.strftime('%d/%m/%Y'),  class: 'date' }
+            .col-md-2
+              = f.label "Contrato"
+              = f.input :contract_id, label: false, name: 'filter[contract_id]', collection: Commercial::Contract.all.order(:title), prompt: 'todos', selected: (params[:search].present?) ? params[:search][:contract_id] : ''
+            .col-md-2
+              = f.label "Status"
+              = f.input :status_id, label: false, name: 'status_id', collection: Deal::Order.statuses, prompt: 'todos', selected: params[:search].present? ? params[:search][:status_id] : 0
+            .col-md-2{style: "padding-top:24px"}
+              = f.submit "Filtrar Pedidos", name: nil, class: 'btn btn-primary btn-sm'
+        %hr/
+        .adv-table          
+          .row
+            .col-md-12
+              %table.table.table-bordered.table-striped.datatable
+                %thead
+                  %tr
+                    %th Nº
+                    %th Contrato
+                    %th Descrição
+                    %th Status
+                    %th Realizado em
+                    %th Ações
+                %tbody
+                  - @orders.each do |order|
+                    %tr
+                      %td.col-md-1= order.protocol
+                      %td.col-md-2= order.contract.title if order.contract.present?
+                      %td= order.description
+                      %td.col-md-2= status_helper order.status
+                      %td.col-md-2= order.created_at.strftime("%d/%m/%Y às %H:%M")
+                      %td.col-md-2
+                        = link_to "visualizar", control_order_path(order), class: 'btn btn-warning btn-xs'
+                        = link_to "editar",   edit_control_order_path(order), class: 'btn btn-primary btn-xs'
+                        = link_to "excluir", control_order_path(order), method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: t(:confirm_destroy)}

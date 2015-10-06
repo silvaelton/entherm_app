@@ -4,40 +4,40 @@
     .leftside-navigation
       %ul#nav-accordion.sidebar-menu
         %li
-          %a.active{:href => "#{main_app.root_path}"}
+          %a{:href => "#{main_app.root_path}"}
             %i.fa.fa-dashboard
             %span Início
         %li.sub-menu
-          %a{:href => "javascript:;"}
+          %a{:href => "javascript:;", class: "#{(params[:module] == 'access') ? 'active' : ''}"}
             %i.fa.fa-laptop
             %span Acessos
-          %ul.sub
+          %ul.sub{style: "#{(params[:module] == 'access') ? 'diplay:block' : ''}"}
             %li
               %a{:href => "#{access.users_path}"} Usuários
             %li
               %a{:href => "#{access.logs_path}"} Log de acessos
         %li.sub-menu
-          %a{:href => "javascript:;"}
+          %a{:href => "javascript:;", class: "#{(params[:module] == 'commercial') ? 'active' : ''}"}
             %i.fa.fa-book
             %span Comercial
-          %ul.sub
+          %ul.sub{style: "#{(params[:module] == 'commercial') ? 'diplay:block' : ''}"}
             %li
               %a{:href => "#{commercial.companies_path}"} Empresas    
             %li
               %a{:href => "#{commercial.contracts_path}"} Contratos  
         %li.sub-menu
-          %a{:href => "javascript:;"}
+          %a{:href => "javascript:;", class: "#{(params[:module] == 'deal') ? 'active' : ''}"}
             %i.fa.fa-th
             %span Compras
-          %ul.sub
+          %ul.sub{style: "#{(params[:module] == 'deal') ? 'diplay:block' : ''}"}
             %li
               %a{:href => "#{deal.dashboard_path}"} Relatório Geral
             %li
               %a{:href => "#{deal.suppliers_path}"} Fornecedores
             %li
               %a{:href => "#{deal.purchases_path}"} Compras
-            %li
-              %a{:href => "#{deal.quotations_path}"} Cotações
+            / %li
+            / %a{:href => "#{deal.quotations_path}"} Cotações
             %li
               %a{:href => "#{deal.control_orders_path}"} Pedidos
             %li

@@ -1,6 +1,42 @@
+.brand {
+  background-color: #FFFFFF !important;
+}
+
+.brand img {
+  margin-left: 35px;
+  margin-top: 5px;
+}
+
+ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
+    background: #1288FD;
+}
+
+ul.sidebar-menu li ul.sub li {
+    background: #0E65BB
+}
+
+ul.sidebar-menu li ul.sub li a:hover, ul.sidebar-menu li ul.sub li.active a {
+    background: #1288FD !important;
+}
+.sidebar-toggle-box {
+    background: #FFFFFF !important;
+}
+ul.sidebar-menu li a {
+  color: white !important;
+  font-weight: bold !important;
+}
 .title-row {
 	margin-bottom: 60px;
 }
+
+ul.sidebar-menu li a.active i {
+    color: #FFFFFF !important;
+}
+
+ul.sidebar-menu li a i {
+    color: #FFFFFF !important;
+}
+
 
 ul.ui-autocomplete {
   position: absolute;

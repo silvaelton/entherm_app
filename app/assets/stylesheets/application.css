@@ -4,7 +4,8 @@
  *= require bucket/css/bootstrap-reset
  *= require bucket/css/style.css
  *= require bucket/css/style-responsive.css
- *= require detail/css/lib/font-awesome
- *= require detail/css/lib/jquery.dataTables
+ *= require bucket/assets/font-awesome/css/font-awesome
+ *= require bucket/css/datatables
+ *= require bucket/assets/data-tables/DT_bootstrap
  *= require custom
  */

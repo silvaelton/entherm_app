@@ -2,14 +2,14 @@
   / logo start
   .brand
     %a.logo{:href => "#{main_app.root_path}"}
-      ENTHERM
+      = image_tag '/images/logo-complete.jpg', height: 70, width: 120
     .sidebar-toggle-box
       .fa.fa-bars
   .top-nav.clearfix
     %ul.nav.pull-right.top-menu
       %li.dropdown
         %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-          %img{:alt => "", :src => "images/avatar1_small.jpg"}/
+          %img{:alt => "", :src => "/images/avatar-default.jpg"}/
           %span.username= current_user.email
           %b.caret
         %ul.dropdown-menu.extended.logout
@@ -18,7 +18,6 @@
               %i.fa.fa-suitcase>
               Editar meus dados
           %li
-            %a{:href => "login.html"}
-              %i.fa.fa-key
-              Sair
+            = link_to "Sair", main_app.destroy_user_session_path, method: :delete
+            
     

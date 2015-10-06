@@ -1,24 +1,27 @@
-.row.title-row
-  .col-md-12
-    %h4.title 
-      Listagem de categorias de fornecedor
-      %span.pull-right
-        = link_to "Fornecedores", suppliers_path, class: 'btn btn-primary btn-sm'
-        = link_to "Nova Categoria", new_supplier_category_path, class: 'btn btn-success btn-sm'
 .row
-  .col-md-12
-    %table.datatable.table-bordered.table-condensed
-      %thead
-        %tr
-          %th Título
-          %th Status
-          %th Ações
-      %tbody
-        - @supplier_categories.each do |supplier|
-          %tr
-            %td= supplier.title
-            %td= supplier.status ? 'ativo' : 'inativo'
-            %td.col-md-2
-              = link_to "", edit_supplier_category_path(supplier), class: 'btn btn-primary btn-sm icon-edit', title: "Editar"
-              = link_to "", supplier_category_path(supplier), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'icon-remove btn btn-danger btn-sm', title: 'Remover'
-       
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        %b Listagem de categorias de fornecedor
+        %span.pull-right
+          = link_to "Fornecedores", suppliers_path, class: 'btn btn-primary btn-sm'
+          = link_to "Nova Categoria", new_supplier_category_path, class: 'btn btn-success btn-sm'
+      .panel-body
+        .adv-table
+          .row
+            .col-md-12
+              %table.table.table-bordered.table-striped.datatable
+                %thead
+                  %tr
+                    %th Título
+                    %th Status
+                    %th Ações
+                %tbody
+                  - @supplier_categories.each do |supplier|
+                    %tr
+                      %td= supplier.title
+                      %td.col-md-2= supplier.status ? 'ativo' : 'inativo'
+                      %td.col-md-2
+                        = link_to "", edit_supplier_category_path(supplier), class: 'btn btn-primary btn-sm icon-edit', title: "Editar"
+                        = link_to "", supplier_category_path(supplier), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'icon-remove btn btn-danger btn-sm', title: 'Remover'
+                 

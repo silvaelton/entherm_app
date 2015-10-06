@@ -1,33 +1,36 @@
-.row.title-row
-  .col-md-12
-    %h4.title 
-      Listagem de usuários
-      = link_to "novo usuário", new_user_path, class: 'btn btn-success btn-sm pull-right'
 .row
-  .col-md-12
-    %table.datatable.table-bordered.table-condensed
-      %thead
-        %tr
-          %th Nome
-          %th E-mail
-          %th Status
-          %th Privilégio
-          %th Data de criação
-          %th Último acesso
-          %th Ações
-      %tbody
-        - @users.each do |user|
-          %tr
-            %td= user.name
-            %td= user.email
-            %td= user.status ? 'ativo' : 'inativo'
-            %td= user.user_type
-            %td= user.created_at.strftime("%d/%m/%Y às %H:%M")
-            %td= user.last_sign_in_at.strftime("%d/%m/%Y") if user.last_sign_in_at.present?
-            %td.col-md-2
-              - if user.email == "dev@dev.com" && current_user.id != user.id
-                sem ações
-              - else
-                = link_to "", edit_user_path(user), class: 'btn btn-primary btn-sm icon-edit', title: "Editar"
-                = link_to "", user_path(user), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm icon-remove', title: "Remover"
-       
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        %b Listagem de usuários
+        = link_to "novo usuário", new_user_path, class: 'btn btn-success btn-xs pull-right'
+      .panel-body
+        .adv-table
+          .row
+            .col-md-12
+              %table.table.table-bordered.table-striped.datatable
+                %thead
+                  %tr
+                    %th Nome
+                    %th E-mail
+                    %th Status
+                    %th Privilégio
+                    %th Data de criação
+                    %th Último acesso
+                    %th Ações
+                %tbody
+                  - @users.each do |user|
+                    %tr
+                      %td= user.name
+                      %td= user.email
+                      %td= user.status ? 'ativo' : 'inativo'
+                      %td= user.user_type
+                      %td= user.created_at.strftime("%d/%m/%Y às %H:%M")
+                      %td= user.last_sign_in_at.strftime("%d/%m/%Y") if user.last_sign_in_at.present?
+                      %td.col-md-2
+                        - if user.email == "dev@dev.com" && current_user.id != user.id
+                          sem ações
+                        - else
+                          = link_to "", edit_user_path(user), class: 'btn btn-primary btn-sm icon-edit', title: "Editar"
+                          = link_to "", user_path(user), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm icon-remove', title: "Remover"
+                 

@@ -9,5 +9,7 @@
 //= require bucket/js/nicescroll/jquery.nicescroll
 //= require detail/js/mask.money.jquery.min
 //= require detail/js/mask.jquery.min
+//= require bucket/js/datatables
+//= require bucket/assets/data-tables/DT_bootstrap
 //= require bucket/js/scripts
 //= require custom

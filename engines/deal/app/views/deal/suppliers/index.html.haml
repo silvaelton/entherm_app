@@ -1,32 +1,35 @@
-.row.title-row
-  .col-md-12
-    %h4.title 
-      Listagem de Fornecedores
-      %span.pull-right
-        = link_to "Categorias", supplier_categories_path, class: 'btn btn-primary btn-sm'
-        = link_to "Novo Fornecedor", new_supplier_path, class: 'btn btn-success btn-sm'
 .row
-  .col-md-12
-    %table.datatable.table-bordered.table-condensed
-      %thead
-        %tr
-          %th Categoria
-          %th Nome
-          %th Cidade/UF
-          %th Contato
-          %th Telefones
-          %th Celulares
-          %th Ações
-      %tbody
-        - @suppliers.each do |supplier|
-          %tr
-            %td= supplier.supplier_category.title if supplier.supplier_category.present?
-            %td= supplier.name
-            %td= "#{supplier.city.name} / #{supplier.state.acronym}" if supplier.city.present? && supplier.state.present?
-            %td= supplier.contact_name
-            %td= "#{supplier.contact_telephone} / #{supplier.contact_telephone_optional}"
-            %td= "#{supplier.contact_celphone} / #{supplier.contact_celphone_optional}"
-            %td.col-md-2
-              = link_to "", edit_supplier_path(supplier), class: 'btn btn-primary btn-sm icon icon-edit', title: 'editar'
-              = link_to "", supplier_path(supplier), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm icon-remove', title: 'remover'
-       
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        %b Listagem de Fornecedores
+        %span.pull-right
+          = link_to "Categorias", supplier_categories_path, class: 'btn btn-primary btn-xs'
+          = link_to "Novo Fornecedor", new_supplier_path, class: 'btn btn-success btn-xs'
+      .panel-body
+        .adv-table
+          .row
+            .col-md-12
+              %table.table.table-bordered.table-striped.datatable
+                %thead
+                  %tr
+                    %th Categoria
+                    %th Nome
+                    %th Cidade/UF
+                    %th Contato
+                    %th Telefones
+                    %th Celulares
+                    %th Ações
+                %tbody
+                  - @suppliers.each do |supplier|
+                    %tr
+                      %td= supplier.supplier_category.title if supplier.supplier_category.present?
+                      %td= supplier.name
+                      %td= "#{supplier.city.name} / #{supplier.state.acronym}" if supplier.city.present? && supplier.state.present?
+                      %td= supplier.contact_name
+                      %td= "#{supplier.contact_telephone} / #{supplier.contact_telephone_optional}"
+                      %td= "#{supplier.contact_celphone} / #{supplier.contact_celphone_optional}"
+                      %td.col-md-2
+                        = link_to "", edit_supplier_path(supplier), class: 'btn btn-primary btn-sm icon icon-edit', title: 'editar'
+                        = link_to "", supplier_path(supplier), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm icon-remove', title: 'remover'
+                 
