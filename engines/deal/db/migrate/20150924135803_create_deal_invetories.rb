@@ -6,7 +6,6 @@ class CreateDealInvetories < ActiveRecord::Migration
       t.text :observation
       t.text :location
       t.string :image_path
-      t.references :contract, index: true
 
       t.timestamps null: false
     end

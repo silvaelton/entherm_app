@@ -38,6 +38,24 @@ ul.sidebar-menu li a i {
 }
 
 
+.btn-primary {
+    background-color: #1288FD !important;
+    border-color: #1288FD !important;
+    font-weight: bold !important;
+}
+
+.btn-success {
+    background-color: #2BAB1B !important;
+    border-color: ##2BAB1B  !important;
+}
+
+.btn-inverse, .btn-inverse:hover, .btn-inverse.active, .btn-inverse:visited, .btn-inverse:focus{
+    background-color: #32323A !important;
+    border-color: #32323A !important;
+    color: #fff;
+}
+
+
 ul.ui-autocomplete {
   position: absolute;
   list-style: none;

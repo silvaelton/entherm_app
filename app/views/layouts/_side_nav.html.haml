@@ -31,17 +31,41 @@
             %span Compras
           %ul.sub{style: "#{(params[:module] == 'deal') ? 'diplay:block' : ''}"}
             %li
-              %a{:href => "#{deal.dashboard_path}"} Relatório Geral
-            %li
               %a{:href => "#{deal.suppliers_path}"} Fornecedores
             %li
+              %a{:href => "#{deal.supplier_categories_path}"} Categorias de Fornecedor
+            %li
+              %br/
+            %li
               %a{:href => "#{deal.purchases_path}"} Compras
+            %li
+              %a{:href => "#{deal.purchases_path}"} Pesquisar FPA
+            %li
+              %a{:href => "#{deal.purchases_path}"} Pesquisar Fornecedor
+            %li
+              %a{:href => "#{deal.purchases_path}"} Pesquisar Produto
+            %li
+              %br/
             / %li
             / %a{:href => "#{deal.quotations_path}"} Cotações
             %li
               %a{:href => "#{deal.control_orders_path}"} Pedidos
             %li
+              %br/
+            %li
               %a{:href => "#{deal.inventories_path}"} Estoque
             %li
+              %a{:href => "#{deal.control_orders_path}"} Entrada Estoque
+            %li
+              %a{:href => "#{deal.control_orders_path}"} Saída Estoque
+            %li
+              %br/
+            %li
               %a{:href => "#{deal.patrimonies_path}"} Patrimônio
-       
+        %li.sub-menu
+          %a{:href => "javascript:;", class: "#{(params[:module] == 'report') ? 'active' : ''}"}
+            %i.fa.fa-th
+            %span Relatórios
+          %ul.sub{style: "#{(params[:module] == 'report') ? 'diplay:block' : ''}"}
+            %li
+              %a{:href => "#{deal.dashboard_path}"} Compras

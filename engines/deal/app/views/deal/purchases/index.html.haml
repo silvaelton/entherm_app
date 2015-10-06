@@ -4,9 +4,9 @@
       %header.panel-heading
         %b Resumo de Compras
         - if params[:search].present?
-          = link_to "nova compra", new_purchase_path(search: params[:search]), class: 'btn btn-success btn-xs pull-right'
+          = link_to "+ nova compra", new_purchase_path(search: params[:search]), class: 'btn btn-primary btn-xs pull-right'
         - else
-          = link_to "nova compra", new_purchase_path, class: 'btn btn-success btn-xs pull-right'
+          = link_to "+ nova compra", new_purchase_path, class: 'btn btn-primary btn-xs pull-right'
       .panel-body
         .row
           = simple_form_for :search, url: purchases_path, method: :get do |f|

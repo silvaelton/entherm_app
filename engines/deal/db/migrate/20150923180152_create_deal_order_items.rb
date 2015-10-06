@@ -7,7 +7,7 @@ class CreateDealOrderItems < ActiveRecord::Migration
       t.integer :quantity
       t.string :goal
       t.text :observation
-      t.string :image_path
+      t.json :image_path
 
       t.timestamps null: false
     end

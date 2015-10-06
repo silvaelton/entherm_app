@@ -6,6 +6,7 @@ class CreateDealOrders < ActiveRecord::Migration
       t.text :description
       t.integer :status, default: 0
       t.string :image_path
+      t.json :pdfs
 
       t.timestamps null: false
     end
