@@ -12,7 +12,6 @@ gem 'devise', '~> 3.5.1'
 gem 'pundit', '~> 1.0.1'
 
 gem 'simple_form', '~> 3.1.0'
-gem 'carrierwave',  '~> 0.10.0'
 gem 'haml-rails'
 
 gem 'validates_cpf_cnpj'
@@ -20,6 +19,9 @@ gem 'validates_timeliness'
 gem 'email_validator'
 
 gem "chartkick"
+
+gem 'fog'
+gem 'carrierwave',  '~> 0.10.0'
 
 group :development, :test do
   gem 'byebug'

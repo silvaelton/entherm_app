@@ -1,0 +1,24 @@
+= simple_form_for @inventory, remote: true do |f|
+  .row
+    .col-md-12
+      = f.label "Item"
+      = f.input :product_title, as: :string, label: false, input_html: { disabled: 'disabled' }
+  .row
+    .col-md-4
+      = f.label "Quantidade Atual"
+      = f.input :quantity, as: :string, label: false, input_html: { disabled: 'disabled' }
+    .col-md-4
+      = f.label "Unidade"
+      = f.input :unit, as: :string, label: false, input_html: { disabled: 'disabled' }
+    .col-md-4
+      = f.label "Valor estimado"
+      = f.input :estimed_value, as: :string, label: false, input_html: { disabled: 'disabled' }
+  %hr/
+  .row
+    .col-md-4
+      = f.label "Nova quantidade"
+      = f.input :in_quantity, as: :string, label: false
+  %hr/
+  .row
+    .col-md-4
+      = f.submit "Atualizar Estoque", class: 'btn btn-primary'

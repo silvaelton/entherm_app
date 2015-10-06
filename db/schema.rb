@@ -55,16 +55,18 @@ ActiveRecord::Schema.define(version: 20150925131033) do
 
   create_table "deal_inventories", force: :cascade do |t|
     t.integer  "product_id"
+    t.string   "unit"
     t.integer  "quantity"
     t.text     "observation"
     t.text     "location"
     t.string   "image_path"
-    t.integer  "contract_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.float    "estimed_value"
+    t.string   "state"
+    t.string   "supplier"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "deal_inventories", ["contract_id"], name: "index_deal_inventories_on_contract_id", using: :btree
   add_index "deal_inventories", ["product_id"], name: "index_deal_inventories_on_product_id", using: :btree
 
   create_table "deal_order_items", force: :cascade do |t|

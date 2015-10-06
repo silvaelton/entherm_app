@@ -3,10 +3,12 @@ module Deal
     belongs_to :product
     belongs_to :contract, class_name: "Commercial::Contract"
 
+
     default_scope {order('created_at DESC')}
+  
+    attr_accessor :in_quantity    
     
-    
-    validates :contract, :product_title, :quantity, presence: true    
+    validates :product_title, :quantity, presence: true    
     validates :quantity, numericality: true
 
     def self.search(search_params)

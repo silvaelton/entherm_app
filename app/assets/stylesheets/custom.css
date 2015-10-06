@@ -58,6 +58,10 @@ ul.sidebar-menu li a i {
     color: #fff;
 }
 
+.btn-danger {
+    background-color: #D21111 !important;
+    border-color: #D21111 !important;
+}
 
 ul.ui-autocomplete {
   position: absolute;

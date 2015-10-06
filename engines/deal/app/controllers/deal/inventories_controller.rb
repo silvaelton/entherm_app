@@ -3,6 +3,7 @@ require_dependency "deal/application_controller"
 module Deal
   class InventoriesController < ApplicationController
     before_action :set_inventory, only: [:show, :edit, :update, :destroy]
+    before_action :set_inventory_id, only: [:in, :out]
 
     # GET /inventories
     def index
@@ -56,15 +57,25 @@ module Deal
       end
     end
 
+    def in
+    end
+
+    def out
+    end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_inventory
         @inventory = Inventory.find(params[:id])
       end
 
+      def set_inventory_id
+        @inventory = Inventory.find(params[:inventory_id])
+      end
+
       # Only allow a trusted parameter "white list" through.
       def inventory_params
-        params.require(:inventory).permit(:contract_id, :product_title, :quantity, :observation, :location, :image_path)
+        params.require(:inventory).permit( :product_title, :quantity, :observation, :location, :image_path)
       end
   end
 end

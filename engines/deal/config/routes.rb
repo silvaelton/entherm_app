@@ -7,7 +7,12 @@ Deal::Engine.routes.draw do
   resources :purchases do 
     get 'fpa'
   end
-  resources :inventories
+
+  resources :inventories do 
+    get 'in'
+    get 'out'
+  end
+
   resources :patrimonies
   resources :quotations
 

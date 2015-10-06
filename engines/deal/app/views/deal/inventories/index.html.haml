@@ -26,6 +26,8 @@
                       %td= inventory.observation
                       %td= inventory.location
                       %td.col-md-2
-                        = link_to "",edit_inventory_path(inventory), class: 'btn btn-primary btn-sm icon-edit', title: "Editar"
-                        = link_to "", inventory_path(inventory), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm icon-remove', title: "Remover"
+                        = link_to "", deal.inventory_in_path(inventory), remote: true, class: 'btn btn-success btn-sm fa fa-plus', title: "Editar"
+                        = link_to "", deal.inventory_out_path(inventory), remote: true, class: 'btn btn-warning btn-sm fa fa-minus', title: "Editar"
+                        = link_to "",edit_inventory_path(inventory), class: 'btn btn-primary btn-sm fa fa-edit', title: "Editar"
+                        = link_to "", inventory_path(inventory), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm fa fa-times', title: "Remover"
                  
