@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925131033) do
+ActiveRecord::Schema.define(version: 20151014015727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,16 +55,18 @@ ActiveRecord::Schema.define(version: 20150925131033) do
 
   create_table "deal_inventories", force: :cascade do |t|
     t.integer  "product_id"
+    t.string   "unit"
     t.integer  "quantity"
     t.text     "observation"
     t.text     "location"
     t.string   "image_path"
-    t.integer  "contract_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.float    "estimed_value"
+    t.string   "state"
+    t.string   "supplier"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "deal_inventories", ["contract_id"], name: "index_deal_inventories_on_contract_id", using: :btree
   add_index "deal_inventories", ["product_id"], name: "index_deal_inventories_on_product_id", using: :btree
 
   create_table "deal_order_items", force: :cascade do |t|
@@ -74,9 +76,9 @@ ActiveRecord::Schema.define(version: 20150925131033) do
     t.integer  "quantity"
     t.string   "goal"
     t.text     "observation"
-    t.string   "image_path"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "image_path"
   end
 
   add_index "deal_order_items", ["order_id"], name: "index_deal_order_items_on_order_id", using: :btree
@@ -88,9 +90,9 @@ ActiveRecord::Schema.define(version: 20150925131033) do
     t.text     "description"
     t.integer  "status",      default: 0
     t.string   "image_path"
-    t.string   "pdf"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "pdf"
   end
 
   add_index "deal_orders", ["contract_id"], name: "index_deal_orders_on_contract_id", using: :btree
