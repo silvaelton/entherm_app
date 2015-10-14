@@ -6,7 +6,6 @@
       t.text :description
       t.integer :status, default: 0
       t.string :image_path
-      t.string :pdf
 
       t.timestamps null: false
     end
