@@ -1,43 +1,35 @@
-.row.title-row
-  .col-md-12
-    %h4.title 
-      Listagem de patrimônios
-      = link_to "novo patrimônio", new_patrimony_path, class: 'btn btn-success btn-sm pull-right'
 .row
-  = simple_form_for :search, url: patrimonies_path, method: :get do |f|
-    .col-md-2
-      = f.label "Contrato"
-      = f.input :contract_id, label: false, name: 'contract_id', collection: Commercial::Contract.all.order(:title), prompt: 'todos', selected: (params[:search].present?) ? params[:search][:contract_id] : '', include_blank: false
-    .col-md-2
-      = f.label "Estado"
-      = f.input :state_id, label: false, name: 'state_id', collection: Deal::Patrimony.states, prompt: 'todos', selected: params[:search].present? ? params[:search][:state_id] : '', include_blank: false
-    .col-md-2{style: "padding-top:24px"}
-      = f.submit "Filtrar Estoque", name: nil, class: 'btn btn-primary btn-sm'
-%hr/
-.row
-  .col-md-12
-    %table.datatable.table-bordered.table-condensed
-      %thead
-        %tr
-          %th Contrato
-          %th Título
-          %th Descrição
-          %th Localização
-          %th Valor original
-          %th Valor estimado
-          %th Estado
-          %th Ações
-      %tbody
-        - @patrimonies.each do |patrimony|
-          %tr
-            %td= patrimony.contract.title if patrimony.contract.present?
-            %td= patrimony.title
-            %td= patrimony.description
-            %td= patrimony.location
-            %td= number_to_currency patrimony.original_value
-            %td= number_to_currency patrimony.estimated_value
-            %td= patrimony.state
-            %td.col-md-2
-              = link_to "", edit_patrimony_path(patrimony), class: 'btn btn-primary btn-sm icon-edit', title: "Editar"
-              = link_to "", patrimony_path(patrimony), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm icon-remove', title: "Remover"
-       
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        %b Listagem de patrimônios
+        = link_to "novo patrimônio", new_patrimony_path, class: 'btn btn-success btn-xs pull-right'
+      .panel-body
+        .adv-table          
+          .row
+            .col-md-12
+              %table.table.table-bordered.table-striped.datatable
+                %thead
+                  %tr
+                    %th Contrato
+                    %th Título
+                    %th Descrição
+                    %th Localização
+                    %th Valor original
+                    %th Valor estimado
+                    %th Estado
+                    %th Ações
+                %tbody
+                  - @patrimonies.each do |patrimony|
+                    %tr
+                      %td= patrimony.contract.title if patrimony.contract.present?
+                      %td= patrimony.title
+                      %td= patrimony.description
+                      %td= patrimony.location
+                      %td= number_to_currency patrimony.original_value
+                      %td= number_to_currency patrimony.estimated_value
+                      %td= patrimony.state
+                      %td.col-md-2
+                        = link_to "", edit_patrimony_path(patrimony), class: 'btn btn-primary btn-sm icon-edit', title: "Editar"
+                        = link_to "", patrimony_path(patrimony), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm icon-remove', title: "Remover"
+                 

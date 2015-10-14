@@ -15,6 +15,8 @@ module Deal
 
     validate :user_contract?
 
+    mount_uploader :pdf, Deal::DocumentUploader
+
     def protocol
       "P#{self.id}/#{self.created_at.strftime('%Y')}"
     end

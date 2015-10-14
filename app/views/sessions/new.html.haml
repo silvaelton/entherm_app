@@ -1,10 +1,8 @@
-.login-wrapper
-  %a{:href => "index.html"}
-    %img.logo{:alt => "logo", :src => "img/logo-white.png"}/
-  .box
-    .content-wrap
-      = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        %h6 Área Restrita
-        = f.input :email, label: false, required: false, autofocus: true, placeholder: "Digite seu e-mail"
-        = f.input :password, required: false, label: false, placeholder: "Digite sua senha"
-        = f.button :submit, 'Realizar Acesso', class: 'btn btn-primary'
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-signin'}) do |f|
+  %h2{style: 'text-align: center; padding-top: 25px;'}
+    = image_tag '/images/logo-complete.jpg', width: 150
+  .login-wrap
+    .user-login-info
+      = f.input :email, as: :string, label: false, required: false, autofocus: true, placeholder: "Digite seu e-mail"
+      = f.input :password, required: false, label: false, placeholder: "Digite sua senha"
+    = f.button :submit, 'Acessar Programa', class: 'btn btn-primary btn-block btn-lg'

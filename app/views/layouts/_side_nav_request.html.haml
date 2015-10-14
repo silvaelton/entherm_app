@@ -1,13 +1,14 @@
-#sidebar-nav
-  %ul#dashboard-menu
-    %li.active
-      %a.dropdown-toggle{:href => "#"}
-        %i.icon-share-alt
-        %span Pedidos
-        %i.icon-chevron-down
-      %ul.submenu{:style => 'display: block;'}
-        %li
-          %a{:href => "#{deal.new_order_path}"} Novo Pedido
-        %li
-          %a{:href => "#{deal.orders_path}"} Meus Pedidos
-  
+%aside
+  #sidebar.nav-collapse
+    / sidebar menu start
+    .leftside-navigation
+      %ul#nav-accordion.sidebar-menu
+        %li.sub-menu
+          %a{:href => "javascript:;", class: "#{(params[:module] == 'deal') ? 'active' : ''}"}
+            %i.fa.fa-laptop
+            %span Pedidos
+          %ul.sub{style: "#{(params[:module] == 'deal') ? 'diplay:block' : ''}"}
+            %li
+              %a{:href => "#{deal.new_order_path}"} Novo Pedido
+            %li
+              %a{:href => "#{deal.orders_path}"} Meus Pedidos

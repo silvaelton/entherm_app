@@ -1,4 +1,4 @@
-class CreateDealOrders < ActiveRecord::Migration
+  class CreateDealOrders < ActiveRecord::Migration
   def change
     create_table :deal_orders do |t|
       t.references :user, index: true#, foreign_key: true
@@ -6,8 +6,7 @@ class CreateDealOrders < ActiveRecord::Migration
       t.text :description
       t.integer :status, default: 0
       t.string :image_path
-      t.string :pdf_file
-      t.string :pdf_file_optional
+      t.string :pdf
 
       t.timestamps null: false
     end

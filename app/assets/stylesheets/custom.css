@@ -1,6 +1,69 @@
+input[type='text'], select {
+  color: black !important;
+}
+.brand {
+  background-color: #FFFFFF !important;
+}
+
+.brand img {
+  margin-left: 35px;
+  margin-top: 5px;
+}
+
+ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
+    background: #1288FD;
+}
+
+ul.sidebar-menu li ul.sub li {
+    background: #0E65BB
+}
+
+ul.sidebar-menu li ul.sub li a:hover, ul.sidebar-menu li ul.sub li.active a {
+    background: #1288FD !important;
+}
+.sidebar-toggle-box {
+    background: #FFFFFF !important;
+}
+ul.sidebar-menu li a {
+  color: white !important;
+  font-weight: bold !important;
+}
 .title-row {
 	margin-bottom: 60px;
 }
+
+ul.sidebar-menu li a.active i {
+    color: #FFFFFF !important;
+}
+
+ul.sidebar-menu li a i {
+    color: #FFFFFF !important;
+}
+
+
+.btn-primary {
+    background-color: #1288FD !important;
+    border-color: #1288FD !important;
+    font-weight: bold !important;
+}
+
+.btn-success {
+    background-color: #2BAB1B !important;
+    border-color: ##2BAB1B  !important;
+}
+
+.btn-inverse, .btn-inverse:hover, .btn-inverse.active, .btn-inverse:visited, .btn-inverse:focus{
+    background-color: #32323A !important;
+    border-color: #32323A !important;
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #D21111 !important;
+    border-color: #D21111 !important;
+}
+
+
 
 ul.ui-autocomplete {
   position: absolute;
@@ -26,7 +89,7 @@ ul.ui-autocomplete {
 }
 
 body {
-  background-color: #F9F9F9  !important;
+  background-color: #E8E8E8  !important;
   font-size: 12px !important;
 }
 
@@ -44,4 +107,8 @@ body {
 
 .navbar-inverse .nav > li > a {
   color: rgb(255, 255, 255);
+}
+
+a.logo {
+  margin: 0 !important;
 }

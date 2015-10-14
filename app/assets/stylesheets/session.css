@@ -1,0 +1,21 @@
+/*
+*= require bucket/bs3/css/bootstrap.min
+*= require bucket/css/bootstrap-reset
+*= require bucket/css/style.css
+*= require bucket/css/style-responsive.css
+*/
+
+body {
+  background: #8BBDFF !important;
+}
+.btn-primary {
+  background-color: #2C86FE !important;
+  border-color: #2D86FD !important;
+  color: #FFFFFF;
+  font-weight: 'bold' !important;
+}
+
+input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].btn-block {
+  width: 100%;
+  font-weight: bold !important;
+}

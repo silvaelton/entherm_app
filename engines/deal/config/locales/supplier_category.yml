@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'deal/supplier_category': "Categoria de Fornecedor"
+    attributes:
+      'deal/supplier_category':
+        title: "Título"
+        status: "Ativo?"
+        

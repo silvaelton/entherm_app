@@ -1,19 +1,26 @@
 = simple_form_for @inventory do |f|
   .row
-    .col-md-3
-      = f.association :contract, as: :select, collection: Commercial::Contract.all, include_blank: false
-  .row
-    .col-md-6
+    .col-md-10
       = f.label :product_title
       = f.text_field :product_title, data: {autocomplete_source: products_path}, id: 'product_title', class: 'product_title form-control', autocomplete: 'on'
-    .col-md-2
-      = f.input :quantity
+  %hr/
   .row
-    .col-md-8
-      = f.input :observation
+    .col-md-2
+      = f.input :unit, as: :select, collection: ['UN', 'CX', 'MT', 'CM', 'LT', 'KG'], include_blank: false
+    .col-md-2
+      = f.input :quantity, as: :string
+    .col-md-2
+      = f.input :estimed_value, as: :string, input_html: { class: 'coin_mask'}
+    .col-md-2
+      = f.input :state, as: :string
+    .col-md-2
+      = f.input :supplier, as: :string
   .row
     .col-md-4
+      = f.input :observation
+    .col-md-4
       = f.input :location
+  .row
     .col-md-4
       = f.label :image_path
       = f.input :image_path, label: false, as: :file

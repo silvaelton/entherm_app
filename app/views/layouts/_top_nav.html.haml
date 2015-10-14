@@ -1,19 +1,23 @@
-%header.navbar.navbar-inverse{:role => "banner"}
-  .navbar-header
-    %button#menu-toggler.navbar-toggle{"data-toggle" => "collapse", :type => "button"}
-      %span.sr-only Toggle navigation
-      %span.icon-bar
-      %span.icon-bar
-      %span.icon-bar
-    %a.navbar-brand{:href => "#{dashboard.root_path}"}
-      ENTHERM ENGENHARIA
-  %ul.nav.navbar-nav.pull-right.hidden-xs
-    %li.dropdown
-      %a.dropdown-toggle.hidden-xs.hidden-sm{"data-toggle" => "dropdown", :href => "#"}
-        = current_user.name.humanize
-        %b.caret
-      %ul.dropdown-menu
-        %li
-          = link_to "Minha conta", main_app.edit_user_registration_path
-        %li
-          = link_to "Sair", main_app.destroy_user_session_path, method: :delete
+%header.header.fixed-top.clearfix
+  / logo start
+  .brand
+    %a.logo{:href => "#{main_app.root_path}"}
+      = image_tag '/images/logo-complete.jpg', height: 70, width: 120
+    .sidebar-toggle-box
+      .fa.fa-bars
+  .top-nav.clearfix
+    %ul.nav.pull-right.top-menu
+      %li.dropdown
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          %img{:alt => "", :src => "/images/avatar-default.jpg"}/
+          %span.username= current_user.email
+          %b.caret
+        %ul.dropdown-menu.extended.logout
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-suitcase>
+              Editar meus dados
+          %li
+            = link_to "Sair", main_app.destroy_user_session_path, method: :delete
+            
+    

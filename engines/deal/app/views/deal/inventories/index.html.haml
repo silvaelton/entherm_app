@@ -1,36 +1,33 @@
-.row.title-row
-  .col-md-12
-    %h4.title 
-      Listagem de estoque
-      = link_to "adicionar item", new_inventory_path, class: 'btn btn-success btn-sm pull-right'
 .row
-  = simple_form_for :search, url: inventories_path, method: :get do |f|
-    .col-md-2
-      = f.label "Contrato"
-      = f.input :contract_id, label: false, name: 'filter[contract_id]', collection: Commercial::Contract.all.order(:title), prompt: 'todos', selected: (params[:search].present?) ? params[:search][:contract_id] : ''
-    .col-md-2{style: "padding-top:24px"}
-      = f.submit "Filtrar Estoque", name: nil, class: 'btn btn-primary btn-sm'
-%hr/
-.row
-  .col-md-12
-    %table.datatable.table-bordered.table-condensed
-      %thead
-        %tr
-          %th Contrato
-          %th Item
-          %th Quantidade
-          %th Observação
-          %th Localização
-          %th Ações
-      %tbody
-        - @inventories.each do |inventory|
-          %tr
-            %td= inventory.contract.title if inventory.contract.present?
-            %td= inventory.product_title
-            %td= inventory.quantity
-            %td= inventory.observation
-            %td= inventory.location
-            %td.col-md-2
-              = link_to "",edit_inventory_path(inventory), class: 'btn btn-primary btn-sm icon-edit', title: "Editar"
-              = link_to "", inventory_path(inventory), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm icon-remove', title: "Remover"
-       
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        %b Listagem de estoque
+        = link_to "adicionar item", new_inventory_path, class: 'btn btn-success btn-xs pull-right'
+      .panel-body
+        .adv-table          
+          .row
+            .col-md-12
+              %table.table.table-bordered.table-striped.datatable
+                %thead
+                  %tr
+                    %th Contrato
+                    %th Item
+                    %th Quantidade
+                    %th Observação
+                    %th Localização
+                    %th Ações
+                %tbody
+                  - @inventories.each do |inventory|
+                    %tr
+                      %td= inventory.contract.title if inventory.contract.present?
+                      %td= inventory.product_title
+                      %td= inventory.quantity
+                      %td= inventory.observation
+                      %td= inventory.location
+                      %td.col-md-2
+                        = link_to "", deal.inventory_in_path(inventory), remote: true, class: 'btn btn-success btn-sm fa fa-plus', title: "Editar"
+                        = link_to "", deal.inventory_out_path(inventory), remote: true, class: 'btn btn-warning btn-sm fa fa-minus', title: "Editar"
+                        = link_to "",edit_inventory_path(inventory), class: 'btn btn-primary btn-sm fa fa-edit', title: "Editar"
+                        = link_to "", inventory_path(inventory), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm fa fa-times', title: "Remover"
+                 

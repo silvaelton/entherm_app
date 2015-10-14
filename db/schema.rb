@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20150925131033) do
     t.text     "description"
     t.integer  "status",      default: 0
     t.string   "image_path"
+    t.string   "pdf"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end

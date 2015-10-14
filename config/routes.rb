@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   mount Commercial::Engine  => '/comercial',    as: 'commercial',   module: 'commercial'
   mount Deal::Engine        => '/compras',	    as: 'deal',         module: 'deal'
   mount Access::Engine      => '/acesso',       as: 'access',       module: 'access'
-  mount Information::Engine => '/info',    			as: 'information',  module: 'information'
+  mount Information::Engine => '/info',         as: 'information',  module: 'information'
+  mount Report::Engine      => '/relatorios',   as: 'report',       module: 'report'
 end

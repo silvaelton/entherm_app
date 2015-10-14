@@ -1,67 +1,69 @@
-.row.title-row.not-print
-  .col-md-12
-    %h4.title 
-      Resumo de Compras
-      - if params[:search].present?
-        = link_to "novo compra", new_purchase_path(search: params[:search]), class: 'btn btn-success btn-sm pull-right'
-      - else
-        = link_to "novo compra", new_purchase_path, class: 'btn btn-success btn-sm pull-right'
-
-.row.not-print
-  = simple_form_for :search, url: purchases_path, method: :get do |f|
-    .col-md-2
-      = f.label "Data início"
-      = f.input :date_start, label: false, input_html: { value: (params[:search].present?) ? params[:search][:date_start] : Date.today.beginning_of_month.strftime('%d/%m/%Y') , class: 'date'}
-    .col-md-2
-      = f.label "Data fim"
-      = f.input :date_end, label: false, name: 'date_end', input_html: { value: (params[:search].present?) ? params[:search][:date_end] : Date.today.end_of_month.strftime('%d/%m/%Y'),  class: 'date' }
-    .col-md-2
-      = f.label "Contrato"
-      = f.input :contract_id, label: false, name: 'filter[contract_id]', collection: Commercial::Contract.all.order(:title), prompt: 'todos', selected: (params[:search].present?) ? params[:search][:contract_id] : ''
-    .col-md-2
-      = f.label "Status"
-      = f.input :status_id, label: false, name: 'status_id', collection: Deal::Purchase.statuses, prompt: 'todos', selected: params[:search].present? ? params[:search][:status_id] : ''
-    .col-md-2{style: "padding-top:24px"}
-      = f.submit "Filtrar Compras", name: nil, class: 'btn btn-primary btn-sm'
-%hr/
-.row.print
-  .col-md-12
-    %table.datatable.table-bordered.table-condensed
-      %thead
-        %tr
-          %th Tipo
-          %th Status
-          %th Contrato
-          %th Descrição
-          %th Fornecedor
-          %th Valor
-          %th Data da Compra
-          %th Ações
-      %tbody
-        - @total_purchase = 0
-        - @purchases.each do |purchase|
-          %tr
-            %td= purchase.purchase_type
-            %td= status_purchase_helper purchase.status
-            %td= purchase.contract.title if purchase.contract.present?
-            %td= purchase.description
-            %td= purchase.supplier.name if purchase.supplier.present?
-            - @total_purchase += purchase.purchase_items.sum(:total_value) if purchase.purchase_items.present?
-            %td= number_to_currency purchase.purchase_items.sum(:total_value)
-            %td= purchase.created_at.strftime('%d/%m/%Y')
-            %td.col-md-2
-              - if params[:search].present?
-                = link_to "", edit_purchase_path(id: purchase, search: params[:search]), class: 'icon-edit btn btn-primary btn-sm not-print', title: "Editar"
-                = link_to "", purchase_path(id: purchase, search: params[:search]),method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'icon-remove btn btn-danger btn-sm not-print', title: "Remover"
-                = link_to "", purchase_path(id: purchase, search: params[:search]),  class: 'icon-external-link btn btn-success btn-sm not-print', title: "Visualizar"
-                = link_to "", purchase_fpa_path(purchase_id: purchase, search: params[:search]), class: 'icon-tag btn btn-warning btn-sm not-print', title: "Emitir FPA"
-              - else
-                = link_to "", edit_purchase_path(purchase),  class: 'icon-edit btn btn-primary btn-sm', title: "Editar"
-                = link_to "", purchase_path(purchase),method: :delete, data: { confirm: t(:confirm_destroy)},class: 'icon-remove btn btn-danger btn-sm not-print', title: "Remover"
-                = link_to "", purchase_path(purchase),  class: 'icon-external-link btn btn-success btn-sm not-print', title: "Visualizar"
-                = link_to "", purchase_fpa_path(purchase), class: 'icon-tag btn btn-warning btn-sm not-print', title: "Emitir FPA"
-      %tfoot 
-        %tr
-          %th{colspan: 5} Total em Compras
-          %th
-            %h5= number_to_currency @total_purchase
+.row
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        %b Resumo de Compras
+        - if params[:search].present?
+          = link_to "+ nova compra", new_purchase_path(search: params[:search]), class: 'btn btn-primary btn-xs pull-right'
+        - else
+          = link_to "+ nova compra", new_purchase_path, class: 'btn btn-primary btn-xs pull-right'
+      .panel-body
+        .row
+          = simple_form_for :search, url: purchases_path, method: :get do |f|
+            .col-md-2
+              = f.label "Data início"
+              = f.input :date_start, label: false, input_html: { value: (params[:search].present?) ? params[:search][:date_start] : Date.today.beginning_of_month.strftime('%d/%m/%Y') , class: 'date'}
+            .col-md-2
+              = f.label "Data fim"
+              = f.input :date_end, label: false, name: 'date_end', input_html: { value: (params[:search].present?) ? params[:search][:date_end] : Date.today.end_of_month.strftime('%d/%m/%Y'),  class: 'date' }
+            .col-md-2
+              = f.label "Contrato"
+              = f.input :contract_id, label: false, name: 'filter[contract_id]', collection: Commercial::Contract.all.order(:title), prompt: 'todos', selected: (params[:search].present?) ? params[:search][:contract_id] : ''
+            .col-md-2
+              = f.label "Status"
+              = f.input :status_id, label: false, name: 'status_id', collection: Deal::Purchase.statuses, prompt: 'todos', selected: params[:search].present? ? params[:search][:status_id] : ''
+            .col-md-2{style: "padding-top:24px"}
+              = f.submit "Filtrar Compras", name: nil, class: 'btn btn-primary btn-sm'
+        %hr/
+        .adv-table          
+          .row
+            .col-md-12
+              %table.table.table-bordered.table-striped.datatable
+                %thead
+                  %tr
+                    %th Tipo
+                    %th Status
+                    %th Contrato
+                    %th Descrição
+                    %th Fornecedor
+                    %th Valor
+                    %th Data da Compra
+                    %th Ações
+                %tbody
+                  - @total_purchase = 0
+                  - @purchases.each do |purchase|
+                    %tr
+                      %td= purchase.purchase_type
+                      %td= status_purchase_helper purchase.status
+                      %td= purchase.contract.title if purchase.contract.present?
+                      %td= purchase.description
+                      %td= purchase.supplier.name if purchase.supplier.present?
+                      - @total_purchase += purchase.purchase_items.sum(:total_value) if purchase.purchase_items.present?
+                      %td= number_to_currency purchase.purchase_items.sum(:total_value)
+                      %td= purchase.created_at.strftime('%d/%m/%Y')
+                      %td.col-md-2
+                        - if params[:search].present?
+                          = link_to "", edit_purchase_path(id: purchase, search: params[:search]), class: 'icon-edit btn btn-primary btn-sm not-print', title: "Editar"
+                          = link_to "", purchase_path(id: purchase, search: params[:search]),method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'icon-remove btn btn-danger btn-sm not-print', title: "Remover"
+                          = link_to "", purchase_path(id: purchase, search: params[:search]),  class: 'icon-external-link btn btn-success btn-sm not-print', title: "Visualizar"
+                          = link_to "", purchase_fpa_path(purchase_id: purchase, search: params[:search]), class: 'icon-tag btn btn-warning btn-sm not-print', title: "Emitir FPA"
+                        - else
+                          = link_to "", edit_purchase_path(purchase),  class: 'icon-edit btn btn-primary btn-sm', title: "Editar"
+                          = link_to "", purchase_path(purchase),method: :delete, data: { confirm: t(:confirm_destroy)},class: 'icon-remove btn btn-danger btn-sm not-print', title: "Remover"
+                          = link_to "", purchase_path(purchase),  class: 'icon-external-link btn btn-success btn-sm not-print', title: "Visualizar"
+                          = link_to "", purchase_fpa_path(purchase), class: 'icon-tag btn btn-warning btn-sm not-print', title: "Emitir FPA"
+                %tfoot 
+                  %tr
+                    %th{colspan: 5} Total em Compras
+                    %th
+                      %h5= number_to_currency @total_purchase
