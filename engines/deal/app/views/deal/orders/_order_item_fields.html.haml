@@ -7,8 +7,8 @@
       = f.input :unit
     .col-md-2
       = f.input :quantity, as: :string
-    .col-md-3
-      = f.input :goal
+    .col-md-4
+      = f.input :image_path, as: :file
     .col-md-2{:style => "margin-top:25px"}
       = f.hidden_field :_destroy
       = link_to "remover", '#', class: "remove_fields btn btn-danger btn-sm"

@@ -1,6 +1,7 @@
 require_dependency 'deal/application_controller'
 module Deal
   class PurchasesController < ApplicationController
+    before_action :authenticate!
     before_action :set_purchase, only: [:edit, :destroy, :update, :show]
     before_action :set_session, only: [:edit, :show, :destroy]
 
@@ -71,5 +72,10 @@ module Deal
                                        :invoice_number, :invoice_file, :created_at, :seller, :requester, :carrier_id, :buy_type, :form_payment, :deadline_payment, :delivery, :freight,:contract_value,
                                         purchase_items_attributes: [:product_title, :unit_value, :contract_value, :total_value, :unit, :quantity, :id, :_destroy])
     end
+
+    def authenticate!
+      redirect_to orders_path if current_user.solicitante?
+    end
+
   end
 end

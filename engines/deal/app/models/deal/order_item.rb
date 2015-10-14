@@ -6,6 +6,8 @@ module Deal
     validates :product_title, :unit, presence: true
     validates :quantity, presence: true, numericality: true
 
+    mount_uploader :image_path, Deal::ImageUploader
+    
     def product_title
       product.try(:title)
     end

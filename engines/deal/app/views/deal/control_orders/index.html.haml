@@ -41,7 +41,7 @@
                       %td= order.description
                       %td.col-md-2= status_helper order.status
                       %td.col-md-2= order.created_at.strftime("%d/%m/%Y às %H:%M")
-                      %td.col-md-2
+                      %td.col-md-3
                         = link_to "visualizar", control_order_path(order), class: 'btn btn-warning btn-xs'
                         = link_to "editar",   edit_control_order_path(order), class: 'btn btn-primary btn-xs'
                         = link_to "excluir", control_order_path(order), method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: t(:confirm_destroy)}

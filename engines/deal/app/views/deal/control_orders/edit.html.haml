@@ -1,58 +1,66 @@
-.row.title-row
-  .col-md-12
-    %h4  Atualizar Pedido - #{@order.contract.title.humanize} - #{@order.id}/#{@order.created_at.strftime('%Y')}
-    = link_to "Voltar para pedidos", control_orders_path
 .row
-  .col-md-12
-    = render 'form'
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        %b Detalhe de Pedido - #{@order.id}/#{@order.created_at.strftime('%Y')}  
+      .panel-body
+        .row.title-row
+          .col-md-12
+            %h4  Atualizar Pedido - #{@order.id}/#{@order.created_at.strftime('%Y')}
+            = link_to "Voltar para pedidos", control_orders_path
+        .row
+          .col-md-12
+            = render 'form'
 
-%hr/
-.row
-  .col-md-8
-    %table.table.table-striped.table-bordered.table-condensed
-      %thead
-        %tr
-          %th Descrição
-      %tbody
-        %tr
-          %td.col-md-3= @order.description
-    %table.table.table-striped.table-bordered.table-condensed
-      %thead
-        %tr
-          %th Contrato
-          %th Solicitante
-          %th Data
-          %th Número
-          %th Status
-      %tbody
-        %tr
-          %td.col-md-3= @order.contract.title if @order.contract.present?
-          %td.col-md-3= @order.user.name if @order.user.present?
-          %td.col-md-2= "#{@order.created_at.strftime('%d/%m/%Y às %H:%M')}"
-          %td.col-md-1= "#{@order.id}/#{@order.created_at.strftime('%Y')}"
-          %td.col-md-1= status_helper @order.status
+        %hr/
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered.table-condensed
+              %thead
+                %tr
+                  %th Descrição
+                  %th Arquivo
+              %tbody
+                %tr
+                  %td.col-md-5= @order.description
+                  %td.col-md-3= link_to "Baixar", @order.pdf.url, target: '_blank' if @order.pdf?
+            %table.table.table-striped.table-bordered.table-condensed
+              %thead
+                %tr
+                  %th Contrato
+                  %th Solicitante
+                  %th Data
+                  %th Número
+                  %th Status
+              %tbody
+                %tr
+                  %td.col-md-3= @order.contract.title if @order.contract.present?
+                  %td.col-md-3= @order.user.name if @order.user.present?
+                  %td.col-md-2= "#{@order.created_at.strftime('%d/%m/%Y às %H:%M')}"
+                  %td.col-md-1= "#{@order.id}/#{@order.created_at.strftime('%Y')}"
+                  %td.col-md-1= status_helper @order.status
 
-.row
-  .col-md-8
-    %hr/
-.row
-  .col-md-12
-    %h4 Produtos
-%br/
-.row
-  .col-md-8
-    %table.table.table-striped.table-bordered.table-condensed
-      %thead
-        %tr
-          %th Produto
-          %th Unidade
-          %th Quantidade
-          %th Razão
-      %tbody
-        - @order.order_items.each do |order|
-          %tr
-            %td= order.product.title
-            %td.col-md-2= order.unit
-            %td.col-md-2= order.quantity
-            %td= order.goal
-            
+        .row
+          .col-md-8
+            %hr/
+        .row
+          .col-md-12
+            %h4 Produtos
+        %br/
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered.table-condensed
+              %thead
+                %tr
+                  %th Produto
+                  %th Unidade
+                  %th Quantidade
+                  %th Imagem
+              %tbody
+                - @order.order_items.each do |order|
+                  %tr
+                    %td= order.product.title
+                    %td.col-md-1= order.unit
+                    %td.col-md-2= order.quantity
+                    %td= link_to "Baixar", order.image_path_url, target: '_blank'  if order.image_path.present?
+                    

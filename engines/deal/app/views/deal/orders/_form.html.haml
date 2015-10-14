@@ -2,6 +2,8 @@
   .row
     .col-md-3
       = f.association :contract, as: :select, collection: current_user.contracts, include_blank: false
+    .col-md-3
+      = f.input :pdf, as: :file
   .row
     .col-md-8
       = f.input :description

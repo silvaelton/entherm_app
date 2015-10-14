@@ -6,4 +6,5 @@ pt-BR:
       'deal/order':
         contract: "Contrato"
         description: "Descrição"
+        pdf: "Arquivo"
         
