@@ -7,8 +7,5 @@ module Deal
 	    'uploads/deal'
 	  end
 
-	  def extension_white_list
-    	%w(pdf doc docx xls xlsx csv eof)
-  	end
 	end
 end
