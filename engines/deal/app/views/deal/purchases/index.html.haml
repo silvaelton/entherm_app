@@ -56,12 +56,12 @@
                           = link_to "", edit_purchase_path(id: purchase, search: params[:search]), class: 'btn btn-primary btn-sm fa fa-pencil not-print', title: "Editar"
                           = link_to "", purchase_path(id: purchase, search: params[:search]),method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'fa fa-times btn btn-danger btn-sm not-print', title: "Remover"
                           = link_to "", purchase_path(id: purchase, search: params[:search]),  class: 'fa fa-eye btn btn-success btn-sm not-print', title: "Visualizar"
-                          = link_to "", purchase_fpa_path(purchase_id: purchase, search: params[:search]), class: 'fa-check btn btn-warning btn-sm not-print', title: "Emitir FPA"
+                          = link_to "", purchase_fpa_path(purchase_id: purchase, search: params[:search]), class: 'fa fa-check btn btn-warning btn-sm not-print', title: "Emitir FPA"
                         - else
                           = link_to "", edit_purchase_path(purchase),  class: 'fa fa-pencil btn btn-primary btn-sm', title: "Editar"
                           = link_to "", purchase_path(purchase),method: :delete, data: { confirm: t(:confirm_destroy)},class: 'fa fa-times btn btn-danger btn-sm not-print', title: "Remover"
                           = link_to "", purchase_path(purchase),  class: 'fa fa-eye btn btn-success btn-sm not-print', title: "Visualizar"
-                          = link_to "", purchase_fpa_path(purchase), class: 'fa-check btn btn-warning btn-sm not-print', title: "Emitir FPA"
+                          = link_to "", purchase_fpa_path(purchase), class: 'fa fa-check btn btn-warning btn-sm not-print', title: "Emitir FPA"
                 %tfoot 
                   %tr
                     %th{colspan: 5} Total em Compras
