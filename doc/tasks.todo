@@ -1,0 +1,63 @@
+@interface
+ ☐ breadcrumbs
+ ☐ logo entherm em P&B (instalar photshop ou máquina virtual windows)
+ ☐ correção de datatables
+
+@users
+ ☐ crud de permissões por módulo
+ ☐ crud de permissões vínculadas ao usuário, adicionar campo de array e inserir as permissões
+ ☐ funcionalidade de resetar a senha do usuário para entherm123456789
+ ☐ adicionar campo de avatar para usuário
+ ☐ edição de perfil de usuário logado
+ ☐ pundit nos controllers, menus, visão do usuário apartir de seu tipo e permissões
+ ☐ foto do perfil
+
+@suppliers
+ ☐ correção de visualização de tabela
+ ☐ correção de visualização de formulário
+ ☐ adicionar modal para inserção de categorias 
+ ☐ correção de listagem e formulário categorias de fornecedor
+ ☐ emitir csv de todos os fornecedores
+ ☐ padronizar o print das palavras
+
+@purchases
+ ☐ listagem css
+ ☐ formulário css
+ ☐ modal para inserir fornecedor automaticamente
+ ☐ chosen-select para busca do fornecedor
+ ☐ adicionar campo select para dizer se é uma compra voltada para o estoque
+ ☐ criar lógica onde se o campo de estoque for sim, copiar o produto para dentro do estoque, havendo ele já adicionar quantidade
+ ☐ _blank para emitir FPA
+ ☐ emitir ordem de compra
+ ☐ deixar filtros mais inteligentes com has_scope
+ ☐ validar datas nos filtros
+ ☐ colocar css print para imprimir as listas
+ ☐ exportar csv da listagem atual
+ ☐ verificar sobre manter a listagem que o filtro proporciona
+
+@orders
+ ☐ revisar e verificar
+
+@invertory
+ ☐ criar formulário de entrada no estoque, busca o produto e adiciona quantidade, não havendo adiciona o produto
+ ☐ criar tabela de saidas do estoque
+ ☐ criar formulário de saída do estoque, ao clicar em saida abrir modal, pesquisa produto e dizer a quantidade saíndo
+ ☐ emitir csv de tudo
+
+@search-fpa
+ ☐ formulário de busca de FPA por número, fornecedor
+ ☐ emitir csv de tudo
+
+@search-product
+ ☐ formulário de busca de produto, por nome e ou fornecedor
+ ☐ emitir csv de tudo
+
+
+@permissões
+ ☐ adicionar permissão de todos os menus e controllers via pundit
+ ☐ adicionar tabela de logs para visualizar os movimentos dos usuários
+
+@notificações
+ ☐ criar tabela de notificações
+ ☐ crud de notificações para todos os usuários da empresa
+ ☐ crud de mensagens por usuários, usuário manda mensagem para outro usuário diretamente

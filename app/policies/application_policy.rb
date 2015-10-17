@@ -6,6 +6,18 @@ class ApplicationPolicy
     @record = record
   end
 
+  def requester?
+    user.solicitante?
+  end
+
+  def administrador?
+    user.administrador?
+  end
+
+  def simples?
+    user.simples?
+  end
+
   def index?
     false
   end

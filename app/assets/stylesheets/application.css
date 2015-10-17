@@ -1,11 +1,6 @@
 /*
- *= require bucket/bs3/css/bootstrap.min
- *= require jquery-ui
- *= require bucket/css/bootstrap-reset
- *= require bucket/css/style.css
- *= require bucket/css/style-responsive.css
- *= require bucket/assets/font-awesome/css/font-awesome
- *= require bucket/css/datatables
- *= require bucket/assets/data-tables/DT_bootstrap
- *= require custom
+ *= require amaretti/css/style
+ *= require amaretti/css/nanoscroller
+ *= require amaretti/css/jquery.datatables.min
+ *= require amaretti/css/bootstrap
  */

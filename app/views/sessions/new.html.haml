@@ -1,8 +1,20 @@
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-signin'}) do |f|
-  %h2{style: 'text-align: center; padding-top: 25px;'}
-    = image_tag '/images/logo-complete.jpg', width: 150
-  .login-wrap
-    .user-login-info
-      = f.input :email, as: :string, label: false, required: false, autofocus: true, placeholder: "Digite seu e-mail"
-      = f.input :password, required: false, label: false, placeholder: "Digite sua senha"
-    = f.button :submit, 'Acessar Programa', class: 'btn btn-primary btn-block btn-lg'
+.login-container
+  .panel.panel-default
+    .panel-heading
+      %img.logo-img{:alt => "logo", :height => "39px", :src => "assets/img/logo-full-retina.png", :width => "150px"}/
+      %span Acesso Restrito
+    .panel-body
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .login-form
+          .form-group
+            .input-group
+              %span.input-group-addon
+                %i.icon.s7-user
+              = f.input :email, as: :string, label: false, required: false, autofocus: true, placeholder: "Digite seu e-mail"
+          .form-group
+            .input-group
+              %span.input-group-addon
+                %i.icon.s7-lock
+              = f.input :password, required: false, label: false, placeholder: "Digite sua senha"
+          .form-group.login-submit
+            = f.submit 'Acessar Programa', class: 'btn btn-success btn-lg'

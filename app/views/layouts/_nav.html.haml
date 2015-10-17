@@ -1,0 +1,82 @@
+%nav.navbar.navbar-default.navbar-fixed-top.am-top-header
+  .container-fluid
+    .navbar-header
+      .page-title
+        %span White Header
+      %a.am-toggle-left-sidebar.navbar-toggle.collapsed{:href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#"}
+        %span.icon-bar
+          %span
+          %span
+          %span
+      %a.navbar-brand{:href => "http://themeslivepreview.com/amaretti/index.php"}
+
+    #am-navbar-collapse.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right.am-user-nav
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#", :role => "button"}
+            %img{:src => "/images/avatar-default.png"}/
+            %span.user-name Samantha Amaretti
+            %span.angle-down.s7-angle-down
+          %ul.dropdown-menu{:role => "menu"}
+            %li
+              %a{:href => "#{main_app.edit_user_registration_path}" }
+                %span.icon.s7-user>
+                Meu Perfil
+            %li
+              %a{rel: 'nofollow', href: "#{main_app.destroy_user_session_path}#", data: {method: 'delete'}}
+                %span.icon.s7-power>
+                Sair
+      %ul.nav.navbar-nav.am-nav-right
+        - if policy(:application).administrador?
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#", :role => "button"}
+              Administração Geral
+              %span.angle-down.s7-angle-down
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#{access.users_path}"} Usuários & Permissões
+              %li
+                %a{:href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#"} Log de Acesso
+              %li.divider
+              %li
+                %a{:href => "#{commercial.contracts_path}"} Contratos
+              %li
+                %a{:href => "#{commercial.companies_path}"} Empresas
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#", :role => "button"}
+              Notificações & Avisos
+              %span.angle-down.s7-angle-down
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#"} Avisos
+              %li
+                %a{:href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#"} Mensagens
+
+      %ul.nav.navbar-nav.navbar-right.am-icons-nav
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#", :role => "button"}
+            %span.icon.s7-bell
+            %span.indicator
+          %ul.dropdown-menu.am-notifications
+            %li
+              .title
+                Notificações
+                %span.badge 3
+              .list
+                .am-scroller.nano.has-scrollbar
+                  .content.nano-content{:style => "right: -15px;"}
+                    %ul
+                      %li.active
+                        %a{:href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#"}
+                          .logo
+                            %span.icon.s7-pin
+                          .user-content
+                            %span.circle
+                            %span.name Jessica Caruso
+                            %span.text-content accepted your invitation to join the team.
+                            %span.date 2
+                  .nano-pane{:style => "display: none;"}
+                    .nano-slider{:style => "height: 20px; transform: translate(0px, 0px);"}
+              .footer
+                %a{:href => "#"} Ver todas as notificações
+      

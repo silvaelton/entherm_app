@@ -5,17 +5,21 @@
     %title Entherm - Engenharia de sistemas termomecânicos
     = stylesheet_link_tag    'application', media: 'screen', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'print', media: 'print', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %section#container
-      = render 'layouts/top_nav'   
-      = render 'layouts/side_nav' if current_user.simples? || current_user.administrador?
-      = render 'layouts/side_nav_request' if current_user.solicitante?
-      %section#main-content
-        %section.wrapper
+    .am-wrapper
+      = render 'layouts/nav'
+      = render 'layouts/sidebar'
+      .am-content
+        .page-head
+          %h2 White Header
+          %ol.breadcrumb
+            %li
+              %a{:href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#"} Home
+            %li
+              %a{:href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#"} Layouts
+            %li.active White Header
+        .main-content
           = yield
-      #modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
-        .modal-dialog
-          .modal-content
-
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+         
