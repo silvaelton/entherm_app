@@ -7,10 +7,10 @@
           = link_to "adicionar usuário", new_user_path, class: 'pull-right'
         %hr/
       .panel-body
-        %h5= link_to "exportar excel", users_path(format: :csv)
+       
         .row
           .col-md-12
-            %table.table.table-bordered.table-striped.datatable
+            %table.table.table-condensed.table-hover.table-bordered.table-striped.datatable
               %thead
                 %tr
                   %th Nome
@@ -33,6 +33,10 @@
                       - if user.email == "dev@dev.com" && current_user.id != user.id
                         sem ações
                       - else
-                        = link_to "", edit_user_path(user), class: 'btn btn-primary btn-sm fa fa-edit', title: "Editar"
-                        = link_to "", user_path(user), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm fa fa-times', title: "Remover"
-                 
+                        = link_to "", edit_user_path(user), class: 'btn btn-success btn-sm s7-edit', title: "Editar"
+                        = link_to "", user_path(user), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm s7-trash', title: "Remover"
+              %tfoot
+                %tr 
+                  %td{colspan: 6}= link_to "exportar excel", users_path(format: :csv)
+                  %td 
+                    %b Total de usuários: #{@users.count}

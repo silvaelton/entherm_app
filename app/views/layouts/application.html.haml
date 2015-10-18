@@ -11,14 +11,7 @@
       = render 'layouts/nav'
       = render 'layouts/sidebar'
       .am-content
-        .page-head
-          %h2 White Header
-          %ol.breadcrumb
-            %li
-              %a{:href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#"} Home
-            %li
-              %a{:href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#"} Layouts
-            %li.active White Header
+        = render 'layouts/breadcrumb'
         .main-content
           = yield
     = javascript_include_tag 'application', 'data-turbolinks-track' => true

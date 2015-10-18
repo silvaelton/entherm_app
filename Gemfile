@@ -9,7 +9,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 gem 'devise', '~> 3.5.1'
-gem 'pundit', '~> 1.0.1'
+gem 'pundit', git: 'https://github.com/silvaelton/pundit.git'
 
 gem 'simple_form', '~> 3.1.0'
 gem 'haml-rails'
@@ -18,10 +18,12 @@ gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
 gem 'email_validator'
 
-gem "chartkick"
+gem 'chartkick'
 
 gem 'fog'
 gem 'carrierwave',  '~> 0.10.0'
+
+gem 'jquery-datatables-rails', '~> 3.3.0'
 
 group :development, :test do
   gem 'byebug'

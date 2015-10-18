@@ -1,0 +1,14 @@
+pt-BR:
+  modules:
+    dashboard: "Visão Geral"
+    deal: "Compras"
+    access: 'Acessos'
+  controllers:
+    suppliers: "Fornecedores"
+    users: "Usuários"
+  actions:
+    users:
+      index: "Listagem"
+    suppliers: 
+      index: "Listagem"
+  

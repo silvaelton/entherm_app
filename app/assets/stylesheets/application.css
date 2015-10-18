@@ -1,6 +1,6 @@
 /*
- *= require amaretti/css/style
  *= require amaretti/css/nanoscroller
- *= require amaretti/css/jquery.datatables.min
  *= require amaretti/css/bootstrap
+ *= require amaretti/css/style
+ *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  */

@@ -1,0 +1,9 @@
+.page-head
+  %h2= t("modules.#{controller_path.split('/').first}")
+  %ol.breadcrumb
+    %li
+      %a{:href => "#{main_app.root_path}"} Visão Geral
+    %li.active 
+      = t("controllers.#{controller_name}")
+    %li.active 
+      = t("actions.#{controller_name}.#{action_name}")

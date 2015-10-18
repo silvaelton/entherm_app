@@ -1,8 +1,6 @@
 Access::Engine.routes.draw do
 
-	resources :users do 
-    resources :permissions
-  end
+	resources :users, path: 'usuarios'
 
   resources :logs
 end

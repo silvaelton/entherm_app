@@ -6,45 +6,47 @@
         %a{:href => "#{main_app.root_path}"}
           %i.icon.s7-monitor
           %span Visão Geral
-      %li.parent{class: (params[:module] == 'deal') ? 'active open' :  ''}
-        %a{:href => "#"}
-          %i.icon.s7-ribbon
-          %span Compras
-        %ul.sub-menu
-          %li.title Compras
-          %li.nav-items
-            .am-scroller.nano.has-scrollbar
-              .content.nano-content{:style => "right: -15px;"}
-                %ul
-                  %li
-                    %a{:href => "#{deal.suppliers_path}"} 
-                      Fornecedores
-                  %li
-                    %a{:href => "#{deal.purchases_path}"} 
-                      Compras
-                  %li
-                    %a{:href => "#{deal.orders_path}"} 
-                      // %span.label.label-primary.pull-right> New
-                      Pedidos
-                  %li.divider
-                  %li
-                    %a{:href => "#{deal.inventories_path}"} 
-                      Estoque
-                  %li
-                    %a{:href => "http://themeslivepreview.com/amaretti/form-validation.php"} 
-                      Entrada de Material
-                  %li
-                    %a{:href => "http://themeslivepreview.com/amaretti/form-validation.php"} 
-                      Saída de Material
-                  %li.divider
-                  %li
-                    %a{:href => "http://themeslivepreview.com/amaretti/form-wizard.php"}
-                      Pesquisa FPA
-                  %li
-                    %a{:href => "http://themeslivepreview.com/amaretti/form-wizard.php"}
-                      Pesquisa Produto
-              .nano-pane{:style => "display: none;"}
-                .nano-slider{:style => "height: 20px; transform: translate(0px, 0px);"}
+      - if policy(:privilege).deal?
+        %li.parent{class: (params[:module] == 'deal') ? 'active open' :  ''}
+          %a{:href => "#"}
+            %i.icon.s7-ribbon
+            %span Compras
+          %ul.sub-menu
+            %li.title Compras
+            %li.nav-items
+              .am-scroller.nano.has-scrollbar
+                .content.nano-content{:style => "right: -15px;"}
+                  %ul
+                    - if policy(:deal).suppliers_view?
+                      %li
+                        %a{:href => "#{deal.suppliers_path}"} 
+                          Fornecedores
+                    %li
+                      %a{:href => "#{deal.purchases_path}"} 
+                        Compras
+                    %li
+                      %a{:href => "#{deal.orders_path}"} 
+                        // %span.label.label-primary.pull-right> New
+                        Pedidos
+                    %li.divider
+                    %li
+                      %a{:href => "#{deal.inventories_path}"} 
+                        Estoque
+                    %li
+                      %a{:href => "http://themeslivepreview.com/amaretti/form-validation.php"} 
+                        Entrada de Material
+                    %li
+                      %a{:href => "http://themeslivepreview.com/amaretti/form-validation.php"} 
+                        Saída de Material
+                    %li.divider
+                    %li
+                      %a{:href => "http://themeslivepreview.com/amaretti/form-wizard.php"}
+                        Pesquisa FPA
+                    %li
+                      %a{:href => "http://themeslivepreview.com/amaretti/form-wizard.php"}
+                        Pesquisa Produto
+                .nano-pane{:style => "display: none;"}
+                  .nano-slider{:style => "height: 20px; transform: translate(0px, 0px);"}
       %li.parent
         %a{:href => "#"}
           %i.icon.s7-box2

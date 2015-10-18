@@ -2,6 +2,8 @@
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
 //= require amaretti/js/bootstrap.min
-//= require amaretti/js/jquery.datatables.min
-//= require amaretti/js/jquery.datatables.bootstrap.min
+//= require amaretti/js/mask.jquery.min
+//= require amaretti/js/mask.money.jquery.min
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap  
 //= require custom

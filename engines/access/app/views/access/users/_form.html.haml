@@ -19,11 +19,16 @@
 	%hr/
 	.row
 		.col-md-12
+			= f.association :privilege, as: :check_boxes, collection: Privilege.all.order(:name), label_method: :complete_name
+	%hr/
+	.row
+		.col-md-12
 			= f.simple_fields_for :user_contracts do |builder|
 				= render 'user_contract_fields', f: builder 
 			= link_to_add_fields "adicionar accesso a contratos", f, :user_contracts
 	%hr/
+
 	.row
 		.col-md-12
-			= f.button :submit, class: 'btn btn-primary btn-sm'
+			= f.button :submit, class: 'btn btn-success btn-sm'
 			= link_to "Voltar", users_path, class: 'btn btn-default btn-sm'

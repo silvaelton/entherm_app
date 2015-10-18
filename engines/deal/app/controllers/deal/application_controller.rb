@@ -7,5 +7,7 @@ module Deal
     layout 'application'
 
     include Pundit
+
+    helper ::ApplicationHelper
   end
 end

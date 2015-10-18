@@ -5,7 +5,7 @@ module Access
 		before_action :set_user, only: [:edit, :show, :update, :destroy]
 
 		def index
-			@users = Access::User.all
+			@users = Access::User.all.order(:name)
 
 			respond_to do |format|
 		      format.html
@@ -55,12 +55,12 @@ module Access
 		def set_params
 			params.require(:user).permit(:name, :user_type, :status, :email, 
 																	 :password, :password_confirmation, 
-																	 user_contracts_attributes: [:contract_id, :id, :_destroy])
+																	 user_contracts_attributes: [:contract_id, :id, :_destroy], privilege_id: [])
 		end
 		
 		def set_update_params
 			params.require(:user).permit(:name, :user_type, :status, :email,
-																	 user_contracts_attributes: [:contract_id, :id, :_destroy])
+																	 user_contracts_attributes: [:contract_id, :id, :_destroy], privilege_id: [])
 		end
 
 		def set_user
