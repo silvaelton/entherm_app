@@ -1,3 +1,30 @@
+
+@orders
+ ☐ revisar e verificar
+ ☐ inserir campos item [identificacao da maquina, modelo da maquina, numero de serie, valor_contrato]
+ ☐ comentarios de pedidos
+
+@invertory
+ ☐ criar formulário de entrada no estoque, busca o produto e adiciona quantidade, não havendo adiciona o produto
+ ☐ criar tabela de saidas do estoque
+ ☐ criar formulário de saída do estoque, ao clicar em saida abrir modal, pesquisa produto e dizer a quantidade saíndo
+ ☐ emitir csv de tudo
+
+@purchases
+ ☐ listagem css
+ ☐ formulário css
+ ☐ modal para inserir fornecedor automaticamente
+ ☐ chosen-select para busca do fornecedor
+ ☐ adicionar campo select para dizer se é uma compra voltada para o estoque
+ ☐ criar lógica onde se o campo de estoque for sim, copiar o produto para dentro do estoque, havendo ele já adicionar quantidade
+ ☐ _blank para emitir FPA
+ ☐ emitir ordem de compra
+ ☐ deixar filtros mais inteligentes com has_scope
+ ☐ validar datas nos filtros
+ ☐ colocar css print para imprimir as listas
+ ☐ exportar csv da listagem atual
+ ☐ verificar sobre manter a listagem que o filtro proporciona
+
 @interface
  ✔ breadcrumbs @done (15-10-18 09:48)
  ☐ logo entherm em P&B (instalar photshop ou máquina virtual windows)
@@ -20,31 +47,6 @@
  ☐ emitir csv de todos os fornecedores
  ☐ padronizar o print das palavras
 
-@purchases
- ☐ listagem css
- ☐ formulário css
- ☐ modal para inserir fornecedor automaticamente
- ☐ chosen-select para busca do fornecedor
- ☐ adicionar campo select para dizer se é uma compra voltada para o estoque
- ☐ criar lógica onde se o campo de estoque for sim, copiar o produto para dentro do estoque, havendo ele já adicionar quantidade
- ☐ _blank para emitir FPA
- ☐ emitir ordem de compra
- ☐ deixar filtros mais inteligentes com has_scope
- ☐ validar datas nos filtros
- ☐ colocar css print para imprimir as listas
- ☐ exportar csv da listagem atual
- ☐ verificar sobre manter a listagem que o filtro proporciona
-
-@orders
- ☐ revisar e verificar
- ☐ inserir campos item [identificacao da maquina, modelo da maquina, numero de serie, valor_contrato]
- ☐ comentarios de pedidos
-
-@invertory
- ☐ criar formulário de entrada no estoque, busca o produto e adiciona quantidade, não havendo adiciona o produto
- ☐ criar tabela de saidas do estoque
- ☐ criar formulário de saída do estoque, ao clicar em saida abrir modal, pesquisa produto e dizer a quantidade saíndo
- ☐ emitir csv de tudo
 
 @search-fpa
  ☐ formulário de busca de FPA por número, fornecedor

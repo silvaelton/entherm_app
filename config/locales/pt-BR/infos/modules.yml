@@ -2,8 +2,9 @@ pt-BR:
   modules:
     dashboard: "Visão Geral"
     deal: "Compras"
-    access: 'Acessos'
+    access: "Acessos"
   controllers:
+    orders: "Pedidos"
     suppliers: "Fornecedores"
     users: "Usuários"
   actions:
@@ -11,4 +12,7 @@ pt-BR:
       index: "Listagem"
     suppliers: 
       index: "Listagem"
+    orders:
+      index: "Listagem"
+      new: "Novo"
   

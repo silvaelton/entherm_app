@@ -7,17 +7,25 @@ module Deal
 
     # GET /inventories
     def index
-      if params[:search].present?
-        @inventories = Inventory.search(params[:search])
-      else
         @inventories = Inventory.all
-      end
     end
 
     # GET /inventories/1
     def show
     end
 
+    def add_item_new
+    end
+
+    def add_item_create
+    end
+
+    def remove_item_new
+    end
+
+    def remove_item_create
+    end
+    
     # GET /inventories/new
     def new
       @inventory = Inventory.new

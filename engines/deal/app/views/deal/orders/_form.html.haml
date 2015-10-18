@@ -1,7 +1,7 @@
 = simple_form_for @order do |f|
   .row
     .col-md-3
-      = f.association :contract, as: :select, collection: current_user.contracts, include_blank: false
+      = f.association :contract, as: :select, collection: current_user.contracts, include_blank: false, prompt: "seleione o contrato..."
     .col-md-3
       = f.input :pdf, as: :file
   .row

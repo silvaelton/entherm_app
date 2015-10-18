@@ -27,7 +27,7 @@
                 %span.icon.s7-power>
                 Sair
       %ul.nav.navbar-nav.am-nav-right
-        - if policy(:application).administrador?
+        - if policy(:privilege).administrator?
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#", :role => "button"}
               Administração Geral

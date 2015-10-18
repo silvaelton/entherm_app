@@ -4,7 +4,7 @@
       = f.label :product_title
       = f.text_field :product_title, data: {autocomplete_source: products_path}, id: 'product_title', class: 'product_title form-control', autocomplete: 'on'
     .col-md-1
-      = f.input :unit
+      = f.input :unit, as: :select, collection: %w(UN KG MT CX LT), include_blank: false
     .col-md-2
       = f.input :quantity, as: :string
     .col-md-4
