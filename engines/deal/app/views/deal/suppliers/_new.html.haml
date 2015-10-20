@@ -1,7 +1,6 @@
 .modal-header
   %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-    %span{"aria-hidden" => "true"} ×
-  %h4#modal.modal-title 
-    %b Entrada Estoque
+    %span{"aria-hidden" => "true"} &times;
+  %h4#myModalLabel.modal-title Novo Fornecedor
 .modal-body
-  = render 'in_form'
+  = render 'form_modal'

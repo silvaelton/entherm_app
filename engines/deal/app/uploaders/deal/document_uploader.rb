@@ -4,7 +4,7 @@ module Deal
 	  storage :fog
 
 	  def store_dir
-	    'uploads/deal'
+	    'uploads/deal/document'
 	  end
 
 	end

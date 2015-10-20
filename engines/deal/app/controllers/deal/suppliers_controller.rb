@@ -3,10 +3,10 @@ require_dependency "deal/application_controller"
 module Deal
   class SuppliersController < ApplicationController
     before_action :set_supplier, only: [:show, :edit, :update, :destroy]
-
+    before_action :set_suppliers, only: [:create]
     # GET /suppliers
     def index
-      @suppliers = Supplier.all
+      @suppliers = Supplier.all.order(:name)
     end
 
     # GET /suppliers/1
@@ -25,12 +25,23 @@ module Deal
     # POST /suppliers
     def create
       @supplier = Supplier.new(supplier_params)
-      if @supplier.save
-        flash[:success] = t :success
-        redirect_to action: 'index'
-      else
-        render :new
+      
+      respond_to do |format|
+
+        format.html {
+          if @supplier.save
+            flash[:success] = t :success
+            redirect_to action: 'index'
+          else
+            render :new
+          end
+        }
+
+        format.js {
+          @supplier.save
+        }
       end
+     
     end
 
     # PATCH/PUT /suppliers/1
@@ -55,6 +66,10 @@ module Deal
       # Use callbacks to share common setup or constraints between actions.
       def set_supplier
         @supplier = Supplier.find(params[:id])
+      end
+
+      def set_suppliers
+        @suppliers = Supplier.all.order(:name)
       end
 
       # Only allow a trusted parameter "white list" through.

@@ -1,0 +1,36 @@
+= simple_form_for @supplier, remote: true do |f|
+  .row
+    .col-md-12
+      = f.association :supplier_category, prompt: "selecione a categoria..."
+  %hr/
+  .row
+    .col-md-6
+      = f.input :cnpj
+  .row
+    .col-md-12
+      = f.input :name
+  %hr/
+  .row
+    .col-md-6
+      = f.association :state, prompt: 'selecione...', input_html: { id: 'state'}
+    .col-md-6
+      = f.association :city, prompt: 'selecione o estado...', collection: @supplier.state_id.present? ? @supplier.state.cities : {}, input_html: { id: 'city'}
+  %hr/
+  .row
+    .col-md-6
+      = f.input :contact_name
+    .col-md-6
+      = f.input :contact_email
+  .row
+    .col-md-6
+      = f.input :contact_telephone
+    .col-md-6
+      = f.input :contact_celphone
+  %hr/
+  .row
+    .col-md-8
+      = f.input :observation
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Salvar Fornecedor", class: 'btn btn-success btn-sm'

@@ -20,25 +20,20 @@
                     %ul
                       - if policy(:deal).suppliers_view?
                         %li
-                          %a{:href => "#{deal.suppliers_path}"} 
-                            Fornecedores
+                          %a{:href => "#{deal.suppliers_path}"} Fornecedores
                       %li
-                        %a{:href => "#{deal.purchases_path}"} 
-                          Compras
+                        %a{:href => "#{deal.purchases_path}"} Compras
                       %li
-                        %a{:href => "#{deal.orders_path}"} 
-                          // %span.label.label-primary.pull-right> New
-                          Pedidos
+                        %a{:href => "#{deal.orders_path}"} Pedidos
                       %li.divider
                       %li
-                        %a{:href => "#{deal.inventories_path}"} 
-                          Estoque
+                        %a{:href => "#{deal.inventories_path}"} Estoque
                       %li
-                        %a{:href => "http://themeslivepreview.com/amaretti/form-validation.php"} 
-                          Entrada de Material
+                        %a{:href => "#{deal.add_item_inventories_path}"} Entrada de Material
                       %li
-                        %a{:href => "http://themeslivepreview.com/amaretti/form-validation.php"} 
-                          Saída de Material
+                        %a{:href => "#{deal.remove_item_inventories_path}"} Saída de Material
+                      %li
+                        %a{:href => "#{deal.logs_inventories_path}"} Histórico de Entrada e Saída
                       %li.divider
                       %li
                         %a{:href => "http://themeslivepreview.com/amaretti/form-wizard.php"}

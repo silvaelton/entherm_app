@@ -1,6 +1,6 @@
 = simple_form_for @purchase do |f|
   .row
-    .col-md-3
+    .col-md-2
       = hidden_field_tag :search, params[:search] if params[:search].present?
       = f.input :purchase_type, as: :select, collection: Deal::Purchase.purchase_types.keys.to_a, include_blank: false
     .col-md-2
@@ -9,6 +9,8 @@
       = f.input :buy_type, as: :select, collection: Deal::Purchase.buy_types.keys.to_a, include_blank: false
     .col-md-2
       = f.input :created_at, as: :string, input_html: { class: 'date', value: f.object.created_at.nil? ? Date.today.strftime('%d/%m/%Y') : f.object.created_at.strftime('%d/%m/%Y') }
+    .col-md-2
+      = f.input :inventory_flag, as: :select, include_blank: false
   %hr/
   .row
     .col-md-3
@@ -16,9 +18,10 @@
     .col-md-2
       = f.association :quotation, as: :select, prompt: 'selecione...'
     .col-md-3
-      = f.association :supplier, prompt: 'selecione...'
+      = f.association :supplier, collection: Deal::Supplier.all.order(:name).map { |key| [key.name.upcase, key.id]} ,prompt: 'selecione...', hint: "#{link_to('adicionar fornecedor', new_supplier_path, remote: true)}".html_safe
     .col-md-2
       = f.input :invoice_number
+  .row
     .col-md-2
       = f.input :invoice_file, as: :file
   %hr/
@@ -53,8 +56,5 @@
   %hr/
   .row
     .col-md-8
-      = f.button :submit, class: 'btn btn-success btn-sm'
-      - if params[:search].present?
-        = link_to "Voltar", purchases_path(search: params[:search]), class: 'btn btn-default btn-sm'
-      - else
-        = link_to "Voltar", purchases_path, class: 'btn btn-inverse btn-sm'
+      = f.submit "Salvar Compra", class: 'btn btn-success btn-sm'
+      = link_to "Voltar", purchases_path, class: 'btn btn-default btn-sm'

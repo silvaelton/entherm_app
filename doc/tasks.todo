@@ -1,14 +1,15 @@
+@invertory
+ ☐ criar formulário de entrada no estoque, busca o produto e adiciona quantidade, não havendo adiciona o produto
+ ☐ criar tabela de saidas do estoque
+ ☐ criar formulário de saída do estoque, ao clicar em saida abrir modal, pesquisa produto e dizer a quantidade saíndo
+ ☐ emitir csv de tudo
+
 
 @orders
  ☐ revisar e verificar
  ☐ inserir campos item [identificacao da maquina, modelo da maquina, numero de serie, valor_contrato]
  ☐ comentarios de pedidos
 
-@invertory
- ☐ criar formulário de entrada no estoque, busca o produto e adiciona quantidade, não havendo adiciona o produto
- ☐ criar tabela de saidas do estoque
- ☐ criar formulário de saída do estoque, ao clicar em saida abrir modal, pesquisa produto e dizer a quantidade saíndo
- ☐ emitir csv de tudo
 
 @purchases
  ☐ listagem css

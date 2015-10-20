@@ -12,22 +12,23 @@
     .col-md-2
       = f.input :estimed_value, as: :string, input_html: { class: 'coin_mask'}
     .col-md-2
-      = f.input :state, as: :string
-    .col-md-2
-      = f.input :supplier, as: :string
+      = f.input :state, as: :select, collection: Deal::Inventory.states.keys.map { |key| [key.humanize, key]}, include_blank: false
   .row
     .col-md-4
       = f.input :observation
     .col-md-4
       = f.input :location
+  %hr/
   .row
     .col-md-4
       = f.label :image_path
       = f.input :image_path, label: false, as: :file
+    .col-md-4
+      = image_tag f.object.image_path, width: 50
   %hr/
   .row
     .col-md-12
-      = f.button :submit, class: 'btn btn-success btn-sm'
+      = f.submit "Adicionar Item", class: 'btn btn-success btn-sm'
       = link_to "Voltar", inventories_path, class: 'btn btn-default btn-sm'
 
 :javascript

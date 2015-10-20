@@ -1,27 +1,32 @@
-.row.title-row
-  .col-md-12
-    %h4 Minha Conta
 .row
-  .col-md-12  
-    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-      = f.error_notification
-      .row
-        .col-md-8
-          = f.input :name, required: true, autofocus: true
-      .row
-        .col-md-8
-          = f.input :email, required: true, autofocus: true
-      .row
-        .col-md-4
-          = f.input :password, autocomplete: "off", hint: "deixe em branco caso não queira mudar sua senha", required: false 
-        .col-md-4
-          = f.input :password_confirmation, required: false
-      .row
-        .col-md-4
-          = f.input :current_password, hint: "Precisamos confirmar sua senha atual para prosseguir com as mudanças", required: true
-      %hr/
-      .row
-        .col-md-12
-          = f.button :submit, "Atualizar conta", class: 'btn btn-success btn-sm'
-          = link_to "Voltar", dashboard.root_path, class: 'btn btn-default btn-sm'
-  
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        .title 
+          Minha Conta
+        %hr/
+      .panel-body
+        .row
+          .col-md-12 
+            = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+              = f.error_notification
+              .row
+                .col-md-8
+                  = f.input :name, required: true, autofocus: true
+              .row
+                .col-md-8
+                  = f.input :email, required: true, autofocus: true
+              .row
+                .col-md-4
+                  = f.input :password, autocomplete: "off", hint: "deixe em branco caso não queira mudar sua senha", required: false 
+                .col-md-4
+                  = f.input :password_confirmation, required: false
+              .row
+                .col-md-4
+                  = f.input :current_password, hint: "Precisamos confirmar sua senha atual para prosseguir com as mudanças", required: true
+              %hr/
+              .row
+                .col-md-12
+                  = f.submit "Atualizar conta", class: 'btn btn-success btn-sm'
+                  = link_to "Voltar", dashboard.root_path, class: 'btn btn-default btn-sm'
+          

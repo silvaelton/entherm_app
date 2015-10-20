@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018121558) do
+ActiveRecord::Schema.define(version: 20151020155522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,9 +65,25 @@ ActiveRecord::Schema.define(version: 20151018121558) do
     t.string   "supplier"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "purchase_id"
   end
 
   add_index "deal_inventories", ["product_id"], name: "index_deal_inventories_on_product_id", using: :btree
+  add_index "deal_inventories", ["purchase_id"], name: "index_deal_inventories_on_purchase_id", using: :btree
+
+  create_table "deal_inventory_logs", force: :cascade do |t|
+    t.integer  "log_type"
+    t.integer  "quantity"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "inventory_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "deal_inventory_logs", ["inventory_id"], name: "index_deal_inventory_logs_on_inventory_id", using: :btree
+  add_index "deal_inventory_logs", ["user_id"], name: "index_deal_inventory_logs_on_user_id", using: :btree
 
   create_table "deal_order_items", force: :cascade do |t|
     t.integer  "order_id"
@@ -157,8 +173,9 @@ ActiveRecord::Schema.define(version: 20151018121558) do
     t.string   "requester"
     t.integer  "carrier_id"
     t.integer  "freight",          default: 0
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "inventory_flag",   default: false
   end
 
   add_index "deal_purchases", ["carrier_id"], name: "index_deal_purchases_on_carrier_id", using: :btree

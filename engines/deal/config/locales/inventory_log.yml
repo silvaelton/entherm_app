@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'deal/inventory_log': "Log Estoque"
+    attributes:
+      'deal/inventory_log':
+        name: "Nome"
+        description: "Descrição"
+        inventory: "Item do Estoque"
+        quantity: "Quantidade entrando"

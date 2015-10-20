@@ -2,24 +2,17 @@ module Deal
   class Inventory < ActiveRecord::Base
     belongs_to :product
     belongs_to :contract, class_name: "Commercial::Contract"
+    belongs_to :purchase
+    
+    enum state: ['novo', 'semi_novo', 'bom_estado', 'conservado', 'usado', 'péssimo', 'velho', 'consertar']
 
-
-    default_scope {order('created_at DESC')}
-  
     attr_accessor :in_quantity    
     
     validates :product_title, :quantity, presence: true    
     validates :quantity, numericality: true
 
-    def self.search(search_params)
-      if search_params.present? && search_params[:contract_id].present?
-        query = includes(:contract).where("contract_id = #{search_params[:contract_id]}")
-      else
-        query = all 
-      end
-    end
-
-
+    mount_uploader :image_path, ImageUploader
+    
     def product_title
       product.try(:title)
     end

@@ -10,5 +10,7 @@ pt-BR:
         quantity: "Quantidade"
         location: "Localização"
         image_path: "Imagem"
+        state: "Estado do Item"
+        estimed_value: "Valor estimado"
         
         

@@ -23,9 +23,13 @@ gem 'chartkick'
 gem 'fog'
 gem 'carrierwave',  '~> 0.10.0'
 
+gem 'has_scope'
+
 gem 'jquery-datatables-rails', '~> 3.3.0'
 
 group :development, :test do
+  gem 'guard-rails'
+  gem 'guard-livereload'
   gem 'byebug'
 	gem 'sqlite3'
   gem 'web-console', '~> 2.0'

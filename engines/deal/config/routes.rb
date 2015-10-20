@@ -10,8 +10,14 @@ Deal::Engine.routes.draw do
   end
 
   resources :inventories do 
-    get 'in'
-    get 'out'
+    collection do 
+      get   'logs',     to: 'inventories#logs'
+      get   'add_item', to: 'inventories#add_item'
+      post  'add_item', to: 'inventories#increase_item'
+
+      get   'remove_item', to: 'inventories#remove_item'
+      post  'remove_item', to: 'inventories#decrease_item'
+    end
   end
 
   resources :patrimonies

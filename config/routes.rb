@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   root 'dashboard/generals#index'
  
-  devise_for :users, controllers: {
+  devise_for :users, path_names: {  sign_up: '' }, controllers: {
     sessions: 'sessions',
     registrations: 'registrations'
   }

@@ -2,8 +2,12 @@
   .col-sm-12
     %section.panel
       %header.panel-heading
-        %b Listagem de estoque
-        = link_to "adicionar item", new_inventory_path, class: 'btn btn-success btn-xs pull-right'
+        .title
+          Listagem de estoque
+          %span.pull-right
+            = link_to "Histórico de Entrada & Saída", logs_inventories_path
+            |
+            = link_to "Novo Item", new_inventory_path
       .panel-body
         .adv-table          
           .row
@@ -11,23 +15,27 @@
               %table.table.table-bordered.table-striped.datatable
                 %thead
                   %tr
-                    %th Contrato
+                    %th Nº
+                    %th FPA
                     %th Item
                     %th Quantidade
-                    %th Observação
+                    %th Valor Estimado
                     %th Localização
+                    %th Observação
+                    %th Imagem
                     %th Ações
                 %tbody
                   - @inventories.each do |inventory|
                     %tr
-                      %td= inventory.contract.title if inventory.contract.present?
+                      %td.col-md-1= inventory.id
+                      %td.col-md-1= inventory.purchase.protocol if inventory.purchase.present?
                       %td= inventory.product_title
-                      %td= inventory.quantity
-                      %td= inventory.observation
+                      %td= inventory.quantity? ? inventory.quantity  : '0'
+                      %td= number_to_currency inventory.estimed_value
                       %td= inventory.location
+                      %td= inventory.observation
+                      %td= link_to "Visualizar", inventory.image_path.url, target: '_blank' if inventory.image_path?
                       %td.col-md-2
-                        = link_to "", deal.inventory_in_path(inventory), remote: true, class: 'btn btn-success btn-sm fa fa-plus', title: "Editar"
-                        = link_to "", deal.inventory_out_path(inventory), remote: true, class: 'btn btn-warning btn-sm fa fa-minus', title: "Editar"
-                        = link_to "",edit_inventory_path(inventory), class: 'btn btn-primary btn-sm fa fa-edit', title: "Editar"
-                        = link_to "", inventory_path(inventory), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm fa fa-times', title: "Remover"
+                        = link_to "", edit_inventory_path(inventory), class: 'btn btn-success btn-sm s7-edit'
+                        = link_to "", inventory_path(inventory), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm s7-trash', title: "Remover"
                  

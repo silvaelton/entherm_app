@@ -3,10 +3,12 @@ pt-BR:
     dashboard: "Visão Geral"
     deal: "Compras"
     access: "Acessos"
+    purchase: "Compras"
   controllers:
     orders: "Pedidos"
     suppliers: "Fornecedores"
     users: "Usuários"
+    purchases: "Compras"
   actions:
     users:
       index: "Listagem"
@@ -15,4 +17,9 @@ pt-BR:
     orders:
       index: "Listagem"
       new: "Novo"
+    purchases: 
+      index: "Listagem"
+      new: "Nova"
+      edit: "Editar"
+      show: "Detalhe"
   

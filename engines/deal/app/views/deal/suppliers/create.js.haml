@@ -1,0 +1,5 @@
+- if @supplier.errors.any?
+  $("#modal .modal-content").html("#{escape_javascript(render 'new')}")
+- else
+  $("#purchase_supplier_id").html("#{escape_javascript(render 'select')}")
+  $("#modal").modal('hide')

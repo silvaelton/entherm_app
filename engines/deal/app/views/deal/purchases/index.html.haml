@@ -2,15 +2,31 @@
   .col-sm-12
     %section.panel
       %header.panel-heading
-        .title Resumo de Compras
+        .title 
+          Resumo de Compras
+          = link_to "Nova Compra", new_purchase_path, class: 'pull-right'
         %hr/
-        = link_to "+ nova compra", new_purchase_path, class: 'btn btn-success btn-xs pull-left'
       .panel-body
+        .row
+          .col-md-12
+            = simple_form_for purchases_path, method: :get do |f|
+              .row
+                .col-md-2
+                  = f.input :date_start, label: "Data início", input_html: { name: 'period[date_start]', class: 'date', value: (params[:period].present?) ? params[:period][:date_start] : Date.today.beginning_of_month.strftime('%d/%m/%Y')} 
+                .col-md-2
+                  = f.input :date_end, label: "Data fim", input_html: { name: 'period[date_end]', class: 'date', value: (params[:period].present?) ? params[:period][:date_end] : Date.today.end_of_month.strftime('%d/%m/%Y')}
+                .col-md-2
+                  = f.input :contract, as: :select, label: "Contrato", collection: Commercial::Contract.all.order(:title).map { |key| [key.title.upcase, key.id]}, selected: params[:by_contract], include_blank: "Todos", input_html: { name: 'by_contract' }
+                .col-md-2
+                  = f.input :status, as: :select, label: "Situação", collection: Deal::Purchase.statuses.map { |key, value| [key.upcase, value]}, selected: params[:status], include_blank: "Todos", input_html: { name: 'status' }
+                .col-md-2{style: 'margin-top: 30px'}
+                  = f.submit "Filtar Compras", name: nil, class: 'btn btn-success'
         .row
           .col-md-12
             %table.table.table-condensed.table-hover.table-bordered.table-striped
               %thead
                 %tr
+                  %th Nº
                   %th Tipo
                   %th Status
                   %th Contrato
@@ -23,6 +39,7 @@
                 - @total_purchase = 0
                 - @purchases.each do |purchase|
                   %tr
+                    %td= purchase.protocol
                     %td= purchase.purchase_type
                     %td= status_purchase_helper purchase.status
                     %td= purchase.contract.title if purchase.contract.present?
@@ -32,8 +49,14 @@
                     %td= number_to_currency purchase.purchase_items.sum(:total_value)
                     %td= purchase.created_at.strftime('%d/%m/%Y')
                     %td.col-md-2
+                      = link_to '', purchase, class: 'btn btn-alt2 btn-sm s7-info', title: "Visualizar"
+                      = link_to '', edit_purchase_path(purchase), class: 'btn btn-success btn-sm s7-edit', title: "Editar"
+                      = link_to '', purchase_path(purchase), method: :delete, data: {confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm s7-trash', title: "Remover"
+                      = link_to '', purchase_fpa_path(purchase), target: '_blank', class: 'btn btn-sm btn-alt3 s7-news-paper', title: "FPA"
+                      = link_to '', purchase_path(purchase), class: 'btn btn-sm btn-alt3 s7-news-paper', title: "Ordem de Compra"
               %tfoot 
                 %tr
-                  %th{colspan: 5} Total em Compras
+                  %th{colspan: 8} Total em Compras
                   %th
-                    %h5= number_to_currency @total_purchase
+                    %h5
+                      %b= number_to_currency @total_purchase

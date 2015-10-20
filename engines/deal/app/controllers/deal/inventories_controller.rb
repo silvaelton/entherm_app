@@ -7,23 +7,45 @@ module Deal
 
     # GET /inventories
     def index
-        @inventories = Inventory.all
+      @inventories = Inventory.all
     end
 
     # GET /inventories/1
     def show
     end
 
-    def add_item_new
+    def logs
+      @inventory_logs = InventoryLog.all.order('created_at DESC')
     end
 
-    def add_item_create
+    def add_item
+      @inventory_log = InventoryLog.new
     end
 
-    def remove_item_new
+    def remove_item
+      @inventory_log = InventoryLog.new
     end
 
-    def remove_item_create
+    def increase_item
+      @inventory_log = InventoryLog.new(set_params_log)
+      @inventory_log.log_type = 0
+      if @inventory_log.save
+        flash[:success] = t :success
+        redirect_to action: 'logs'
+      else
+        render action: 'add_item'
+      end
+    end
+
+    def decrease_item
+      @inventory_log = InventoryLog.new(set_params_log)
+      @inventory_log.log_type = 1
+      if @inventory_log.save
+        flash[:success] = t :success
+        redirect_to action: 'logs'
+      else
+        render action: 'add_item'
+      end
     end
     
     # GET /inventories/new
@@ -83,7 +105,11 @@ module Deal
 
       # Only allow a trusted parameter "white list" through.
       def inventory_params
-        params.require(:inventory).permit( :product_title, :quantity, :observation, :location, :image_path)
+        params.require(:inventory).permit(:product_title, :quantity, :estimed_value, :unit, :observation, :location, :image_path)
+      end
+
+      def set_params_log
+        params.require(:inventory_log).permit(:name, :inventory_id, :description, :quantity)
       end
   end
 end

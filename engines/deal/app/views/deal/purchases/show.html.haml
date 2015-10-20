@@ -1,63 +1,69 @@
-.row.title-row
-  .col-md-12
-    %h4  Detalhe da Compra - #{@purchase.contract.title.humanize} - #{@purchase.id}/#{@purchase.created_at.strftime('%Y')}
-    - if params[:search].present?
-      = link_to "Voltar para compras", purchases_path(search: params[:search])
-    - else
-      = link_to "Voltar para compras", purchases_path
 
 .row
-  .col-md-8
-    %table.table.table-striped.table-bordered.table-condensed
-      %thead
-        %tr
-          %th Descrição
-      %tbody
-        %tr
-          %td.col-md-3= @purchase.description
-    %table.table.table-striped.table-bordered.table-condensed
-      %thead
-        %tr
-          %th Contrato
-          %th Data
-          %th Número
-          %th Status
-      %tbody
-        %tr
-          %td.col-md-3= @purchase.contract.title if @purchase.contract.present?
-          %td.col-md-2= "#{@purchase.created_at.strftime('%d/%m/%Y às %H:%M')}"
-          %td.col-md-1= "#{@purchase.id}/#{@purchase.created_at.strftime('%Y')}"
-          %td.col-md-1= status_purchase_helper @purchase.status
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        .title 
+          Detalhe da Compra - #{@purchase.contract.title.humanize} - #{@purchase.id}/#{@purchase.created_at.strftime('%Y')}
+          = link_to "Voltar Para Compras", purchases_path, class: 'pull-right'
+        %hr/
+      .panel-body
+        .row
+          .col-md-12
+            %h4 Informações da Compra
+        %br/
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered.table-condensed
+              %thead
+                %tr
+                  %th Descrição
+              %tbody
+                %tr
+                  %td.col-md-3= @purchase.description
+            %table.table.table-striped.table-bordered.table-condensed
+              %thead
+                %tr
+                  %th Contrato
+                  %th Data
+                  %th Número
+                  %th Status
+              %tbody
+                %tr
+                  %td.col-md-3= @purchase.contract.title if @purchase.contract.present?
+                  %td.col-md-2= "#{@purchase.created_at.strftime('%d/%m/%Y às %H:%M')}"
+                  %td.col-md-1= "#{@purchase.id}/#{@purchase.created_at.strftime('%Y')}"
+                  %td.col-md-1= status_purchase_helper @purchase.status
 
-.row
-  .col-md-8
-    %hr/
-.row
-  .col-md-12
-    %h4 Produtos
-%br/
-.row
-  .col-md-8
-    %table.table.table-striped.table-bordered.table-condensed
-      %thead
-        %tr
-          %th Produto
-          %th Unidade
-          %th Quantidade
-          %th Valor Un.
-          %th Valor Total
-      %tbody
-        - @purchase.purchase_items.each do |purchase|
-          %tr
-            %td= purchase.product.title
-            %td.col-md-1= purchase.unit
-            %td.col-md-2= purchase.quantity
-            %td.col-md-2= number_to_currency purchase.unit_value
-            %td.col-md-2= number_to_currency purchase.total_value
-      %tfoot
-        %tr
-          %th{colspan: 4} Valor Total da Compra
-          %th
-            %h3
-              %b= number_to_currency @purchase.purchase_items.sum(:total_value)
-            
+        .row
+          .col-md-12
+            %hr/
+        .row
+          .col-md-12
+            %h4 Produtos
+        %br/
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered.table-condensed
+              %thead
+                %tr
+                  %th Produto
+                  %th Unidade
+                  %th Quantidade
+                  %th Valor Un.
+                  %th Valor Total
+              %tbody
+                - @purchase.purchase_items.each do |purchase|
+                  %tr
+                    %td= purchase.product.title
+                    %td.col-md-1= purchase.unit
+                    %td.col-md-2= purchase.quantity
+                    %td.col-md-2= number_to_currency purchase.unit_value
+                    %td.col-md-2= number_to_currency purchase.total_value
+              %tfoot
+                %tr
+                  %th{colspan: 4} Valor Total da Compra
+                  %th
+                    %h3
+                      %b= number_to_currency @purchase.purchase_items.sum(:total_value)
+                    

@@ -6,10 +6,15 @@ module Deal
     belongs_to :order
     belongs_to :carrier, class_name: "Deal::Supplier"
 
+    has_many :inventories
     has_many :purchase_items
     accepts_nested_attributes_for :purchase_items, allow_destroy: true
     
     scope :this_month, -> { where(created_at: (Date.today.beginning_of_month - 1.day)..(Date.today.end_of_month - 1.day)).order('created_at DESC')}
+  
+    scope :period, -> date_start, date_end { where(created_at: date_start..date_end)}
+    scope :status, -> (status) { where(status: status) }
+    scope :by_contract, -> contract {where(contract_id: contract)}
 
     enum purchase_type: ['orçamento','compra']
     enum status: ['aguardando','efetuada','cancelada']
@@ -22,24 +27,38 @@ module Deal
     validates :buy_type, :seller, :requester, :deadline_payment, presence: true
     validates_date :created_at, presence: true
     
-    def self.search(search_params)
-      
-      date_start = Date.today.beginning_of_month 
-      date_end   = Date.today.end_of_month 
+    mount_uploader :inventory_flag, DocumentUploader
 
-      if search_params.present?
+    after_create :set_inventory, if: :inventory?
 
-        date_start = search_params[:date_start] ? Date.parse(search_params[:date_start]) : date_start
-        date_end   = search_params[:date_end] ? Date.parse(search_params[:date_end]) : date_end
-  
-        query = where(created_at: date_start..date_end) 
-        query = query.where("contract_id = #{search_params[:contract_id]}") if search_params[:contract_id].present?
-        query = query.where("status = #{search_params[:status_id]}")        if search_params[:status_id].present?
-  
-        query.includes([:supplier, :purchase_items])
+    
+    def protocol
+      "#{self.id}/#{self.created_at.strftime('%Y')}"
+    end
 
-      else
-         query = where(created_at: date_start..date_end) 
+    private
+
+    def inventory?
+      self.inventory_flag
+    end
+
+    def set_inventory
+      purchase_items.each do |item|
+        @inventory = Inventory.where(product_id: item.product_id).first
+
+        if @inventory.present?
+          @inventory.update(quantity: @inventory.quantity + item.quantity)
+        else
+          @inventory = Inventory.new({
+            purchase_id: self.id,
+            quantity: item.quantity,
+            product_id: item.product_id,
+            estimed_value: item.unit_value,
+            unit: item.unit
+          })
+
+          @inventory.save
+        end
       end
     end
   end
