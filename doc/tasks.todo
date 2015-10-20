@@ -1,7 +1,7 @@
 @invertory
- ☐ criar formulário de entrada no estoque, busca o produto e adiciona quantidade, não havendo adiciona o produto
- ☐ criar tabela de saidas do estoque
- ☐ criar formulário de saída do estoque, ao clicar em saida abrir modal, pesquisa produto e dizer a quantidade saíndo
+ ✔ criar formulário de entrada no estoque, busca o produto e adiciona quantidade, não havendo adiciona o produto @done (15-10-20 16:08)
+ ✔ criar tabela de saidas do estoque @done (15-10-20 16:09)
+ ✔ criar formulário de saída do estoque, ao clicar em saida abrir modal, pesquisa produto e dizer a quantidade saíndo @done (15-10-20 16:09)
  ☐ emitir csv de tudo
 
 
@@ -12,15 +12,15 @@
 
 
 @purchases
- ☐ listagem css
- ☐ formulário css
- ☐ modal para inserir fornecedor automaticamente
- ☐ chosen-select para busca do fornecedor
- ☐ adicionar campo select para dizer se é uma compra voltada para o estoque
- ☐ criar lógica onde se o campo de estoque for sim, copiar o produto para dentro do estoque, havendo ele já adicionar quantidade
- ☐ _blank para emitir FPA
+ ✔ listagem css @done (15-10-20 16:09)
+ ✔ formulário css @done (15-10-20 16:09)
+ ✔ modal para inserir fornecedor automaticamente @done (15-10-20 16:09)
+ ✔ chosen-select para busca do fornecedor @done (15-10-20 16:09)
+ ✔ adicionar campo select para dizer se é uma compra voltada para o estoque @done (15-10-20 16:09)
+ ✔ criar lógica onde se o campo de estoque for sim, copiar o produto para dentro do estoque, havendo ele já adicionar quantidade @done (15-10-20 16:09)
+ ✔ _blank para emitir FPA @done (15-10-20 16:09)
  ☐ emitir ordem de compra
- ☐ deixar filtros mais inteligentes com has_scope
+ ✔ deixar filtros mais inteligentes com has_scope @done (15-10-20 16:09)
  ☐ validar datas nos filtros
  ☐ colocar css print para imprimir as listas
  ☐ exportar csv da listagem atual
@@ -36,14 +36,14 @@
  ✔ crud de permissões vínculadas ao usuário, adicionar campo de array e inserir as permissões @done (15-10-18 11:21)
  ☐ funcionalidade de resetar a senha do usuário para entherm123456789
  ☐ adicionar campo de avatar para usuário
- ☐ edição de perfil de usuário logado
+ ✔ edição de perfil de usuário logado @done (15-10-20 16:09)
  ☐ pundit nos controllers, menus, visão do usuário apartir de seu tipo e permissões
  ☐ foto do perfil
 
 @suppliers
- ☐ correção de visualização de tabela
- ☐ correção de visualização de formulário
- ☐ adicionar modal para inserção de categorias 
+ ✔ correção de visualização de tabela @done (15-10-20 16:09)
+ ✔ correção de visualização de formulário @done (15-10-20 16:10)
+ ☐ adicionar modal para inserção de categorias
  ☐ correção de listagem e formulário categorias de fornecedor
  ☐ emitir csv de todos os fornecedores
  ☐ padronizar o print das palavras
