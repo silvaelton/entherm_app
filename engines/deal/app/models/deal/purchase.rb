@@ -31,6 +31,7 @@ module Deal
 
     after_create :set_inventory, if: :inventory?
 
+
     
     def protocol
       "#{self.id}/#{self.created_at.strftime('%Y')}"
