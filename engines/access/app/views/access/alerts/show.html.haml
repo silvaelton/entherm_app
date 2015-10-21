@@ -1,0 +1,13 @@
+.row
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        .title
+          = @alert.title.humanize
+          %span.pull-right
+            = @alert.created_at.strftime("%d/%m/%Y")
+        %hr/
+      .panel-body
+        .row
+          .col-md-12
+            = @alert.content

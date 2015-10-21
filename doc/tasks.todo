@@ -1,3 +1,8 @@
+
+@notificações
+ ✔ criar tabela de notificações @done (15-10-20 21:59)
+ ✔ crud de notificações para todos os usuários da empresa @done (15-10-20 21:59)
+
 @invertory
  ✔ criar formulário de entrada no estoque, busca o produto e adiciona quantidade, não havendo adiciona o produto @done (15-10-20 16:08)
  ✔ criar tabela de saidas do estoque @done (15-10-20 16:09)
@@ -51,8 +56,7 @@
 
 @search-fpa
  ☐ formulário de busca de FPA por número, fornecedor
- ☐ emitir csv de tudo
-
+ 
 @search-product
  ☐ formulário de busca de produto, por nome e ou fornecedor
  ☐ emitir csv de tudo
@@ -62,7 +66,5 @@
  ☐ adicionar permissão de todos os menus e controllers via pundit
  ☐ adicionar tabela de logs para visualizar os movimentos dos usuários
 
-@notificações
- ☐ criar tabela de notificações
- ☐ crud de notificações para todos os usuários da empresa
- ☐ crud de mensagens por usuários, usuário manda mensagem para outro usuário diretamente
+@patrimony
+ ☐ crud [contract, data de entrada, unidade, descrição, numero de patrimonio, estado, valor estimado, numero nota fiscal, foto, data devolucção, resposnsavel]

@@ -9,7 +9,13 @@ pt-BR:
     suppliers: "Fornecedores"
     users: "Usuários"
     purchases: "Compras"
+    alerts: "Notificações"
   actions:
+    alerts:
+      index: "Listagem"
+      new: "Nova Notificação"
+      edit: "Editar Notificação"
+      show: "Visualizar"
     users:
       index: "Listagem"
     suppliers: 

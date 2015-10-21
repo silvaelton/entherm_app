@@ -1,0 +1,23 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        'access/alert':
+          attributes:
+            expiration:
+              after: "Data deve ser igual a hoje ou maior"
+
+        
+    models:
+      'access/alert': "Notificação"
+    attributes:
+      'access/alert':
+        title: "Título"
+        description: "Descrição"
+        status: "Ativo?"
+        expiration: "Expira Em"
+        priority: "Prioridade"
+        color: "Cor"
+        content: "Conteúdo"
+        
+        

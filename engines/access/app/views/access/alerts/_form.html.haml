@@ -1,0 +1,21 @@
+= simple_form_for @alert do |f|
+  .row
+    .col-md-12
+      = f.input :title, placeholder: "Digite um título para sua notificação"
+  .row
+    .col-md-12
+      = f.input :content
+  .row
+    .col-md-3
+      = f.input :priority, as: :select, collection: Access::Alert.priorities.keys.to_a, include_blank: false
+    .col-md-3
+      = f.input :status, as: :select, include_blank: false
+    .col-md-3
+      = f.input :color, as: :select, collection: Access::Alert.colors.keys.to_a, include_blank: false
+    .col-md-3
+      = f.input :expiration, as: :string, input_html: { class: 'date' }
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Salvar Notificação", class: 'btn btn-success'
+      = link_to "Voltar", alerts_path, class: 'btn btn-default'

@@ -15,7 +15,7 @@
         %li.dropdown
           %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#", :role => "button"}
             %img{:src => "/images/avatar-default.png"}/
-            %span.user-name Samantha Amaretti
+            %span.user-name= current_user.email
             %span.angle-down.s7-angle-down
           %ul.dropdown-menu{:role => "menu"}
             %li
@@ -48,9 +48,7 @@
               %span.angle-down.s7-angle-down
             %ul.dropdown-menu{:role => "menu"}
               %li
-                %a{:href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#"} Avisos
-              %li
-                %a{:href => "http://themeslivepreview.com/amaretti/layouts-white-header.php#"} Mensagens
+                %a{:href => "#{access.alerts_path}"} Notificações
 
       %ul.nav.navbar-nav.navbar-right.am-icons-nav
         %li.dropdown
@@ -61,9 +59,19 @@
             %li
               .title
                 Notificações
-                %span.badge 0
+                %span.badge= Access::Alert.actives.limit(6).count
               .list
-                
-              .footer
-                %a{:href => "#"} Ver todas as notificações
+                .am-scroller.nano.has-scrollbar
+                  .content.nano-content{:style => "right: -15px;", :tabindex => "0"}
+                    %ul
+                      - Access::Alert.actives.limit(6).each do |alert|
+                        %li.active{class: "#{alert.color}"}
+                          %a{:href => "#{access.alert_path(alert)}"}
+                            .logo
+                              %span.icon.s7-pin
+                            .user-content
+                              %span.circle
+                              %span.text-content
+                                %b= alert.title.humanize
+                              %span.date= alert.created_at.strftime('%d/%m/%Y')
       

@@ -1,0 +1,32 @@
+.row
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        .title
+          Listagem de Notificações
+          = link_to "Nova Notificação", new_alert_path, class: 'pull-right'
+        %hr/
+      .panel-body
+       
+        .row
+          .col-md-12
+            %table.table.table-condensed.table-hover.table-bordered.table-striped.datatable
+              %thead
+                %tr
+                  %th Título
+                  %th Prioridade
+                  %th Status
+                  %th Cor
+                  %th Expira em
+                  %th Ações
+              %tbody
+                - @alerts.each do |alert|
+                  %tr
+                    %td= alert.title.humanize
+                    %td= alert.priority
+                    %td= alert.status ? "ativa" : "inativa"
+                    %td= alert.color
+                    %td= alert.expiration.strftime("%d/%m/%Y") if alert.expiration.present?
+                    %td
+                      = link_to "", edit_alert_path(alert), class: 'btn btn-success btn-sm s7-edit'
+                      = link_to "", alert, method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm s7-trash'
