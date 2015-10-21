@@ -12,7 +12,7 @@ module Deal
     
     scope :this_month, -> { where(created_at: (Date.today.beginning_of_month)..(Date.today.end_of_month + 1.day)).order('created_at DESC')}
   
-    scope :period, -> date_start, date_end { where(created_at: Date.parse(date_start)..Date.parse(date_end)}
+    scope :period, -> date_start, date_end { where(created_at: Date.parse(date_start)..Date.parse(date_end))}
     scope :status, -> (status) { where(status: status) }
     scope :by_contract, -> contract {where(contract_id: contract)}
 
