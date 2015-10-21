@@ -15,6 +15,11 @@ module Deal
       else
         @purchases = Purchase.this_month
       end
+
+      respond_to do |format|
+        format.html
+        format.csv { send_data @purchases.to_csv, filename: "compras-#{Date.today}.csv" }
+      end
     end
 
     def new

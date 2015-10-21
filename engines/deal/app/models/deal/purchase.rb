@@ -35,7 +35,7 @@ module Deal
     def protocol
       "#{self.id}/#{self.created_at.strftime('%Y')}"
     end
-
+    
     private
 
     def inventory?

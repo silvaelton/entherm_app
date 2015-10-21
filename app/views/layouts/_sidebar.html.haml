@@ -24,7 +24,7 @@
                       %li
                         %a{:href => "#{deal.purchases_path}"} Compras
                       %li
-                        %a{:href => "#{deal.orders_path}"} Pedidos
+                        %a{:href => "#{deal.control_orders_path}"} Pedidos
                       %li.divider
                       %li
                         %a{:href => "#{deal.inventories_path}"} Estoque
@@ -35,6 +35,8 @@
                       %li
                         %a{:href => "#{deal.logs_inventories_path}"} Histórico de Entrada e Saída
                       %li.divider
+                      %li
+                        %a{:href => "#{deal.patrimonies_path}"} Patrimônios
                       
                   .nano-pane{:style => "display: none;"}
                     .nano-slider{:style => "height: 20px; transform: translate(0px, 0px);"}

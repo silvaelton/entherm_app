@@ -105,7 +105,6 @@ ActiveRecord::Schema.define(version: 20151021000541) do
     t.text     "observation"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "image_path"
   end
 
   add_index "deal_order_items", ["order_id"], name: "index_deal_order_items_on_order_id", using: :btree

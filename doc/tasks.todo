@@ -53,15 +53,6 @@
  ☐ emitir csv de todos os fornecedores
  ☐ padronizar o print das palavras
 
-
-@search-fpa
- ☐ formulário de busca de FPA por número, fornecedor
- 
-@search-product
- ☐ formulário de busca de produto, por nome e ou fornecedor
- ☐ emitir csv de tudo
-
-
 @permissões
  ☐ adicionar permissão de todos os menus e controllers via pundit
  ☐ adicionar tabela de logs para visualizar os movimentos dos usuários
