@@ -10,7 +10,7 @@ module Deal
     has_many :purchase_items
     accepts_nested_attributes_for :purchase_items, allow_destroy: true
     
-    scope :this_month, -> { where(created_at: (Date.today.beginning_of_month - 1.day)..(Date.today.end_of_month - 1.day)).order('created_at DESC')}
+    scope :this_month, -> { where(created_at: (Date.today.beginning_of_month)..(Date.today.end_of_month + 1.day)).order('created_at DESC')}
   
     scope :period, -> date_start, date_end { where(created_at: date_start..date_end)}
     scope :status, -> (status) { where(status: status) }
