@@ -17,7 +17,7 @@ module Access
     def create
       authorize :privilege, :administrator?
       @alert = Alert.new(set_params)
-
+      @alert.user_id = current_user.id
       if @alert.save
         flash[:success] = t :success
         redirect_to action: 'index'

@@ -3,6 +3,7 @@ module Deal
     belongs_to :user
     belongs_to :contract, class_name: "Commercial::Contract"
     has_many   :order_items
+    has_many   :order_comments
 
     default_scope { order('created_at DESC')}
     scope :this_month, -> { where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, status: 0).order('created_at DESC')}

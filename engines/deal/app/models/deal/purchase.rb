@@ -29,10 +29,29 @@ module Deal
     
     mount_uploader :inventory_flag, DocumentUploader
 
-    #after_create :set_inventory, if: :inventory?
+    after_create :create_inventory, if: :inventory?
 
 
+    def self.total_value
+      value = 0
+      all.each do |item|
+        value += item.purchase_items.sum(:total_value)
+      end
+      value
+    end
     
+    def self.to_csv(options = {})
+      header = %w(FPA TIPO STATUS CONTRATO DESCRIÇÃO FORNECEDOR VALOR DATA)
+
+      CSV.generate(options) do |csv|
+        csv << header 
+        all.each do |item|
+          csv << [item.id, item.buy_type.upcase, item.status.upcase, item.contract.title.upcase, item.description.upcase, item.supplier.name.upcase, item.purchase_items.sum(:total_value), item.created_at.strftime("%d/%m/%Y")]
+        end
+        csv << ['','','','','','',"TOTAL", all.total_value]
+      end
+    end
+
     def protocol
       "#{self.id}/#{self.created_at.strftime('%Y')}"
     end
@@ -43,7 +62,7 @@ module Deal
       self.inventory_flag
     end
 
-    def set_inventory
+    def create_inventory
       purchase_items.each do |item|
         @inventory = Inventory.where(product_id: item.product_id).first
 
@@ -62,5 +81,6 @@ module Deal
         end
       end
     end
+
   end
 end

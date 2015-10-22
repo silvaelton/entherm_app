@@ -30,7 +30,8 @@ module Deal
     private
 
     def set_params
-      params.require(:order).permit(:description, :pdf, :contract_id, order_items_attributes: [:_destroy, :id, :product_title, :image_path, :unit, :goal, :quantity])
+      params.require(:order).permit(:description, :pdf, :contract_id,
+                                     order_items_attributes: [:_destroy, :id, :machine_id, :machine_version, :machine_serial, :contract_value, :product_title, :image_path, :unit, :goal, :quantity])
     end
   end
 end

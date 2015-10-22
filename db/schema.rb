@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021000541) do
+ActiveRecord::Schema.define(version: 20151022010632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,10 @@ ActiveRecord::Schema.define(version: 20151021000541) do
     t.integer  "color",      default: 0
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "user_id"
   end
+
+  add_index "access_alerts", ["user_id"], name: "index_access_alerts_on_user_id", using: :btree
 
   create_table "access_user_contracts", force: :cascade do |t|
     t.integer  "user_id"
@@ -96,6 +99,17 @@ ActiveRecord::Schema.define(version: 20151021000541) do
   add_index "deal_inventory_logs", ["inventory_id"], name: "index_deal_inventory_logs_on_inventory_id", using: :btree
   add_index "deal_inventory_logs", ["user_id"], name: "index_deal_inventory_logs_on_user_id", using: :btree
 
+  create_table "deal_order_comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.integer  "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "deal_order_comments", ["order_id"], name: "index_deal_order_comments_on_order_id", using: :btree
+  add_index "deal_order_comments", ["user_id"], name: "index_deal_order_comments_on_user_id", using: :btree
+
   create_table "deal_order_items", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "product_id"
@@ -103,8 +117,12 @@ ActiveRecord::Schema.define(version: 20151021000541) do
     t.integer  "quantity"
     t.string   "goal"
     t.text     "observation"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "machine_id"
+    t.string   "machine_version"
+    t.string   "machine_serial"
+    t.float    "contract_value"
   end
 
   add_index "deal_order_items", ["order_id"], name: "index_deal_order_items_on_order_id", using: :btree

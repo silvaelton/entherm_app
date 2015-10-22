@@ -2,7 +2,10 @@ Deal::Engine.routes.draw do
   resources :supplier_categories
   resources :suppliers
   resources :orders
-  resources :control_orders
+  
+  resources :control_orders do 
+    resources :order_comments
+  end
   resources :products
   
   resources :purchases do 
@@ -19,7 +22,6 @@ Deal::Engine.routes.draw do
       post  'remove_item', to: 'inventories#decrease_item'
     end
   end
-
   resources :patrimonies
   resources :quotations
 

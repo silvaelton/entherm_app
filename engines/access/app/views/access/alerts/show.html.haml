@@ -3,7 +3,9 @@
     %section.panel
       %header.panel-heading
         .title
-          = @alert.title.humanize
+          %b= @alert.title.humanize 
+          |
+          = @alert.user.name.humanize if @alert.user.present?
           %span.pull-right
             = @alert.created_at.strftime("%d/%m/%Y")
         %hr/

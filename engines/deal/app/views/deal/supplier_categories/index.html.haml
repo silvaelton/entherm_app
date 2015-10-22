@@ -2,10 +2,13 @@
   .col-sm-12
     %section.panel
       %header.panel-heading
-        %b Listagem de categorias de fornecedor
-        %span.pull-right
-          = link_to "Fornecedores", suppliers_path, class: 'btn btn-primary btn-sm'
-          = link_to "Nova Categoria", new_supplier_category_path, class: 'btn btn-success btn-sm'
+        .title 
+          Listagem de categorias de fornecedor
+          %span.pull-right
+            = link_to "Fornecedores", suppliers_path
+            |
+            = link_to "Nova Categoria", new_supplier_category_path
+        %hr/
       .panel-body
         .adv-table
           .row
@@ -22,6 +25,6 @@
                       %td= supplier.title
                       %td.col-md-2= supplier.status ? 'ativo' : 'inativo'
                       %td.col-md-2
-                        = link_to "", edit_supplier_category_path(supplier), class: 'btn btn-primary btn-sm s7-edit', title: "Editar"
-                        = link_to "", supplier_category_path(supplier), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'icon-remove btn btn-danger s7-remove', title: 'Remover'
+                        = link_to "", edit_supplier_category_path(supplier), class: 'btn btn-success btn-sm s7-edit', title: "Editar"
+                        = link_to "", supplier_category_path(supplier), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'icon-remove btn-sm btn btn-danger s7-trash', title: 'Remover'
                  
