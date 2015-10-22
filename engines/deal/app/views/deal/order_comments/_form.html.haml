@@ -1,0 +1,7 @@
+= simple_form_for [:control_orders,@comment], remote: true do |f|
+  .row
+    .col-md-12
+      = f.input :content
+  .row
+    .col-md-12
+      = f.submit "Salvar comentário", class: 'btn btn-success'
