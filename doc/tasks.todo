@@ -10,11 +10,6 @@
  ☐ emitir csv de tudo
 
 
-@orders
- ☐ revisar e verificar
- ☐ inserir campos item [identificacao da maquina, modelo da maquina, numero de serie, valor_contrato]
- ☐ comentarios de pedidos
-
 
 @purchases
  ✔ listagem css @done (15-10-20 16:09)
