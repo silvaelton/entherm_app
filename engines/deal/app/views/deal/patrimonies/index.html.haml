@@ -2,8 +2,10 @@
   .col-sm-12
     %section.panel
       %header.panel-heading
-        %b Listagem de patrimônios
-        = link_to "novo patrimônio", new_patrimony_path, class: 'btn btn-success btn-xs pull-right'
+        .title
+          Listagem de patrimônios
+          = link_to "novo patrimônio", new_patrimony_path, class: ' pull-right'
+        %hr/
       .panel-body
         .adv-table          
           .row

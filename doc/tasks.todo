@@ -7,7 +7,7 @@
  ✔ criar formulário de entrada no estoque, busca o produto e adiciona quantidade, não havendo adiciona o produto @done (15-10-20 16:08)
  ✔ criar tabela de saidas do estoque @done (15-10-20 16:09)
  ✔ criar formulário de saída do estoque, ao clicar em saida abrir modal, pesquisa produto e dizer a quantidade saíndo @done (15-10-20 16:09)
- ☐ emitir csv de tudo
+ ✔ emitir csv de tudo @done (15-10-21 23:03)
 
 
 
@@ -43,14 +43,10 @@
 @suppliers
  ✔ correção de visualização de tabela @done (15-10-20 16:09)
  ✔ correção de visualização de formulário @done (15-10-20 16:10)
- ☐ adicionar modal para inserção de categorias
- ☐ correção de listagem e formulário categorias de fornecedor
- ☐ emitir csv de todos os fornecedores
- ☐ padronizar o print das palavras
 
 @permissões
  ☐ adicionar permissão de todos os menus e controllers via pundit
  ☐ adicionar tabela de logs para visualizar os movimentos dos usuários
 
 @patrimony
- ☐ crud [contract, data de entrada, unidade, descrição, numero de patrimonio, estado, valor estimado, numero nota fiscal, foto, data devolucção, resposnsavel]
+ ✔ crud [contract, data de entrada, unidade, descrição, numero de patrimonio, estado, valor estimado, numero nota fiscal, foto, data devolucção, resposnsavel] @done (15-10-21 23:04)

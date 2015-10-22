@@ -1,6 +1,7 @@
 module Access
   class Alert < ActiveRecord::Base
-
+    belongs_to :user
+    
     scope :actives, -> { where(status: true).order('created_at DESC') }
     
     enum priority: ['alta', 'media','baixa']

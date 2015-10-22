@@ -7,6 +7,7 @@ class CreateAccessAlerts < ActiveRecord::Migration
       t.boolean :status, default: false
       t.date :expiration
       t.integer :color, default: 0
+      
 
       t.timestamps null: false
     end

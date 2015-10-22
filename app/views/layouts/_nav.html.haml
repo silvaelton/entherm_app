@@ -73,5 +73,6 @@
                               %span.circle
                               %span.text-content
                                 %b= alert.title.humanize
-                              %span.date= alert.created_at.strftime('%d/%m/%Y')
+                              %span.date= alert.created_at.strftime('%d/%m/%Y às %H:%M')
+                              %span.date= alert.user.name if alert.user.present?
       

@@ -16,6 +16,7 @@
                   %th Título
                   %th Prioridade
                   %th Status
+                  %th Autor
                   %th Cor
                   %th Expira em
                   %th Ações
@@ -25,6 +26,7 @@
                     %td= alert.title.humanize
                     %td= alert.priority
                     %td= alert.status ? "ativa" : "inativa"
+                    %td= alert.user.email if alert.user.present?
                     %td= alert.color
                     %td= alert.expiration.strftime("%d/%m/%Y") if alert.expiration.present?
                     %td

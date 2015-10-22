@@ -1,19 +1,31 @@
 .row
   %fieldset
-    .col-md-3
-      = f.label :product_title
-      = f.text_field :product_title, data: {autocomplete_source: products_path}, id: 'product_title', class: 'product_title form-control', autocomplete: 'on'
-    .col-md-1
-      = f.input :unit, as: :select, collection: %w(UN KG MT CX LT), include_blank: false
-    .col-md-2
-      = f.input :quantity, as: :string
-    .col-md-4
-      = f.input :image_path, as: :file
-    .col-md-2{:style => "margin-top:25px"}
-      = f.hidden_field :_destroy
-      = link_to "remover", '#', class: "remove_fields btn btn-danger btn-sm"
-
+    .col-md-12
+      .row
+        .col-md-3
+          = f.label :product_title
+          = f.text_field :product_title, data: {autocomplete_source: products_path}, id: 'product_title', class: 'product_title form-control', autocomplete: 'on'
+        .col-lg-1
+          = f.input :unit, as: :select, collection: %w(UN KG MT CX LT), include_blank: false
+        .col-md-2
+          = f.input :quantity, as: :string
+        .col-md-2
+          = f.input :machine_id
+        .col-md-2
+          = f.input :machine_version
+        .col-md-2
+          = f.input :machine_serial
+      .row
+        .col-md-3
+          = f.input :contract_value, as: :string, input_html: {class: 'coin_mask'}
+        .col-md-8{:style => "margin-top:20px"}
+          = f.input :image_path, as: :file
+        .col-md-1
+          = f.hidden_field :_destroy  
+          = link_to "remover", '#', class: "remove_fields btn btn-danger btn-sm"
+      %hr/
 :javascript
   $(document).ready(function() {
+     $('.coin_mask').maskMoney({prefix:'R$ ', allowNegative: true, allowZero:true, thousands:'', decimal:'.', affixesStay: false});
     $('.product_title').autocomplete({source: $('#product_title').data('autocomplete-source')});
   })
