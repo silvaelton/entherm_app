@@ -9,3 +9,7 @@ pt-BR:
         quantity: "Quantidade"
         goal: "Aplicação"
         image_path: "Imagem"
+        machine: "Nº Máquina"
+        machine_version: "Modelo Máquina"
+        machine_serial: "Serial Máquina"
+        contract_value: "Valor no Contrato"
