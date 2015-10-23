@@ -29,7 +29,7 @@ module Deal
     
     mount_uploader :inventory_flag, DocumentUploader
 
-    after_create :create_inventory, if: :inventory?
+    #after_create :create_inventory, if: :inventory?
 
 
     def self.total_value
