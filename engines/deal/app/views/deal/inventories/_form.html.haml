@@ -13,8 +13,7 @@
       = f.input :estimed_value, as: :string, input_html: { class: 'coin_mask'}
     .col-md-2
       = f.input :state, as: :select, collection: Deal::Inventory.states.keys.map { |key| [key.humanize, key]}, include_blank: false
-    .col-md-2
-      = f.input :quantity, as: :string, input_html: { class: 'coin_mask'}
+
   .row
     .col-md-4
       = f.input :observation
