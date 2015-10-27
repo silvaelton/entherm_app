@@ -10,7 +10,8 @@
     .col-md-2
       = f.input :created_at, as: :string, input_html: { class: 'date', value: f.object.created_at.nil? ? Date.today.strftime('%d/%m/%Y') : f.object.created_at.strftime('%d/%m/%Y') }
     .col-md-2
-      = f.input :inventory_flag, as: :select, include_blank: false
+      #inventory.hide
+        = f.input :inventory_flag, as: :select, include_blank: false, selected: false if f.object.new_record?
   %hr/
   .row
     .col-md-3
@@ -34,6 +35,8 @@
       = f.input :delivery, as: :select, include_blank: false, collection: Deal::Purchase.deliveries.keys.map { |key| [key.humanize, key]}
     .col-md-2
       = f.input :freight, as: :select, include_blank: false, collection: Deal::Purchase.freights.keys.to_a
+    .col-md-2
+      = f.input :icms
   .row
     .col-md-3
       = f.association :carrier, prompt: 'própria'
@@ -58,3 +61,18 @@
     .col-md-8
       = f.submit "Salvar Compra", class: 'btn btn-success btn-sm'
       = link_to "Voltar", purchases_path, class: 'btn btn-default btn-sm'
+
+:javascript
+   $(document).ready(function() {
+
+    function show_inventory() {
+      if($("#purchase_purchase_type").val() == "compra" && $("#purchase_status").val() == "efetuada") {
+        $("#inventory").show();
+      } else {
+        $("#inventory").hide();
+      }
+    }
+
+    $("#purchase_purchase_type").on('change', function() { show_inventory() })
+    $("#purchase_status").on('change', function() { show_inventory()} )
+   });

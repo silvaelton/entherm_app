@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022010632) do
+ActiveRecord::Schema.define(version: 20151027000424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,12 +74,12 @@ ActiveRecord::Schema.define(version: 20151022010632) do
     t.text     "observation"
     t.text     "location"
     t.string   "image_path"
-    t.float    "estimed_value"
     t.string   "state"
     t.string   "supplier"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "purchase_id"
+    t.float    "estimed_value"
   end
 
   add_index "deal_inventories", ["product_id"], name: "index_deal_inventories_on_product_id", using: :btree
@@ -102,9 +102,9 @@ ActiveRecord::Schema.define(version: 20151022010632) do
   create_table "deal_order_comments", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "content"
-    t.integer  "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "order_id"
   end
 
   add_index "deal_order_comments", ["order_id"], name: "index_deal_order_comments_on_order_id", using: :btree
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(version: 20151022010632) do
     t.string   "number"
     t.string   "note_number"
     t.string   "responsible"
+    t.integer  "quantity"
   end
 
   add_index "deal_patrimonies", ["contract_id"], name: "index_deal_patrimonies_on_contract_id", using: :btree
@@ -209,6 +210,7 @@ ActiveRecord::Schema.define(version: 20151022010632) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.boolean  "inventory_flag",   default: false
+    t.string   "icms"
   end
 
   add_index "deal_purchases", ["carrier_id"], name: "index_deal_purchases_on_carrier_id", using: :btree

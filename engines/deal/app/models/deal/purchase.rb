@@ -23,13 +23,14 @@ module Deal
     enum delivery: ['imediato','7_dias', '30_dias', '60_dias','90_dias','120_dias']
     enum buy_type: ['compras', 'serviços', 'locações']
 
-    validates :description, :purchase_type, :contract, :supplier, :status, presence: true
-    validates :buy_type, :seller, :requester, :deadline_payment, presence: true
+    #validates :description, :purchase_type, :contract, :supplier, :status, presence: true
+    #validates :buy_type, :seller, :requester, :deadline_payment, presence: true
     validates_date :created_at, presence: true
     
     mount_uploader :inventory_flag, DocumentUploader
 
-    #after_create :create_inventory, if: :inventory?
+    after_create :create_inventory, if: :inventory?
+   # after_update :update_inventory, if: :inventory?
 
 
     def self.total_value
@@ -63,24 +64,25 @@ module Deal
     end
 
     def create_inventory
-      purchase_items.each do |item|
-        @inventory = Inventory.where(product_id: item.product_id).first
+      if purchase_items.present?
+        purchase_items.each do |item|
+          @inventory = Inventory.where(product_id: item.product_id).first
 
-        if @inventory.present?
-          @inventory.update(quantity: @inventory.quantity + item.quantity)
-        else
-          @inventory = Inventory.new({
-            purchase_id: self.id,
-            quantity: item.quantity,
-            product_id: item.product_id,
-            estimed_value: item.unit_value,
-            unit: item.unit
-          })
+          if @inventory.present?
+            @inventory.update(quantity: @inventory.quantity + item.quantity)
+          else
+            @inventory = Inventory.new({
+              purchase_id: self.id,
+              quantity: item.quantity,
+              product_id: item.product_id,
+              estimed_value: item.unit_value,
+              unit: item.unit
+            })
 
-          @inventory.save
+            @inventory.save
+          end
         end
       end
     end
-
   end
 end

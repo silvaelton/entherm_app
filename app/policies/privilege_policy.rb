@@ -14,6 +14,6 @@ class PrivilegePolicy < ApplicationPolicy
   end
 
   def deal?
-    Privilege.where(id: user.privilege_id).present?
+    Privilege.where(id: user.privilege_id).present? || :administrador?
   end
 end

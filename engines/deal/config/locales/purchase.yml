@@ -22,5 +22,6 @@ pt-BR:
         buy_type: "Tipo de Compra"
         created_at: "Data de Compra"
         inventory_flag: "Adicionar ao Estoque?"
+        icms: "ICMS"
         
         

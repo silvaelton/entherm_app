@@ -7,11 +7,11 @@ class DealPolicy < ApplicationPolicy
   end
   
   def suppliers_full?
-    privilege('deal', 1).where(id: user.privilege_id).present?
+    privilege('deal', 1).where(id: user.privilege_id).present? || user.administrador?
   end
 
   def suppliers_index?
-    privilege('deal', 2).where(id: user.privilege_id).present?
+    privilege('deal', 2).where(id: user.privilege_id).present? || user.administrador?
   end
 
   # purchases

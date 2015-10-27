@@ -7,7 +7,6 @@ class CreateDealInvetories < ActiveRecord::Migration
       t.text :observation
       t.text :location
       t.string :image_path
-      t.float :estimed_value
       t.string :state
       t.string :supplier
 
