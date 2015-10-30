@@ -10,6 +10,7 @@ class CreateDealInvetories < ActiveRecord::Migration
       t.string :state
       t.string :supplier
       t.float :estimed_value
+      t.references :purchase, index: true
 
       t.timestamps null: false
     end
