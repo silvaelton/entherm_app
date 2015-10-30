@@ -1,0 +1,15 @@
+%table.table.tabel-striped.table-hover.table-bordered
+  %thead
+    %tr
+      %th FPA
+      %th Fornecedor
+      %th Contrato
+      %th Data
+      %th Valor Total
+  %tbody
+    %tr
+      %td= @fpa.protocol
+      %td= @fpa.supplier.name if @fpa.supplier.present? 
+      %td= @fpa.contract.title if @fpa.contract.present? 
+      %td= @fpa.created_at.strftime('%d/%m/%Y') if @fpa.present?
+      %td= number_to_currency @fpa.purchase_items.sum(:total_value)

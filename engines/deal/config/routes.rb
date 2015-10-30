@@ -27,6 +27,15 @@ Deal::Engine.routes.draw do
   end
   
   resources :quotations
+  resources :searches
+
+  resources :reports, only: [:index] do 
+    collection do 
+      get 'contracts',    path: 'geral', to: 'reports#contracts', as: 'contracts'
+      get 'by_contract',  path: 'por-contrato', to: 'reports#by_contract', as: 'by_contract'
+      get 'by_products',  path: 'por-produtos', to: 'reports#by_products', as: 'by_products'
+    end
+  end
 
   get '/dashboard', path: 'visao-geral', to: 'dashboard#index', as: 'dashboard'
 end

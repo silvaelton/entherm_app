@@ -1,0 +1,25 @@
+.row
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        .title 
+          Pesquisa Avançada em Compras
+          = link_to "Nova Compra", new_purchase_path, class: 'pull-right'
+        %hr/
+      .panel-body
+        .row
+          .col-md-12
+            = simple_form_for purchases_path, method: :get do |f|
+              .row
+                .col-md-2
+                  = f.input :fpa, label: "Nº FPA", input_html: { name: 'fpa', value: params[:fpa] }
+                .col-md-4
+                  = f.input :product, as: :select, collection: Deal::Product.all.order(:title),label: "Produto", input_html: { name: 'product', class: 'select2'},selected: params[:product], include_blank: true
+                .col-md-2
+                  = f.input :search_type, as: :select, collection: %w(FPA PRODUTO), label: "Tipo de Busca", input_html: { name: 'search_type'},selected: params[:search_type], include_blank: false
+                .col-md-2{style: 'margin-top: 30px'}
+                  = f.submit "Filtar Compras", name: nil, class: 'btn btn-success'
+        .row
+          .col-md-12
+            = render 'products' if @products.present?
+            = render 'fpas' if @fpa.present?

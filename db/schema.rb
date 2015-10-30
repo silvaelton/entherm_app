@@ -171,7 +171,7 @@ ActiveRecord::Schema.define(version: 20151030123337) do
     t.integer  "current_contract_id"
     t.string   "responsible"
     t.integer  "items_id",                         array: true
-    t.string   "moviment_type"
+    t.integer  "moviment_type"
     t.integer  "user_id"
     t.text     "observation"
     t.datetime "created_at",          null: false

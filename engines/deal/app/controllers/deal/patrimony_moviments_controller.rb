@@ -3,8 +3,12 @@ require_dependency 'deal/application_controller'
 module Deal
   class PatrimonyMovimentsController < ApplicationController 
 
+    has_scope :by_period, :using => [:date_start,:date_end]
+    has_scope :contract
+    has_scope :moviment_type
+
     def index
-      @moviments = PatrimonyMoviment.all.order('created_at DESC')
+      @moviments = apply_scopes(PatrimonyMoviment).all.order('created_at DESC')
     end
 
     def new

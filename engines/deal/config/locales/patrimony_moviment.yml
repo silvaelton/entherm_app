@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      'deal/patrimony_moviment': "Movimentação"
+    attributes:
+      'deal/patrimony_moviment':
+        current_contract: "Contrato"
+        moviment_type: "Tipo"
+        responsible: "Responsável"
+        observation: "Observação"
+        items: "Patrimônios"
+        

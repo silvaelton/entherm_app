@@ -5,7 +5,7 @@ class CreateDealPatrimonyMoviments < ActiveRecord::Migration
       t.references :current_contract, index: true#, foreign_key: true
       t.string :responsible
       t.references :items, array: true
-      t.string :moviment_type
+      t.integer :moviment_type
       t.references :user, index: true#, foreign_key: true
       t.text :observation
 

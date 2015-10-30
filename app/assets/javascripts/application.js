@@ -7,4 +7,6 @@
 //= require amaretti/js/select2.min
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap  
+//= require table.export
+//= require jquery.base64
 //= require custom

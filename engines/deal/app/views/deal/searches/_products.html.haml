@@ -1,0 +1,20 @@
+%table.table.tabel-striped.table-hover.table-bordered
+  %thead
+    %tr
+      %th FPA
+      %th Item
+      %th Valor UN.
+      %th Unidade
+      %th Fornecedor
+      %th Contrato
+      %th Data
+  %tbody
+    - @products.each do |item|
+      %tr
+        %td= item.purchase.protocol if item.purchase.present?
+        %td= item.product.title if item.product.present?
+        %td= number_to_currency item.unit_value 
+        %td= item.unit.upcase
+        %td= item.purchase.supplier.name if item.purchase.present? && item.purchase.supplier.present? 
+        %td= item.purchase.contract.title if item.purchase.present? && item.purchase.contract.present? 
+        %td= item.purchase.created_at.strftime('%d/%m/%Y') if item.purchase.present?

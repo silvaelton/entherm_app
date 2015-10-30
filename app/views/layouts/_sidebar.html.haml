@@ -37,7 +37,11 @@
                       %li.divider
                       %li
                         %a{:href => "#{deal.patrimonies_path}"} Patrimônios
-                      
+                      %li
+                        %a{:href => "#{deal.patrimony_moviments_path}"} Movimentação de Patrimônios
+                      %li.divider
+                      %li
+                        %a{:href => "#{deal.searches_path}"} Pesquisa FPA ou Produto
                   .nano-pane{:style => "display: none;"}
                     .nano-slider{:style => "height: 20px; transform: translate(0px, 0px);"}
         %li.parent
@@ -56,35 +60,6 @@
                   .nano-slider{:style => "height: 20px; transform: translate(0px, 0px);"}
         %li.parent
           %a{:href => "#"}
-            %i.icon.s7-note2
-            %span Financeiro
-          %ul.sub-menu
-            %li.title Finanaceiro
-            %li.nav-items
-              .am-scroller.nano.has-scrollbar
-                .content.nano-content{:style => "right: -15px;"}
-                  %ul
-                    %li
-                      %a{:href => "#"} Em construção
-                .nano-pane{:style => "display: none;"}
-                  .nano-slider{:style => "height: 20px; transform: translate(0px, 0px);"}
-        %li.parent{class: (params[:module] == 'comercial') ? 'active open' :  ''}
-          %a{:href => "#"}
-            %i.icon.s7-browser
-            %span Comercial
-          %ul.sub-menu
-            %li.title Comercial
-            %li.nav-items
-              .am-scroller.nano.has-scrollbar
-                .content.nano-content{:style => "right: -15px;"}
-                  %ul
-                    %li
-                      %a{:href => "#"}
-                        Em construção
-                .nano-pane{:style => "display: none;"}
-                  .nano-slider{:style => "height: 20px; transform: translate(0px, 0px);"}
-        %li.parent
-          %a{:href => "#"}
             %i.icon.s7-diamond
             %span Relatórios
           %ul.sub-menu
@@ -94,7 +69,9 @@
                 .content.nano-content{:style => "right: -15px;"}
                   %ul
                     %li
-                      %a{:href => "#"} Em construção
+                      %a{:href => "#{deal.contracts_reports_path}"} Compras Geral
+                    %li
+                      %a{:href => "#{deal.by_contract_reports_path}"} Compras por Contrato
                 .nano-pane{:style => "display: none;"}
                   .nano-slider{:style => "height: 20px; transform: translate(0px, 0px);"}
       - if policy(:privilege).requester?

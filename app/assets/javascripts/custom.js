@@ -58,4 +58,18 @@ $(document).ready(function() {
   $('.date').mask("00/00/0000", {placeholder: "__/__/____"});
 
   $('.select2').select2();
+
+  function exportTable() {
+    $('.table').tableExport(
+        {
+          type:'csv',
+          escape:'false',
+          tableName:'yourTableName'
+        }
+    );
+  }
+
+  $("#export-table").on('click', function() {
+    exportTable();
+  })
 });

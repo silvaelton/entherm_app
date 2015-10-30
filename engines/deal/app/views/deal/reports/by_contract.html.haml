@@ -1,0 +1,55 @@
+= javascript_include_tag "//www.google.com/jsapi", "chartkick" 
+.row
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        .title 
+          Relatório Compras Por Contrato
+        %hr/
+      .panel-body
+        .row
+          .col-md-12
+            = simple_form_for by_contract_reports_path, method: :get do |f|
+              .row
+                .col-md-2
+                  = f.input :date_start, label: "Data início", input_html: { name: 'period[date_start]', class: 'date', value: (params[:period].present?) ? params[:period][:date_start] : Date.today.beginning_of_month.strftime('%d/%m/%Y')} 
+                .col-md-2
+                  = f.input :date_end, label: "Data fim", input_html: { name: 'period[date_end]', class: 'date', value: (params[:period].present?) ? params[:period][:date_end] : Date.today.end_of_month.strftime('%d/%m/%Y')}
+                .col-md-4
+                  = f.input :contract, as: :select, label: "Contrato", collection: Commercial::Contract.all.order(:title).map { |key| [key.title.upcase, key.id]}, selected: params[:by_contract], include_blank: false, input_html: { name: 'by_contract' }
+                .col-md-2{style: 'margin-top: 30px'}
+                  = f.submit "Gerar Relatório", name: nil, class: 'btn btn-success'
+        %hr/
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered.table-condensed.table-hover
+              %thead
+                %tr
+                  %th FPA
+                  %th Descrição
+                  %th Data
+                  %th Valor Total
+                  %th Valor Contrato
+              %tbody
+                - total_value = 0
+                - total_contract = 0
+                - @purchases.order(:created_at).each do |p|
+                  %tr
+                    %td= p.protocol
+                    %td= p.description
+                    %td= p.created_at.strftime('%d/%m/%Y')
+                    - current_value = p.purchase_items.sum(:total_value) 
+                    - total_value   += current_value 
+                    %td= number_to_currency current_value 
+
+                    - current_contract = p.purchase_items.sum(:contract_value)
+                    - total_contract  += current_contract
+                    %td= number_to_currency current_contract
+              %tfoot
+                %tr
+                  %th= link_to "export CSV", "#", id: "export-table"
+                  %th{colspan: 2}
+                    Total
+                  %th= number_to_currency total_value
+                  %th= number_to_currency total_contract
+ 
