@@ -9,8 +9,8 @@ module Commercial
     def total_value(period = {})
       value = 0
 
-      start_date  = period[:date_start]
-      end_date    = period[:date_end]
+      start_date  = Date.parse(period[:date_start]) rescue nil
+      end_date    = Date.parse(period[:date_end]) rescue nil
 
       purchases.where(created_at: start_date..end_date).each do |p|
         value += p.purchase_items.sum(:total_value)
