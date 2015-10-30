@@ -6,12 +6,13 @@ pt-BR:
       'deal/patrimony':
         contract: "Contrato"
         description: "Descrição"
-        title: "Título"
+        title: "Patrimônio"
         state: "Estado do item"
         original_value: "Valor original"
         estimated_value: "Valor estimado"
         location: "Localização"
         image_path: "Imagem"
         quantity: "Quantidade"
+        code: "Tombamento"
         
         

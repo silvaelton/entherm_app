@@ -26,7 +26,7 @@
                 %tbody
                   - @suppliers.each do |supplier|
                     %tr
-                      %td= supplier.supplier_category.title if supplier.supplier_category.present?
+                      %td= supplier.supplier_category.title.upcase if supplier.supplier_category.present?
                       %td= supplier.name
                       %td= "#{supplier.city.name} / #{supplier.state.acronym}" if supplier.city.present? && supplier.state.present?
                       %td= supplier.contact_name

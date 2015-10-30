@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'deal/order_comment': "Comentário"
+    attributes:
+      'deal/order_comment':
+        content: "Comentário"
+        

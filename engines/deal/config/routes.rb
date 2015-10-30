@@ -12,17 +12,20 @@ Deal::Engine.routes.draw do
     get 'fpa'
   end
 
-  resources :inventories do 
+  resources :inventories, path: 'estoque'
+  
+  resources :inventory_logs, path: 'logs' do 
     collection do 
-      get   'logs',     to: 'inventories#logs'
-      get   'add_item', to: 'inventories#add_item'
-      post  'add_item', to: 'inventories#increase_item'
-
-      get   'remove_item', to: 'inventories#remove_item'
-      post  'remove_item', to: 'inventories#decrease_item'
+      get 'add_item'
+      get 'remove_item'
     end
   end
+
   resources :patrimonies
+  resources :patrimony_moviments do 
+    get 'view'
+  end
+  
   resources :quotations
 
   get '/dashboard', path: 'visao-geral', to: 'dashboard#index', as: 'dashboard'

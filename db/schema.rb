@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027000424) do
+ActiveRecord::Schema.define(version: 20151030123337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,8 +94,10 @@ ActiveRecord::Schema.define(version: 20151027000424) do
     t.integer  "inventory_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "contract_id"
   end
 
+  add_index "deal_inventory_logs", ["contract_id"], name: "index_deal_inventory_logs_on_contract_id", using: :btree
   add_index "deal_inventory_logs", ["inventory_id"], name: "index_deal_inventory_logs_on_inventory_id", using: :btree
   add_index "deal_inventory_logs", ["user_id"], name: "index_deal_inventory_logs_on_user_id", using: :btree
 
@@ -159,9 +161,26 @@ ActiveRecord::Schema.define(version: 20151027000424) do
     t.string   "note_number"
     t.string   "responsible"
     t.integer  "quantity"
+    t.string   "code"
   end
 
   add_index "deal_patrimonies", ["contract_id"], name: "index_deal_patrimonies_on_contract_id", using: :btree
+
+  create_table "deal_patrimony_moviments", force: :cascade do |t|
+    t.integer  "origin_contract_id"
+    t.integer  "current_contract_id"
+    t.string   "responsible"
+    t.integer  "items_id",                         array: true
+    t.string   "moviment_type"
+    t.integer  "user_id"
+    t.text     "observation"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "deal_patrimony_moviments", ["current_contract_id"], name: "index_deal_patrimony_moviments_on_current_contract_id", using: :btree
+  add_index "deal_patrimony_moviments", ["origin_contract_id"], name: "index_deal_patrimony_moviments_on_origin_contract_id", using: :btree
+  add_index "deal_patrimony_moviments", ["user_id"], name: "index_deal_patrimony_moviments_on_user_id", using: :btree
 
   create_table "deal_products", force: :cascade do |t|
     t.string   "title"

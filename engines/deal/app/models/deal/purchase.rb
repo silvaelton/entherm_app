@@ -21,7 +21,7 @@ module Deal
     enum freight: ['cif', 'fob']
     enum form_payment: ['dinheiro', 'boleto', 'cheque', 'cartão', 'depósito']
     enum delivery: ['imediato','7_dias', '30_dias', '60_dias','90_dias','120_dias']
-    enum buy_type: ['compras', 'serviços', 'locações']
+    enum buy_type: ['compras', 'serviços', 'locações', 'estoque']
 
     validates :description, :purchase_type, :contract, :supplier, :status, presence: true
     validates :buy_type, :seller, :requester, :deadline_payment, presence: true
@@ -29,9 +29,7 @@ module Deal
     
     mount_uploader :inventory_flag, DocumentUploader
 
-    #after_create :create_inventory, if: :inventory?
-   # after_update :update_inventory, if: :inventory?
-
+    after_commit :create_inventory, if: :set_inventory?
 
     def self.total_value
       value = 0
@@ -56,17 +54,17 @@ module Deal
     def protocol
       "#{self.id}/#{self.created_at.strftime('%Y')}"
     end
-    
-    private
 
-    def inventory?
-      self.inventory_flag
+    def set_inventory?
+      self.estoque? && self.efetuada? && self.compra?
     end
+
+    private
 
     def create_inventory
       if purchase_items.present?
         purchase_items.each do |item|
-          @inventory = Inventory.where(product_id: item.product_id).first
+          @inventory = Inventory.find(product_id: item.product_id) rescue nil
 
           if @inventory.present?
             @inventory.update(quantity: @inventory.quantity + item.quantity)

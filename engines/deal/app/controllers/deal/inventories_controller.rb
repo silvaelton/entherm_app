@@ -3,8 +3,7 @@ require_dependency "deal/application_controller"
 module Deal
   class InventoriesController < ApplicationController
     before_action :set_inventory, only: [:show, :edit, :update, :destroy]
-    before_action :set_inventory_id, only: [:in, :out]
-
+  
     # GET /inventories
     def index
       @inventories = Inventory.all
@@ -14,40 +13,6 @@ module Deal
     def show
     end
 
-    def logs
-      @inventory_logs = InventoryLog.all.order('created_at DESC')
-    end
-
-    def add_item
-      @inventory_log = InventoryLog.new
-    end
-
-    def remove_item
-      @inventory_log = InventoryLog.new
-    end
-
-    def increase_item
-      @inventory_log = InventoryLog.new(set_params_log)
-      @inventory_log.log_type = 0
-      if @inventory_log.save
-        flash[:success] = t :success
-        redirect_to action: 'logs'
-      else
-        render action: 'add_item'
-      end
-    end
-
-    def decrease_item
-      @inventory_log = InventoryLog.new(set_params_log)
-      @inventory_log.log_type = 1
-      if @inventory_log.save
-        flash[:success] = t :success
-        redirect_to action: 'logs'
-      else
-        render action: 'add_item'
-      end
-    end
-    
     # GET /inventories/new
     def new
       @inventory = Inventory.new
@@ -98,18 +63,9 @@ module Deal
       def set_inventory
         @inventory = Inventory.find(params[:id])
       end
-
-      def set_inventory_id
-        @inventory = Inventory.find(params[:inventory_id])
-      end
-
       # Only allow a trusted parameter "white list" through.
       def inventory_params
         params.require(:inventory).permit(:product_title, :quantity, :estimed_value, :unit, :observation, :location, :image_path)
-      end
-
-      def set_params_log
-        params.require(:inventory_log).permit(:name, :inventory_id, :description, :quantity)
       end
   end
 end

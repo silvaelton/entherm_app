@@ -2,6 +2,7 @@ module Deal
   class Order < ActiveRecord::Base
     belongs_to :user
     belongs_to :contract, class_name: "Commercial::Contract"
+
     has_many   :order_items
     has_many   :order_comments
 

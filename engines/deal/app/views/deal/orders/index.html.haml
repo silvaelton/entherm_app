@@ -11,17 +11,21 @@
               %table.table.table-bordered.table-striped.datatable
                 %thead
                   %tr
+                    %th Nº
                     %th Descrição
                     %th Status
                     %th Realizado em
                     %th Contrato
+                    %th Comentários
                     %th Ações
                 %tbody
                   - @orders.each do |order|
                     %tr
-                      %td.col-md-4= order.description
+                      %td.col-md-1= order.protocol
+                      %td.col-md-3= order.description
                       %td.col-md-1= status_helper order.status
                       %td.col-md-2= order.created_at.strftime("%d/%m/%Y às %H:%M")
+                      %td.col-md-1= order.order_comments.count
                       %td.col-md-2= order.contract.title if order.contract.present?
                       %td.col-md-1
                         = link_to "visualizar", order_path(order), class: 'btn btn-success btn-sm'

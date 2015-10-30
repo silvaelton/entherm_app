@@ -8,3 +8,4 @@ pt-BR:
         description: "Descrição"
         inventory: "Item do Estoque"
         quantity: "Quantidade entrando"
+        contract: "Contrato"

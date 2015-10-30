@@ -5,7 +5,7 @@
         .title
           Listagem de estoque
           %span.pull-right
-            = link_to "Histórico de Entrada & Saída", logs_inventories_path
+            = link_to "Histórico de Entrada & Saída", inventory_logs_path
             |
             = link_to "Novo Item", new_inventory_path
       .panel-body
@@ -18,8 +18,8 @@
                     %th Nº
                     %th FPA
                     %th Item
-                    %th Quantidade
-                    %th Valor Estimado
+                    %th QTD
+                    %th Valor Estimado (UN)
                     %th Localização
                     %th Observação
                     %th Imagem

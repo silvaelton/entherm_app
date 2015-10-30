@@ -71,6 +71,7 @@
                         = link_to "Baixar", order.image_path_url, target: '_blank'  
                       - else
                         Sem imagem
+        %br/
         .row
           .col-md-12
             %h4
@@ -85,10 +86,6 @@
                   %th Usuário
                   %th Messagem
                   %th Data
-              %tbody
-                - @order.order_comments.each do |comment|
-                  %tr
-                    %td= comment.user.name.humanize if comment.user.present?
-                    %td= comment.content
-                    %td= comment.created_at.strftime("%d/%m/%Y às %H:%M")
-                  
+                  %th Ação
+              %tbody.index-comments
+                = render 'deal/order_comments/index'

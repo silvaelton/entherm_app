@@ -3,7 +3,7 @@ module Deal
     belongs_to :product
     belongs_to :contract, class_name: "Commercial::Contract"
     belongs_to :purchase
-    
+
     enum state: ['novo', 'semi_novo', 'bom_estado', 'conservado', 'usado', 'péssimo', 'velho', 'consertar']
 
     attr_accessor :in_quantity    

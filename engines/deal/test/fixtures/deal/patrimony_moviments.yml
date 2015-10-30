@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin_contract_id: 
+  current_contract_id: 
+  responsible: MyString
+  items: 
+  moviment_type: MyString
+  user_id: 
+  observation: MyText
+
+two:
+  origin_contract_id: 
+  current_contract_id: 
+  responsible: MyString
+  items: 
+  moviment_type: MyString
+  user_id: 
+  observation: MyText

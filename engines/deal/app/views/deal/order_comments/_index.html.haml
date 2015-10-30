@@ -1,0 +1,7 @@
+- @order.order_comments.order('created_at DESC').each do |comment|
+  %tr
+    %td= comment.user.name.humanize if comment.user.present?
+    %td= comment.content
+    %td= comment.created_at.strftime("%d/%m/%Y às %H:%M")
+    %td= link_to "", control_order_order_comment_path(control_order_id: @order, id: comment), method: :delete, data: {confirm: t(:confirm_destroy)}, remote: true,class: 'btn btn-sm btn-danger s7-trash'
+    

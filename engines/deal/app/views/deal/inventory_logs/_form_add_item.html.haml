@@ -1,18 +1,16 @@
-= simple_form_for @inventory_log, url: deal.remove_item_inventories_path, method: :post do |f|
+= simple_form_for @inventory_log, method: :post do |f|
   .row
     .col-md-12
-      = f.input :name
-  .row
-    .col-md-12
+      = f.input :log_type, as: :hidden, input_html: { value: 'entrada' }
       = f.input :description
   .row
     .col-md-12
       = f.input :inventory, as: :select, collection: Deal::Inventory.includes(:product).all.order('deal_products.title').map { |key| ["#{key.product_title} - QTD: #{key.quantity}", key.id]}, prompt: "selecione...", input_html: { class: 'select2', name: 'inventory_log[inventory_id]'}
   .row
     .col-md-2
-      = f.input :quantity, label: "Quantidade Saindo", as: :string
+      = f.input :quantity, as: :string
   %hr/
   .row
     .col-md-12
-      = f.submit "Realizar Saída no Estoque", class: 'btn btn-success'
+      = f.submit "Realizar Entrada no Estoque", class: 'btn btn-success'
       = link_to "Visualizar estoque", deal.inventories_path, class: 'btn btn-default'

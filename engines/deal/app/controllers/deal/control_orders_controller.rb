@@ -1,3 +1,4 @@
+require_dependency 'deal/application_controller'
 module Deal
   class ControlOrdersController < ApplicationController
     before_action :set_order, only: [:edit, :update, :destroy]

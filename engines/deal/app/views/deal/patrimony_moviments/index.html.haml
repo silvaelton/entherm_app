@@ -1,0 +1,34 @@
+.row
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        .title
+          Movimentações
+          %span.pull-right
+            = link_to "Ver Patrimônios", inventories_path
+            |
+            = link_to "Nova Movimentação", new_patrimony_moviment_path
+      .panel-body
+        .adv-table          
+          .row
+            .col-md-12
+              %table.table.table-bordered.table-striped.datatable
+                %thead
+                  %tr
+                    %th Contrato Destino
+                    %th Observação
+                    %th Data
+                    %th Tipo
+                    %th Responsável
+                    %th Patrimônios
+                    %th
+                %tbody
+                  - @moviments.each do |moviment|
+                    %tr
+                      %td= moviment.current_contract.title if moviment.current_contract.present?
+                      %td= moviment.observation
+                      %td= moviment.created_at.strftime('%d/%m/%Y')
+                      %td= moviment.moviment_type
+                      %td= moviment.responsible
+                      %td= link_to "visualizar items | #{moviment.view_items.count}", patrimony_moviment_view_path(moviment), remote: true
+                      %td

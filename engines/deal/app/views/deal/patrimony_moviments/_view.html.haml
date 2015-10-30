@@ -1,0 +1,25 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} &times;
+  %h4#myModalLabel.modal-title Patrimônios Movimentados
+.modal-body
+  .row
+    .col-md-12
+      %table.table.table-bordered.table-hover.table-striped
+        %thead
+          %tr
+            %th Contrato Destino
+            %th Tipo
+        %tbody
+          %tr
+            %td= @moviment.current_contract.title if @moviment.current_contract.present?
+            %td= @moviment.moviment_type
+  .row
+    .col-md-12
+      %table.table.table-bordered.table-hover.table-striped
+        %thead
+          %th Patrimônios
+        %tbody
+          - @moviment.view_items.each do |item|
+            %tr
+              %td= item.title

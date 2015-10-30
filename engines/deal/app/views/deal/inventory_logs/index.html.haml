@@ -1,0 +1,69 @@
+.row
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        .title
+          Listagem Ações no Estoque
+          %span.pull-right
+            = link_to "Ver Estoque", inventories_path
+            |
+            = link_to "Nova Entrada", add_item_inventory_logs_path
+            |
+            = link_to "Nova Saída", remove_item_inventory_logs_path
+
+      .panel-body
+        .row
+          .col-md-12
+            = simple_form_for inventory_logs_path, method: :get do |f|
+              .row
+                .col-md-2
+                  = f.input :date_start, label: "Data início", input_html: { name: 'by_period[date_start]', class: 'date', value: (params[:by_period].present?) ? params[:by_period][:date_start] : Date.today.beginning_of_month.strftime('%d/%m/%Y')} 
+                .col-md-2
+                  = f.input :date_end, label: "Data fim", input_html: { name: 'by_period[date_end]', class: 'date', value: (params[:by_period].present?) ? params[:by_period][:date_end] : Date.today.end_of_month.strftime('%d/%m/%Y')}
+                .col-md-2
+                  = f.input :contract, as: :select, label: "Contrato", collection: Commercial::Contract.all.order(:title).map { |key| [key.title.upcase, key.id]}, selected: params[:contract], include_blank: "Todos", input_html: { name: 'contract' }
+                .col-md-2
+                  = f.input :item, as: :select, label: "Item", collection: Deal::Inventory.includes(:product).all.order('deal_products.title').map { |key| ["#{key.product_title} - QTD: #{key.quantity}", key.id]}, selected: params[:item], include_blank: "Todos", input_html: { name: 'item' }
+                .col-md-2
+                  = f.input :log_type, as: :select, label: "Tipo", collection: Deal::InventoryLog.log_types, selected: params[:log_type], include_blank: "Todos", input_html: { name: 'log_type' }
+                .col-md-2{style: 'margin-top: 30px'}
+                  = f.submit "Filtar Ações", name: nil, class: 'btn btn-success'
+        .adv-table          
+          .row
+            .col-md-12
+              %table.table.table-bordered.table-striped.datatable
+                %thead
+                  %tr
+                    %th Tipo
+                    %th Contrato
+                    %th Quantidade
+                    %th Data/Hora
+                    %th Item
+                    %th Descrição
+                    %th Responsável
+                    - if policy(:privilege).administrator?
+                      %th Ação
+                %tbody
+                  - @inventory_logs.each do |log|
+                    %tr
+                      %td.col-md-1
+                        - if log.log_type == 'entrada'
+                          %span.label.label-success
+                            = log.log_type.humanize if log.log_type.present?
+                        - else
+                          %span.label.label-warning
+                            = log.log_type.humanize if log.log_type.present?
+                      %td.col-md-3= log.contract.title if log.contract.present?
+                      %td.col-md-3
+                        - if log.inventory.present? && log.inventory.product.present?
+                          = log.inventory.product_title 
+                        - else
+                          Item excluído
+                      %td.col-md-2= log.quantity
+                      %td.col-md-2= log.created_at.strftime('%d/%m/%Y')
+                      %td.col-md-3= log.description
+                      %td.col-md-2= log.name
+                      - if policy(:privilege).administrator?
+                        %td 
+                          = link_to "", inventory_log_path(log), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm s7-trash'
+             

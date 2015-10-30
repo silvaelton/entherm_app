@@ -4,8 +4,10 @@
       %header.panel-heading
         .title
           Listagem de patrimônios
-          = link_to "novo patrimônio", new_patrimony_path, class: ' pull-right'
-        %hr/
+          %span.pull-right
+            = link_to "Movimentar Patrimônio", new_patrimony_moviment_path
+            |
+            = link_to "Novo Patrimônio", new_patrimony_path
       .panel-body
         .adv-table          
           .row
@@ -13,8 +15,9 @@
               %table.table.table-bordered.table-striped.datatable
                 %thead
                   %tr
-                    %th Contrato
-                    %th Título
+                    %th Centro de Custo
+                    %th Tombamento
+                    %th Patrimônio
                     %th Descrição
                     %th Localização
                     %th Valor original
@@ -25,6 +28,7 @@
                   - @patrimonies.each do |patrimony|
                     %tr
                       %td= patrimony.contract.title if patrimony.contract.present?
+                      %td= patrimony.code
                       %td= patrimony.title
                       %td= patrimony.description
                       %td= patrimony.location
@@ -32,6 +36,6 @@
                       %td= number_to_currency patrimony.estimated_value
                       %td= patrimony.state
                       %td.col-md-2
-                        = link_to "", edit_patrimony_path(patrimony), class: 'btn btn-primary btn-sm icon-edit', title: "Editar"
-                        = link_to "", patrimony_path(patrimony), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm icon-remove', title: "Remover"
+                        = link_to "", edit_patrimony_path(patrimony), class: 'btn btn-success btn-sm s7-edit', title: "Editar"
+                        = link_to "", patrimony_path(patrimony), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm s7-trash', title: "Remover"
                  

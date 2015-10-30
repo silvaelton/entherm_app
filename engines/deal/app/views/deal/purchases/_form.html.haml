@@ -1,4 +1,10 @@
 = simple_form_for @purchase do |f|
+  - if !f.object.new_record? && @purchase.set_inventory?
+    .row
+      .col-md-12
+        .alert.alert-info
+          %b IMPORTANTE!
+          Os itens desta compra já foram incluídos no estoque, ao editar esta compra e salvar você deverá verificar se seu estoque está correto.
   .row
     .col-md-2
       = hidden_field_tag :search, params[:search] if params[:search].present?
@@ -9,9 +15,6 @@
       = f.input :buy_type, as: :select, collection: Deal::Purchase.buy_types.keys.to_a, include_blank: false
     .col-md-2
       = f.input :created_at, as: :string, input_html: { class: 'date', value: f.object.created_at.nil? ? Date.today.strftime('%d/%m/%Y') : f.object.created_at.strftime('%d/%m/%Y') }
-    .col-md-2
-      #inventory.hide
-        = f.input :inventory_flag, as: :select, include_blank: false, selected: false if f.object.new_record?
   %hr/
   .row
     .col-md-3
@@ -61,18 +64,3 @@
     .col-md-8
       = f.submit "Salvar Compra", class: 'btn btn-success btn-sm'
       = link_to "Voltar", purchases_path, class: 'btn btn-default btn-sm'
-
-:javascript
-   $(document).ready(function() {
-
-    function show_inventory() {
-      if($("#purchase_purchase_type").val() == "compra" && $("#purchase_status").val() == "efetuada") {
-        $("#inventory").show();
-      } else {
-        $("#inventory").hide();
-      }
-    }
-
-    $("#purchase_purchase_type").on('change', function() { show_inventory() })
-    $("#purchase_status").on('change', function() { show_inventory()} )
-   });

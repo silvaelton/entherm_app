@@ -5,7 +5,7 @@ module Deal
       @products = Product.all.order(:title)
 
       respond_to do |format|
-        format.js   { render json: Product.where("title like ?", "%#{params[:term]}%").map(&:title) }
+        format.js   { render json: Product.where("title like ?", "%#{params[:term]}%").order(:title).map(&:title) }
         format.html { @products}
       end
     end

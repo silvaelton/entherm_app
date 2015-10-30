@@ -22,7 +22,7 @@
                 %tbody
                   - @supplier_categories.each do |supplier|
                     %tr
-                      %td= supplier.title
+                      %td= supplier.title.upcase
                       %td.col-md-2= supplier.status ? 'ativo' : 'inativo'
                       %td.col-md-2
                         = link_to "", edit_supplier_category_path(supplier), class: 'btn btn-success btn-sm s7-edit', title: "Editar"
