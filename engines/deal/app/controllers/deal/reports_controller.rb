@@ -5,7 +5,7 @@ module Deal
     has_scope :by_contract
 
     def contracts
-      @contracts = apply_scopes(Commercial::Contract).all.order(:title)
+      @contracts = Commercial::Contract.all.order(:title)
       @purchases = apply_scopes(Deal::Purchase).where(status: 1)
     end
 
