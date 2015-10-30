@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030123337) do
+ActiveRecord::Schema.define(version: 20151030153049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,21 +69,18 @@ ActiveRecord::Schema.define(version: 20151030123337) do
 
   create_table "deal_inventories", force: :cascade do |t|
     t.integer  "product_id"
-    t.string   "unit"
     t.integer  "quantity"
     t.text     "observation"
     t.text     "location"
     t.string   "image_path"
     t.string   "state"
     t.string   "supplier"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "purchase_id"
-    t.float    "estimed_value"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "unit"
   end
 
   add_index "deal_inventories", ["product_id"], name: "index_deal_inventories_on_product_id", using: :btree
-  add_index "deal_inventories", ["purchase_id"], name: "index_deal_inventories_on_purchase_id", using: :btree
 
   create_table "deal_inventory_logs", force: :cascade do |t|
     t.integer  "log_type"
