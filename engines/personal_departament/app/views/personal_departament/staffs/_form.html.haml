@@ -75,9 +75,9 @@
   %hr/
   .row
     .col-md-2
-      = f.input :job
+      = f.association :job, prompt: 'selecione...'
     .col-md-2
-      = f.input :sector
+      = f.association :sector, prompt: 'selecione...'
     .col-md-2
       = f.input :salary, as: :string, input_html: { value: '0'}
   .row

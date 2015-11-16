@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116113535) do
+ActiveRecord::Schema.define(version: 20151116173646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -332,6 +332,24 @@ ActiveRecord::Schema.define(version: 20151116113535) do
   end
 
   add_index "personal_departament_dependents", ["staff_id"], name: "index_personal_departament_dependents_on_staff_id", using: :btree
+
+  create_table "personal_departament_jobs", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "status",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "personal_departament_sectors", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "contract_id"
+    t.boolean  "status",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "personal_departament_sectors", ["contract_id"], name: "index_personal_departament_sectors_on_contract_id", using: :btree
 
   create_table "personal_departament_staffs", force: :cascade do |t|
     t.integer  "contract_id"

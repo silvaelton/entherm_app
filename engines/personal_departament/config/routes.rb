@@ -5,5 +5,8 @@ PersonalDepartament::Engine.routes.draw do
     resources :attachments
     resources :annotations
   end
+
+  resources :sectors
+  resources :jobs
   
 end

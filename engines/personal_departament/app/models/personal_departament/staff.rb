@@ -16,6 +16,7 @@ module PersonalDepartament
               :cep, :telephone, :name_father, :name_mother, :gender, :naturality, 
               :civil_state, :education, :salary, :job, :sector, :contract, :height,
               :weight, :blood, :badge_name, :situation, :situation, :civil_state,
-              :salary, :work_start, :work_end, presence: true
+              :salary, :work_start, :education, :work_end, presence: true
+
   end
 end
