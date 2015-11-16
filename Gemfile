@@ -45,9 +45,10 @@ end
 
 #init engines
 
-gem 'access', 		  path: 'engines/access'
-gem 'dashboard',    path: 'engines/dashboard'
-gem 'commercial',   path: 'engines/commercial'
-gem 'deal',         path: 'engines/deal'
-gem 'information',  path: 'engines/information'
-gem 'report',       path: 'engines/report'
+gem 'access', 		                path: 'engines/access'
+gem 'dashboard',                  path: 'engines/dashboard'
+gem 'commercial',                 path: 'engines/commercial'
+gem 'deal',                       path: 'engines/deal'
+gem 'information',                path: 'engines/information'
+gem 'report',                     path: 'engines/report'
+gem 'personal_departament',       path: 'engines/personal_departament'

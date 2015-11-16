@@ -20,7 +20,7 @@
                 .col-md-2
                   = f.input :status, as: :select, label: "Situação", collection: Deal::Purchase.statuses.map { |key, value| [key.upcase, value]}, selected: params[:status], include_blank: "Todos", input_html: { name: 'status' }
                 .col-md-2{style: 'margin-top: 30px'}
-                  = f.submit "Filtar Compras", name: nil, class: 'btn btn-success'
+                  = f.submit "Filtrar Compras", name: nil, class: 'btn btn-success'
         .row
           .col-md-12
             %table.table.table-condensed.table-hover.table-bordered.table-striped.datatable

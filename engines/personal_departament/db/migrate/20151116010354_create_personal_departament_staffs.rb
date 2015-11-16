@@ -6,7 +6,10 @@ class CreatePersonalDepartamentStaffs < ActiveRecord::Migration
       t.references :sector, index: true
       t.references :job, index: true
 
+      t.text :observation 
+
       t.string :name
+      t.string :code
       t.string :rg 
       t.string :cpf 
       t.string :rg_org
@@ -23,7 +26,8 @@ class CreatePersonalDepartamentStaffs < ActiveRecord::Migration
       t.string :reservist
       t.string :reservist_serial
       t.string :reservist_uf 
-      t.date :reservist_date
+      t.date   :reservist_date
+      t.date   :born
 
       t.string :bank
       t.string :bank_agency
@@ -38,25 +42,27 @@ class CreatePersonalDepartamentStaffs < ActiveRecord::Migration
       t.string :telephone
       t.string :telephone_optional
       t.string :celphone
+      t.string :email
 
       t.string :name_father
       t.string :name_mother
-      t.date :born
       t.integer :gender, default: 0
-      t.string :naturality
+      t.string  :naturality
       t.integer :civil_state, default: 0
       
       t.string :spouse_name
+      t.string :spouse_cpf
       t.string :education
       
       t.boolean :special_condition_flag, default: false
-      t.string :special_condition
+      t.string  :special_condition
 
       t.string :drt 
       t.string :registry
       t.string :number_book
       t.string :number_flet
-      t.date :admission
+      t.date   :admission
+
       t.float :salary, default: 0
       t.float :transportation_voucher, default: 0
 
@@ -69,6 +75,7 @@ class CreatePersonalDepartamentStaffs < ActiveRecord::Migration
 
       t.string :height
       t.string :weight
+      t.string :blood
       
       t.text :medications
       t.text :diseases
@@ -79,8 +86,18 @@ class CreatePersonalDepartamentStaffs < ActiveRecord::Migration
       t.string :skirt_size
       t.string :shoe_size
 
+      t.string :badge_name
+      t.string :badge_picture
 
+      t.string :picture
+      t.integer :situation, default: 0
 
+      t.date :experience_start
+      t.date :experience_end
+
+      t.integer :staff_performance, default: 0
+      t.text    :staff_performance_observation
+      
       t.timestamps null: false
     end
   end

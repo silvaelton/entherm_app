@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030153049) do
+ActiveRecord::Schema.define(version: 20151116113535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,15 +69,16 @@ ActiveRecord::Schema.define(version: 20151030153049) do
 
   create_table "deal_inventories", force: :cascade do |t|
     t.integer  "product_id"
+    t.string   "unit"
     t.integer  "quantity"
     t.text     "observation"
     t.text     "location"
     t.string   "image_path"
+    t.float    "estimed_value"
     t.string   "state"
     t.string   "supplier"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "unit"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "deal_inventories", ["product_id"], name: "index_deal_inventories_on_product_id", using: :btree
@@ -116,6 +117,7 @@ ActiveRecord::Schema.define(version: 20151030153049) do
     t.integer  "quantity"
     t.string   "goal"
     t.text     "observation"
+    t.string   "image_path"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "machine_id"
@@ -294,6 +296,129 @@ ActiveRecord::Schema.define(version: 20151030153049) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "personal_departament_annotations", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.string   "title"
+    t.text     "description"
+    t.date     "current_date"
+    t.string   "attachment_path"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "personal_departament_annotations", ["staff_id"], name: "index_personal_departament_annotations_on_staff_id", using: :btree
+
+  create_table "personal_departament_attachments", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.string   "title"
+    t.string   "description"
+    t.string   "attachment_path"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "personal_departament_attachments", ["staff_id"], name: "index_personal_departament_attachments_on_staff_id", using: :btree
+
+  create_table "personal_departament_dependents", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.string   "name"
+    t.string   "cpf"
+    t.date     "born"
+    t.boolean  "special_condition_flag", default: false
+    t.integer  "kinship",                default: 0
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "personal_departament_dependents", ["staff_id"], name: "index_personal_departament_dependents_on_staff_id", using: :btree
+
+  create_table "personal_departament_staffs", force: :cascade do |t|
+    t.integer  "contract_id"
+    t.integer  "sector_id"
+    t.integer  "job_id"
+    t.text     "observation"
+    t.string   "name"
+    t.string   "code"
+    t.string   "rg"
+    t.string   "cpf"
+    t.string   "rg_org"
+    t.date     "rg_date"
+    t.string   "cnh"
+    t.string   "cnh_category"
+    t.string   "cnh_uf"
+    t.string   "ctps"
+    t.string   "ctps_serie"
+    t.string   "pis"
+    t.string   "voter_registration"
+    t.string   "voter_zone"
+    t.string   "voter_session"
+    t.string   "reservist"
+    t.string   "reservist_serial"
+    t.string   "reservist_uf"
+    t.date     "reservist_date"
+    t.date     "born"
+    t.string   "bank"
+    t.string   "bank_agency"
+    t.string   "bank_account"
+    t.string   "address"
+    t.string   "burgh"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.string   "cep"
+    t.string   "telephone"
+    t.string   "telephone_optional"
+    t.string   "celphone"
+    t.string   "email"
+    t.string   "name_father"
+    t.string   "name_mother"
+    t.integer  "gender",                        default: 0
+    t.string   "naturality"
+    t.integer  "civil_state",                   default: 0
+    t.string   "spouse_name"
+    t.string   "spouse_cpf"
+    t.string   "education"
+    t.boolean  "special_condition_flag",        default: false
+    t.string   "special_condition"
+    t.string   "drt"
+    t.string   "registry"
+    t.string   "number_book"
+    t.string   "number_flet"
+    t.date     "admission"
+    t.float    "salary",                        default: 0.0
+    t.float    "transportation_voucher",        default: 0.0
+    t.string   "transportation_line"
+    t.string   "transportation_company"
+    t.string   "transportation_observation"
+    t.time     "work_start",                    default: '2000-01-01 08:00:00'
+    t.time     "work_end",                      default: '2000-01-01 08:00:00'
+    t.string   "height"
+    t.string   "weight"
+    t.string   "blood"
+    t.text     "medications"
+    t.text     "diseases"
+    t.text     "allergies"
+    t.string   "tshirt_size"
+    t.string   "pants_size"
+    t.string   "skirt_size"
+    t.string   "shoe_size"
+    t.string   "badge_name"
+    t.string   "badge_picture"
+    t.string   "picture"
+    t.integer  "situation",                     default: 0
+    t.date     "experience_start"
+    t.date     "experience_end"
+    t.integer  "staff_performance",             default: 0
+    t.text     "staff_performance_observation"
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
+  end
+
+  add_index "personal_departament_staffs", ["city_id"], name: "index_personal_departament_staffs_on_city_id", using: :btree
+  add_index "personal_departament_staffs", ["contract_id"], name: "index_personal_departament_staffs_on_contract_id", using: :btree
+  add_index "personal_departament_staffs", ["job_id"], name: "index_personal_departament_staffs_on_job_id", using: :btree
+  add_index "personal_departament_staffs", ["sector_id"], name: "index_personal_departament_staffs_on_sector_id", using: :btree
+  add_index "personal_departament_staffs", ["state_id"], name: "index_personal_departament_staffs_on_state_id", using: :btree
 
   create_table "privileges", force: :cascade do |t|
     t.string   "name"

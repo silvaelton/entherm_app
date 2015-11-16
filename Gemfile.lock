@@ -36,6 +36,12 @@ PATH
       rails (~> 4.2.3)
 
 PATH
+  remote: engines/personal_departament
+  specs:
+    personal_departament (0.0.1)
+      rails (~> 4.2.3)
+
+PATH
   remote: engines/report
   specs:
     report (0.0.1)
@@ -404,6 +410,7 @@ DEPENDENCIES
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
   jquery-ui-rails
+  personal_departament!
   pg
   puma
   pundit!

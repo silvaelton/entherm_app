@@ -1,0 +1,182 @@
+= simple_form_for @staff do |f| 
+  .row
+    .col-md-5  
+      = f.association :contract, prompt: "selecione o contrato..."
+    .col-md-3
+      = f.input :situation, as: :select
+    .col-md-2
+      = f.input :experience_start, as: :string, input_html: { class: 'date' }
+    .col-md-2
+      = f.input :experience_end, as: :string, input_html: { class: 'date' }
+  %hr/
+  .row
+    .col-md-10 
+      = f.input :name, input_html: { placeholder: "Digite o nome do funcionário"}
+    .col-md-2 
+      = f.input :picture, as: :file
+  .row
+    .col-md-2  
+      = f.input :born, as: :string, input_html: { class: 'date'}
+    .col-md-2  
+      = f.input :cpf
+    .col-md-2  
+      = f.input :rg
+    .col-md-2  
+      = f.input :rg_org
+    .col-md-2  
+      = f.input :rg_date, as: :string, input_html: { class: 'date'}
+    .col-md-2  
+      = f.input :civil_state, as: :select
+  %hr/
+  .row
+    .col-md-2  
+      = f.input :cnh
+    .col-md-2  
+      = f.input :cnh_category
+    .col-md-2  
+      = f.input :cnh_uf
+    .col-md-2  
+      = f.input :ctps
+    .col-md-2  
+      = f.input :ctps_serie
+    .col-md-2  
+      = f.input :pis
+  %hr/
+  .row
+    .col-md-2  
+      = f.input :voter_registration
+    .col-md-2  
+      = f.input :voter_zone
+    .col-md-2  
+      = f.input :voter_session
+    .col-md-2  
+      = f.input :education
+  .row
+    .col-md-2  
+      = f.input :reservist
+    .col-md-2  
+      = f.input :reservist_serial
+    .col-md-2  
+      = f.input :reservist_uf
+    .col-md-2  
+      = f.input :reservist_date, as: :string, input_html: { class: 'date' }
+  %hr/
+  .row
+    .col-md-2  
+      = f.input :height
+    .col-md-2  
+      = f.input :weight
+    .col-md-2  
+      = f.input :blood
+    .col-md-2  
+      = f.input :special_condition_flag, as: :select
+    .col-md-2  
+      = f.input :special_condition, as: :select
+  .row
+    .col-md-2  
+      = f.input :work_start, as: :string
+    .col-md-2  
+      = f.input :work_end, as: :string
+  %hr/
+  .row
+    .col-md-2
+      = f.input :job_id
+    .col-md-2
+      = f.input :sector_id
+    .col-md-2
+      = f.input :salary
+    .col-md-2
+      = f.input :bank
+    .col-md-2
+      = f.input :bank_agency
+    .col-md-2
+      = f.input :bank_account
+        
+  %hr/
+  .row
+    .col-md-2  
+      = f.association :state, prompt: "selecione..."
+    .col-md-2  
+      = f.association :city, prompt: "selecione..."
+  .row
+    .col-md-8
+      = f.input :address
+    .col-md-2
+      = f.input :burgh
+    .col-md-2
+      = f.input :cep
+  .row
+    .col-md-2
+      = f.input :transportation_line
+    .col-md-4
+      = f.input :transportation_company
+    .col-md-2
+      = f.input :transportation_voucher
+    .col-md-4
+      = f.input :transportation_observation
+  %hr/
+  .row
+    .col-md-2
+      = f.input :telephone
+    .col-md-2
+      = f.input :telephone_optional
+    .col-md-2
+      = f.input :celphone
+  %hr/
+  .row
+    .col-md-3
+      = f.input :name_father
+    .col-md-3
+      = f.input :name_mother
+    .col-md-3
+      = f.input :spouse_name
+    .col-md-3
+      = f.input :spouse_cpf
+  %hr/
+  .row
+    .col-md-3
+      = f.input :badge_name
+    .col-md-4
+      = f.input :badge_picture, as: :file
+  %hr/
+
+  .row
+    .col-md-2
+      = f.input :tshirt_size
+    .col-md-2
+      = f.input :pants_size
+    .col-md-2
+      = f.input :skirt_size
+    .col-md-2
+      = f.input :shoe_size
+  %hr/
+  .row
+    .col-md-2
+      = f.input :drt
+    .col-md-2
+      = f.input :registry
+    .col-md-2
+      = f.input :number_book
+    .col-md-2
+      = f.input :number_flet
+    .col-md-2
+      = f.input :admission, as: :string
+  %hr/
+  .row
+    .col-md-12
+      = f.input :medications
+  .row
+    .col-md-12
+      = f.input :diseases
+  .row
+    .col-md-12
+      = f.input :allergies
+  %hr/
+  .row
+    .col-md-12
+      = f.input :staff_performance_observation
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Cadastrar Funcionário", class: 'btn btn-success'
+      = link_to "Voltar", staffs_path, class: 'btn btn-default'
