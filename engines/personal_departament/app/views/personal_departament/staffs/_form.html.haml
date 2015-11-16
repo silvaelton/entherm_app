@@ -3,11 +3,12 @@
     .col-md-5  
       = f.association :contract, prompt: "selecione o contrato..."
     .col-md-3
-      = f.input :situation, as: :select
+      = f.input :situation, as: :select, collection: PersonalDepartament::Staff.situations.each { |key,value| [key,value] }, include_blank: false
     .col-md-2
       = f.input :experience_start, as: :string, input_html: { class: 'date' }
     .col-md-2
       = f.input :experience_end, as: :string, input_html: { class: 'date' }
+  %h3 Dados do Funcionário
   %hr/
   .row
     .col-md-10 
@@ -26,7 +27,7 @@
     .col-md-2  
       = f.input :rg_date, as: :string, input_html: { class: 'date'}
     .col-md-2  
-      = f.input :civil_state, as: :select
+      = f.input :civil_state, as: :select, collection: PersonalDepartament::Staff.civil_states.each { |key,value| [key,value] }, include_blank: false
   %hr/
   .row
     .col-md-2  
@@ -65,8 +66,6 @@
     .col-md-2  
       = f.input :height
     .col-md-2  
-      = f.input :weight
-    .col-md-2  
       = f.input :blood
     .col-md-2  
       = f.input :special_condition_flag, as: :select
@@ -74,17 +73,18 @@
       = f.input :special_condition, as: :select
   .row
     .col-md-2  
-      = f.input :work_start, as: :string
+      = f.input :work_start, as: :string, input_html: { value: '08:00'}
     .col-md-2  
-      = f.input :work_end, as: :string
+      = f.input :work_end, as: :string, input_html: { value: '18:00'}
+  %h3 Dados de Atuação 
   %hr/
   .row
     .col-md-2
-      = f.input :job_id
+      = f.input :job
     .col-md-2
-      = f.input :sector_id
+      = f.input :sector
     .col-md-2
-      = f.input :salary
+      = f.input :salary, as: :string, input_html: { value: '0'}
     .col-md-2
       = f.input :bank
     .col-md-2
@@ -92,6 +92,7 @@
     .col-md-2
       = f.input :bank_account
         
+  %h3 Dados de Endereço & Locomoção
   %hr/
   .row
     .col-md-2  
@@ -111,9 +112,10 @@
     .col-md-4
       = f.input :transportation_company
     .col-md-2
-      = f.input :transportation_voucher
+      = f.input :transportation_voucher, as: :string, input_html: { value: '0'}
     .col-md-4
       = f.input :transportation_observation
+  %h3 Dados de Contato
   %hr/
   .row
     .col-md-2
@@ -138,6 +140,7 @@
       = f.input :badge_name
     .col-md-4
       = f.input :badge_picture, as: :file
+  %h3 Dados de Vestuário
   %hr/
 
   .row
@@ -149,6 +152,7 @@
       = f.input :skirt_size
     .col-md-2
       = f.input :shoe_size
+  %h3 Dados de Controle
   %hr/
   .row
     .col-md-2
@@ -160,7 +164,7 @@
     .col-md-2
       = f.input :number_flet
     .col-md-2
-      = f.input :admission, as: :string
+      = f.input :admission, as: :string, input_html: { class: 'date'}
   %hr/
   .row
     .col-md-12

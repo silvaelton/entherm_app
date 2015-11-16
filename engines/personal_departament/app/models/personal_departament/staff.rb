@@ -6,6 +6,10 @@ module PersonalDepartament
     belongs_to :job
     belongs_to :sector
 
+    enum situation: [:experiência, :contratado, :demitido, :justa_causa, :afastado]
+    enum civil_state: [:solteiro, :uniao_estavel]
+    enum gender: [:masculino, :feminino]
+    
     validates :name, :code, :rg, :cpf, :rg_org, :rg_date, :pis, :ctps, :ctps_serie,
               :pis, :voter_registration, :voter_zone, :voter_session, :born,
               :bank, :bank_agency, :bank_account, :address, :burgh, :city, :state, 

@@ -68,3 +68,7 @@ pt-BR:
         staff_performance_observation: "Observação Geral"
         name: "Nome"
         picture: Foto
+        work_start: "Início da Jornada"
+        work_end: "Fim da Jornada"
+        spouse_name: "Nome Conjugê"
+        spouse_cpf: "CPF Conjugê"

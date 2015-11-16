@@ -59,7 +59,7 @@ module PersonalDepartament
                                     :transportation_line, :transportation_company, :transportation_voucher, :transportation_observation, 
                                     :telephone, :telephone_optional, :celphone, :name_father, :name_mother, :badge_name, :tshirt_size, 
                                     :pants_size, :skirt_size, :shoe_size, :drt, :registry, :number_book, :number_flet, :admission, 
-                                    :medications, :diseases, :allergies, :staff_performance_observation, :name)
+                                    :medications, :diseases, :allergies, :staff_performance_observation, :name, :work_start, :work_end)
     end
 
     def set_user
