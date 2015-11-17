@@ -1,8 +1,7 @@
 .login-container
   .panel.panel-default
     .panel-heading
-      %img.logo-img{:alt => "logo", :height => "39px", :src => "assets/img/logo-full-retina.png", :width => "150px"}/
-      %span Acesso Restrito
+      %img.logo-img{:alt => "logo", :height => "100px", :src => "/images/logo3.png", :width => "150px"}/
     .panel-body
       = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .login-form
