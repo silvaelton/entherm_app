@@ -13,12 +13,12 @@ module PersonalDepartament
     enum civil_state: [:solteiro, :uniao_estavel]
     enum gender: [:masculino, :feminino]
 
-    validates :name, :code, :rg, :cpf, :rg_org, :rg_date, :pis, :ctps, :ctps_serie,
+    validates :name, :rg, :cpf, :rg_org, :rg_date, :pis, :ctps, :ctps_serie,
               :pis, :voter_registration, :voter_zone, :voter_session, :born,
               :bank, :bank_agency, :bank_account, :address, :burgh, :city, :state, 
-              :cep, :telephone, :name_father, :name_mother, :gender, :naturality, 
+              :cep, :telephone, :gender, :naturality, 
               :civil_state, :education, :salary, :job, :sector, :contract, :height,
-              :weight, :blood, :badge_name, :situation, :situation, :civil_state,
+              :blood, :badge_name, :situation, :situation, :civil_state,
               :salary, :work_start, :education, :work_end, presence: true
 
   end

@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'personal_departament/job': "Cargo"
+    attributes:
+      'personal_departament/job':
+        title: "Título"
+        status: "Ativo?"

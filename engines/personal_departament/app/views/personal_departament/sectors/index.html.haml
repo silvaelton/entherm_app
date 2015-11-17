@@ -1,0 +1,29 @@
+.row
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        .title 
+          Setores
+          = link_to "Novo Setor", new_sector_path, class: 'pull-right'
+        %hr/
+      .panel-body
+        .row
+          .col-md-12
+            %table.table.table-condensed.table-hover.table-bordered.table-striped.datatable
+              %thead
+                %tr
+                  %th Contrato
+                  %th Nome
+                  %th Descrição
+                  %th Status
+                  %th Ações
+              %tbody
+                - @sectors.each do |sector|
+                  %tr 
+                    %td.col-md-3= sector.contract.title if sector.contract.present?
+                    %td.col-md-3= sector.title
+                    %td.col-md-3= sector.description
+                    %td.col-md-2= sector.status ? 'ativo' : 'inativo'
+                    %td.col-md-3
+                      = link_to "", edit_sector_path(sector), class: 'btn btn-success btn-sm s7-edit'
+                      = link_to "", sector_path(sector), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm s7-trash', title: "Remover"

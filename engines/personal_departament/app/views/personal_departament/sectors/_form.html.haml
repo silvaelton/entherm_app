@@ -1,0 +1,18 @@
+= simple_form_for @sector do |f| 
+  .row
+    .col-md-6
+      = f.association :contract, prompt: "selecione..."
+  .row
+    .col-md-12
+      = f.input :title
+  .row
+    .col-md-12
+      = f.input :description
+  .row
+    .col-md-2
+      = f.input :status, as: :select, include_blank: false
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Cadastrar Cargo", class: 'btn btn-success'
+      = link_to "Voltar", jobs_path, class: 'btn btn-default'

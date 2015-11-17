@@ -61,10 +61,10 @@ module PersonalDepartament
                                     :telephone, :telephone_optional, :celphone, :name_father, :name_mother, :badge_name, :tshirt_size, 
                                     :pants_size, :skirt_size, :shoe_size, :drt, :registry, :number_book, :number_flet, :admission, 
                                     :medications, :diseases, :allergies, :staff_performance_observation, :name, :work_start, :work_end,
-                                    :education, :job_id, :sector_id, dependents_attributes: [])
+                                    :education, :job_id, :sector_id, :naturality, dependents_attributes: [])
     end
 
-    def set_user
+    def set_staff
       @staff = Staff.find(params[:id])
     end
 

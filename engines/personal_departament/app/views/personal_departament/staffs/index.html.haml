@@ -26,6 +26,7 @@
                   %th Nome
                   %th CPF
                   %th Contrato
+                  %th Cargo
                   %th Situação
                   %th Data de contratação
                   %th Ações
@@ -36,11 +37,11 @@
                     %td= staff.name
                     %td= staff.cpf
                     %td= staff.contract.title if staff.contract.present?
+                    %td= staff.job.title if staff.job.present?
                     %td= staff.situation
-                    %td= staff
-                    %td
-                      = link_to "visualizar"
-                      = link_to "editar"
-                      = link_to "anotações"
-                      = link_to "anexos"
-                      = link_to "excluir"
+                    %td= staff.admission.strftime('%d/%m/%Y') if staff.admission.present?
+                    %td.col-md-2
+                      = link_to "", edit_staff_path(staff), class: 'btn btn-success btn-sm s7-edit'
+                      = link_to "", staff_attachments_path(staff), class: 'btn btn-success btn-sm s7-edit'
+                      = link_to "", staff_annotations_path(staff), class: 'btn btn-success btn-sm s7-edit'
+

@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'personal_departament/sector': "Cargo"
+    attributes:
+      'personal_departament/sector':
+        title: "Título"
+        status: "Ativo?"
+        description: "Descrição"
+        contract: "Contrato"

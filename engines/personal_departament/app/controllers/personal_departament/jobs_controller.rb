@@ -40,12 +40,13 @@ module PersonalDepartament
       else
         flash[:danger] = t :danger
       end
+      redirect_to action: 'index'
     end
 
     private
 
     def set_params
-      params.require(:job).permit(:name)
+      params.require(:job).permit(:title, :status)
     end
 
     def set_job
