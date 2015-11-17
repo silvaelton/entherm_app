@@ -1,0 +1,12 @@
+= simple_form_for @job do |f| 
+  .row
+    .col-md-12
+      = f.input :title
+  .row
+    .col-md-2
+      = f.input :status, as: :select, include_blank: false
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Cadastrar Cargo", class: 'btn btn-success'
+      = link_to "Voltar", jobs_path, class: 'btn btn-default'

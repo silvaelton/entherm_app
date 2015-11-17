@@ -6,6 +6,9 @@ module PersonalDepartament
     belongs_to :job
     belongs_to :sector
 
+    has_many :dependents
+    accepts_nested_attributes_for :dependents, allow_destroy: true
+
     enum situation: [:experiência, :contratado, :demitido, :justa_causa, :afastado]
     enum civil_state: [:solteiro, :uniao_estavel]
     enum gender: [:masculino, :feminino]

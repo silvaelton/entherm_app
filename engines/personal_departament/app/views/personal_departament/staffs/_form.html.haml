@@ -79,8 +79,7 @@
     .col-md-2
       = f.association :sector, prompt: 'selecione...'
     .col-md-2
-      = f.input :salary, as: :string, input_html: { value: '0'}
-  .row
+      = f.input :salary, as: :string, input_html: { class: 'coin_mask'}
     .col-md-2
       = f.input :bank
     .col-md-2
@@ -113,7 +112,7 @@
     .col-md-4
       = f.input :transportation_company
     .col-md-2
-      = f.input :transportation_voucher, as: :string, input_html: { value: '0'}
+      = f.input :transportation_voucher, as: :string, input_html: { class: 'coin_mask'}
     .col-md-4
       = f.input :transportation_observation
   %h3 Dados de Contato
@@ -125,16 +124,6 @@
       = f.input :telephone_optional
     .col-md-2
       = f.input :celphone
-  %hr/
-  .row
-    .col-md-3
-      = f.input :name_father
-    .col-md-3
-      = f.input :name_mother
-    .col-md-3
-      = f.input :spouse_name
-    .col-md-3
-      = f.input :spouse_cpf
   %hr/
   .row
     .col-md-3
@@ -180,6 +169,14 @@
   .row
     .col-md-12
       = f.input :staff_performance_observation
+  %h3 Dependentes
+  %hr/
+  .row
+    .col-md-12
+      = f.simple_fields_for :dependents do |builder|
+        = render 'dependent_fields', f: builder
+      = link_to_add_fields "Adicionar dependente", f, :dependents
+  %br/
   %hr/
   .row
     .col-md-12

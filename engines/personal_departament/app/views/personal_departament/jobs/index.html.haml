@@ -1,0 +1,23 @@
+.row
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        .title 
+          Cargos
+          = link_to "Novo Cargo", new_job_path, class: 'pull-right'
+        %hr/
+      .panel-body
+        .row
+          .col-md-12
+            %table.table.table-condensed.table-hover.table-bordered.table-striped.datatable
+              %thead
+                %tr
+                  %th Matrícula
+                  %th Nome
+                  %th CPF
+                  %th Contrato
+                  %th Situação
+                  %th Data de contratação
+                  %th Ações
+              %tbody
+ 
