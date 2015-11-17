@@ -51,7 +51,7 @@ module PersonalDepartament
     private
 
     def set_params
-      params.require(:staff).permit(:contract_id, :situation, :experience_start, :experience_end, :born, :cpf, 
+      params.require(:staff).permit(:contract_id, :code, :situation, :experience_start, :experience_end, :born, :cpf, 
                                     :rg, :rg_org, :rg_date, :civil_state, :cnh, :cnh_category, :cnh_uf, :ctps,
                                     :ctps_serie, :pis, :voter_registration, :voter_zone, :voter_session, :reservist,
                                     :reservist_serial, :reservist_uf, :reservist_date, :height, :weight, :blood, 

@@ -4,183 +4,217 @@
       = f.association :contract, prompt: "selecione o contrato..."
     .col-md-3
       = f.input :situation, as: :select, collection: PersonalDepartament::Staff.situations.keys.to_a, include_blank: false
-    .col-md-2
-      = f.input :experience_start, as: :string, input_html: { class: 'date' }
-    .col-md-2
-      = f.input :experience_end, as: :string, input_html: { class: 'date' }
+    #select-xp
+      .col-md-2
+        = f.input :experience_start, as: :string, input_html: { class: 'date' }
+      .col-md-2
+        = f.input :experience_end, as: :string, input_html: { class: 'date' }
   %h3 Dados do Funcionário
+  %a{"aria-controls" => "basic", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#basic", :role => "button"}
+    Expandir/Esconder
   %hr/
-  .row
-    .col-md-10 
-      = f.input :name, input_html: { placeholder: "Digite o nome do funcionário"}
-    .col-md-2 
-      = f.input :picture, as: :file
-  .row
-    .col-md-2  
-      = f.input :born, as: :string, input_html: { class: 'date'}
-    .col-md-2  
-      = f.input :cpf
-    .col-md-2  
-      = f.input :rg
-    .col-md-2  
-      = f.input :rg_org
-    .col-md-2  
-      = f.input :rg_date, as: :string, input_html: { class: 'date'}
-    .col-md-2  
-      = f.input :civil_state, as: :select, collection: PersonalDepartament::Staff.civil_states.keys.to_a , include_blank: false
-  %hr/
-  .row
-    .col-md-2  
-      = f.input :cnh
-    .col-md-2  
-      = f.input :cnh_category
-    .col-md-2  
-      = f.input :cnh_uf
-    .col-md-2  
-      = f.input :ctps
-    .col-md-2  
-      = f.input :ctps_serie
-    .col-md-2  
-      = f.input :pis
-  %hr/
-  .row
-    .col-md-2  
-      = f.input :voter_registration
-    .col-md-2  
-      = f.input :voter_zone
-    .col-md-2  
-      = f.input :voter_session
-    .col-md-2  
-      = f.input :education
-    .col-md-2  
-      = f.input :naturality
-  .row
-    .col-md-2  
-      = f.input :reservist
-    .col-md-2  
-      = f.input :reservist_serial
-    .col-md-2  
-      = f.input :reservist_uf
-    .col-md-2  
-      = f.input :reservist_date, as: :string, input_html: { class: 'date' }
-  %hr/
-  .row
-    .col-md-2  
-      = f.input :height
-    .col-md-2  
-      = f.input :blood
-    .col-md-2  
-      = f.input :special_condition_flag, as: :select, include_blank: false
-    .col-md-2{style: "display: none;"}
-      = f.input :special_condition, as: :select, include_blank: false
+  #basic{class: (!f.object.new_record? || f.object.errors.any?) ? 'collapse in' : 'collapse'}
+    .row
+      .col-md-10 
+        = f.input :name, input_html: { placeholder: "Digite o nome do funcionário"}
+      .col-md-2 
+        = f.input :picture, as: :file
+    .row
+      .col-md-2  
+        = f.input :born, as: :string, input_html: { class: 'date'}
+      .col-md-2  
+        = f.input :cpf
+      .col-md-2  
+        = f.input :rg
+      .col-md-2  
+        = f.input :rg_org
+      .col-md-2  
+        = f.input :rg_date, as: :string, input_html: { class: 'date'}
+      .col-md-2  
+        = f.input :civil_state, as: :select, collection: PersonalDepartament::Staff.civil_states.keys.to_a , include_blank: false
+    %hr/
+    .row
+      .col-md-2  
+        = f.input :cnh
+      .col-md-2  
+        = f.input :cnh_category
+      .col-md-2  
+        = f.input :cnh_uf
+      .col-md-2  
+        = f.input :ctps
+      .col-md-2  
+        = f.input :ctps_serie
+      .col-md-2  
+        = f.input :pis
+    %hr/
+    .row
+      .col-md-2  
+        = f.input :voter_registration
+      .col-md-2  
+        = f.input :voter_zone
+      .col-md-2  
+        = f.input :voter_session
+      .col-md-2  
+        = f.input :education
+      .col-md-2  
+        = f.input :naturality
+    .row
+      .col-md-2  
+        = f.input :reservist
+      .col-md-2  
+        = f.input :reservist_serial
+      .col-md-2  
+        = f.input :reservist_uf
+      .col-md-2  
+        = f.input :reservist_date, as: :string, input_html: { class: 'date' }
+    %hr/
+    .row
+      .col-md-2  
+        = f.input :height
+      .col-md-2  
+        = f.input :blood
+      .col-md-2  
+        = f.input :special_condition_flag, as: :select, include_blank: false
+      .col-md-2{style: "display: none;"}
+        = f.input :special_condition, as: :select, include_blank: false
   %h3 Dados de Atuação 
+  %a{"aria-controls" => "act", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#act", :role => "button"}
+    Expandir/Esconder
   %hr/
-  .row
-    .col-md-2
-      = f.association :job, prompt: 'selecione...'
-    .col-md-2
-      = f.association :sector, prompt: 'selecione...'
-    .col-md-2
-      = f.input :salary, as: :string, input_html: { class: 'coin_mask'}
-    .col-md-2
-      = f.input :bank
-    .col-md-2
-      = f.input :bank_agency
-    .col-md-2
-      = f.input :bank_account
-  .row
-    .col-md-2  
-      = f.input :work_start, as: :string, input_html: { value: '08:00'}
-    .col-md-2  
-      = f.input :work_end, as: :string, input_html: { value: '18:00'}
+  #act{class: (!f.object.new_record? || f.object.errors.any?) ? 'collapse in' : 'collapse'}
+    .row
+      .col-md-2
+        = f.association :job, prompt: 'selecione...'
+      .col-md-2
+        = f.association :sector, prompt: 'selecione...'
+      .col-md-2
+        = f.input :salary, as: :string, input_html: { class: 'coin_mask'}
+      .col-md-2
+        = f.input :bank
+      .col-md-2
+        = f.input :bank_agency
+      .col-md-2
+        = f.input :bank_account
+    .row
+      .col-md-2  
+        = f.input :work_start, as: :string, input_html: { class: 'hour'}
+      .col-md-2  
+        = f.input :work_end, as: :string, input_html: { class: 'hour'}
         
   %h3 Dados de Endereço & Locomoção
+  %a{"aria-controls" => "address", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#address", :role => "button"}
+    Expandir/Esconder
   %hr/
-  .row
-    .col-md-2  
-      = f.association :state, prompt: "selecione..."
-    .col-md-2  
-      = f.association :city, prompt: "selecione..."
-  .row
-    .col-md-8
-      = f.input :address
-    .col-md-2
-      = f.input :burgh
-    .col-md-2
-      = f.input :cep
-  .row
-    .col-md-2
-      = f.input :transportation_line
-    .col-md-4
-      = f.input :transportation_company
-    .col-md-2
-      = f.input :transportation_voucher, as: :string, input_html: { class: 'coin_mask'}
-    .col-md-4
-      = f.input :transportation_observation
+  #address{class: (!f.object.new_record? || f.object.errors.any?) ? 'collapse in' : 'collapse'}
+    .row
+      .col-md-2  
+        = f.association :state, prompt: "selecione...", input_html: { id: 'state'}
+      .col-md-2  
+        = f.input :city_id, as: :select, collection: {}, prompt: "selecione...", input_html: { id: 'city'}
+    .row
+      .col-md-8
+        = f.input :address
+      .col-md-2
+        = f.input :burgh
+      .col-md-2
+        = f.input :cep
+    .row
+      .col-md-2
+        = f.input :transportation_line
+      .col-md-4
+        = f.input :transportation_company
+      .col-md-2
+        = f.input :transportation_voucher, as: :string, input_html: { class: 'coin_mask'}
+      .col-md-4
+        = f.input :transportation_observation
   %h3 Dados de Contato
+  %a{"aria-controls" => "contact", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#contact", :role => "button"}
+    Expandir/Esconder
   %hr/
-  .row
-    .col-md-2
-      = f.input :telephone
-    .col-md-2
-      = f.input :telephone_optional
-    .col-md-2
-      = f.input :celphone
-  %hr/
-  .row
-    .col-md-3
-      = f.input :badge_name
-    .col-md-4
-      = f.input :badge_picture, as: :file
+  #contact{class: (!f.object.new_record? || f.object.errors.any?) ? 'collapse in' : 'collapse'}
+    .row
+      .col-md-2
+        = f.input :telephone
+      .col-md-2
+        = f.input :telephone_optional
+      .col-md-2
+        = f.input :celphone
+    %hr/
+    .row
+      .col-md-3
+        = f.input :badge_name
+      .col-md-4
+        = f.input :badge_picture, as: :file
   %h3 Dados de Vestuário
+  %a{"aria-controls" => "vest", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#vest", :role => "button"}
+    Expandir/Esconder
   %hr/
-
-  .row
-    .col-md-2
-      = f.input :tshirt_size
-    .col-md-2
-      = f.input :pants_size
-    .col-md-2
-      = f.input :skirt_size
-    .col-md-2
-      = f.input :shoe_size
+  #vest{class: (!f.object.new_record? || f.object.errors.any?) ? 'collapse in' : 'collapse'}
+    .row
+      .col-md-2
+        = f.input :tshirt_size
+      .col-md-2
+        = f.input :pants_size
+      .col-md-2
+        = f.input :skirt_size
+      .col-md-2
+        = f.input :shoe_size
   %h3 Dados de Controle
+  %a{"aria-controls" => "control", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#control", :role => "button"}
+    Expandir/Esconder
   %hr/
-  .row
-    .col-md-2
-      = f.input :drt
-    .col-md-2
-      = f.input :registry
-    .col-md-2
-      = f.input :number_book
-    .col-md-2
-      = f.input :number_flet
-    .col-md-2
-      = f.input :admission, as: :string, input_html: { class: 'date'}
-  %hr/
-  .row
-    .col-md-12
-      = f.input :medications
-  .row
-    .col-md-12
-      = f.input :diseases
-  .row
-    .col-md-12
-      = f.input :allergies
-  %hr/
-  .row
-    .col-md-12
-      = f.input :staff_performance_observation
+  #control{class: (!f.object.new_record? || f.object.errors.any?) ? 'collapse in' : 'collapse'}
+    .row
+      .col-md-2
+        = f.input :code
+      .col-md-2
+        = f.input :drt
+      .col-md-2
+        = f.input :registry
+      .col-md-2
+        = f.input :number_book
+      .col-md-2
+        = f.input :number_flet
+      .col-md-2
+        = f.input :admission, as: :string, input_html: { class: 'date'}
+    %hr/
+    .row
+      .col-md-12
+        = f.input :medications
+    .row
+      .col-md-12
+        = f.input :diseases
+    .row
+      .col-md-12
+        = f.input :allergies
+    %hr/
+    .row
+      .col-md-12
+        = f.input :staff_performance_observation
   %h3 Dependentes
+  %a{"aria-controls" => "dependent", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#dependent", :role => "button"}
+    Expandir/Esconder
   %hr/
-  .row
-    .col-md-12
-      = f.simple_fields_for :dependents do |builder|
-        = render 'dependent_fields', f: builder
-      = link_to_add_fields "Adicionar dependente", f, :dependents
+  #dependent{class: (!f.object.new_record? || f.object.errors.any?) ? 'collapse in' : 'collapse'}
+    .row
+      .col-md-12
+        = f.simple_fields_for :dependents do |builder|
+          = render 'dependent_fields', f: builder
+        = link_to_add_fields "Adicionar dependente", f, :dependents
   %br/
   %hr/
   .row
     .col-md-12
       = f.submit "Cadastrar Funcionário", class: 'btn btn-success'
       = link_to "Voltar", staffs_path, class: 'btn btn-default'
+
+:javascript
+  $(document).ready(function() {
+    $("#staff_situation").on('change', function() {
+      if($(this).val() == "experiência") {
+        $("#select-xp").fadeIn();
+      } else {
+        $("#select-xp").fadeOut();
+      }
+    })
+  })

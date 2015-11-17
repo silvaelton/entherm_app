@@ -7,6 +7,8 @@ module PersonalDepartament
     belongs_to :sector
 
     has_many :dependents
+    has_many :attachments
+    
     accepts_nested_attributes_for :dependents, allow_destroy: true
 
     enum situation: [:experiência, :contratado, :demitido, :justa_causa, :afastado]

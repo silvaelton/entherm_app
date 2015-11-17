@@ -1,4 +1,4 @@
-module Deal
+module PersonalDepartament
   class FileUploader < CarrierWave::Uploader::Base
         
     storage :fog
@@ -8,7 +8,14 @@ module Deal
     end
 
     def extension_white_list
-      %w(jpg jpeg gif png)  
+      %w(jpg jpeg gif png pdf docx doc bmp)
+    end
+
+    def filename
+      if original_filename
+        @name ||= Digest::MD5.hexdigest(File.dirname(current_path))
+        "#{@name}.#{file.extension}"
+      end
     end
   end
 end

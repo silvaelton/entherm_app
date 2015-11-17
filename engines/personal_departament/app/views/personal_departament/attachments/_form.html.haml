@@ -1,0 +1,12 @@
+= simple_form_for @attachment, url: staff_attachments_path do |f|
+  .row
+    .col-md-4
+      = f.input :staff_id, as: :hidden, input_html: { value: @staff.id}
+      = f.input :title
+    .col-md-6
+      = f.input :description
+    .col-md-2
+      = f.input :file_path, as: :file
+  .row
+    .col-md-2
+      = f.submit "Inserir arquivo", class: 'btn btn-success'

@@ -56,6 +56,7 @@ $(document).ready(function() {
 
   $('.coin_mask').maskMoney({prefix:'R$ ', allowNegative: true, allowZero:true, thousands:'', decimal:'.', affixesStay: false});
   $('.date').mask("00/00/0000", {placeholder: "__/__/____"});
+  $('.hour').mask("00:00", {placeholder: "08:00"});
 
   $('.select2').select2();
 

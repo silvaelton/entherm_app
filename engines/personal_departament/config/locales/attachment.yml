@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'personal_departament/attachment': "Anexo"
+    attributes:
+      'personal_departament/attachment':
+        title: "Título"
+        description: "Descrição"
+        file_path: "Arquivo"

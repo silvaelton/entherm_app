@@ -73,3 +73,6 @@ pt-BR:
         spouse_name: "Nome Conjugê"
         spouse_cpf: "CPF Conjugê"
         reservist_date: "Data de emissão"
+        education: "Nível Escolar"
+        naturality: "Naturalidade"
+        code: "Matrícula"

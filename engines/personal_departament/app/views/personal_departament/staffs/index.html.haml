@@ -14,7 +14,7 @@
                 .col-md-2
                   = f.input :contract, as: :select, label: "Contrato", collection: Commercial::Contract.all.order(:title).map { |key| [key.title.upcase, key.id]}, selected: params[:by_contract], include_blank: "Todos", input_html: { name: 'by_contract' }
                 .col-md-2
-                  = f.input :status, as: :select, label: "Situação", collection: Deal::Purchase.statuses.map { |key, value| [key.upcase, value]}, selected: params[:status], include_blank: "Todos", input_html: { name: 'status' }
+                  = f.input :status, as: :select, label: "Situação", collection: PersonalDepartament::Staff.situations.map { |key, value| [key.humanize, value]}, selected: params[:status], include_blank: "Todos", input_html: { name: 'status' }
                 .col-md-2{style: 'margin-top: 30px'}
                   = f.submit "Filtrar Funcionários", name: nil, class: 'btn btn-success'
         .row
@@ -27,6 +27,7 @@
                   %th CPF
                   %th Contrato
                   %th Cargo
+                  %th Salário
                   %th Situação
                   %th Data de contratação
                   %th Ações
@@ -38,10 +39,12 @@
                     %td= staff.cpf
                     %td= staff.contract.title if staff.contract.present?
                     %td= staff.job.title if staff.job.present?
+                    %td= number_to_currency staff.salary
                     %td= staff.situation
                     %td= staff.admission.strftime('%d/%m/%Y') if staff.admission.present?
                     %td.col-md-2
-                      = link_to "", edit_staff_path(staff), class: 'btn btn-success btn-sm s7-edit'
-                      = link_to "", staff_attachments_path(staff), class: 'btn btn-success btn-sm s7-edit'
-                      = link_to "", staff_annotations_path(staff), class: 'btn btn-success btn-sm s7-edit'
+                      = link_to "", edit_staff_path(staff), class: 'btn btn-success btn-sm s7-edit', title: "Editar"
+                      = link_to "", staff_annotations_path(staff), class: 'btn btn-info btn-sm s7-note', title: "Atividades"
+                      = link_to "", staff_attachments_path(staff), class: 'btn btn-warning btn-sm s7-paperclip', title: "Anexos"
+                      = link_to "", staff_path(staff),method: :delete, class: 'btn btn-danger btn-sm s7-trash', title: "Excluir", data: { confirm: t(:confirm_destroy)}
 

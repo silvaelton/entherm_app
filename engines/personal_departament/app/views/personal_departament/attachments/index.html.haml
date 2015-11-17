@@ -1,0 +1,51 @@
+.row
+  .col-sm-12
+    %section.panel
+      %header.panel-heading
+        .title 
+          Cargos
+          = link_to "Voltar para Funcionários", staffs_path, class: 'pull-right'
+        %hr/
+      .panel-body
+        .row
+          .col-md-12
+            %h4 Funcionário
+            %table.table.table-condensed.table-hover.table-bordered.table-striped
+              %thead
+                %tr
+                  %th Nome
+                  %th CPF
+                  %th Contrato
+                  %th Cargo
+              %tbody
+                %tr
+                  %td= @staff.name
+                  %td= @staff.cpf
+                  %td= @staff.contract.title if @staff.contract.present?
+                  %td= @staff.job.title if @staff.job.present?
+        %hr/
+        .row
+          .col-md-12
+            = render 'form'
+        %hr/
+        .row
+          .col-md-12
+            %table.table.table-condensed.table-hover.table-bordered.table-striped.datatable
+              %thead
+                %tr
+                  %th Título
+                  %th Descrição
+                  %th Arquivo
+                  %th Data do Arquivo
+                  %th Ações
+              %tbody
+                - @staff.attachments.each do |att|
+                  %tr
+                    %td= att.title
+                    %td= att.description
+                    %td= link_to "visualizar", att.file_path.url, target: "_blank"
+                    %td= att.created_at.strftime('%d/%m/%Y às %H:%M')
+                    %td
+                      = link_to "editar", edit_staff_attachment_path(@staff.id, att.id)
+                      = link_to "remover", staff_attachment_path(@staff.id, att.id), method: :delete, data: { confirm: t(:confirm_destroy)}
+                     

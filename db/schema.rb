@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116173646) do
+ActiveRecord::Schema.define(version: 20151117164428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -313,9 +313,9 @@ ActiveRecord::Schema.define(version: 20151116173646) do
     t.integer  "staff_id"
     t.string   "title"
     t.string   "description"
-    t.string   "attachment_path"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "file_path"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "personal_departament_attachments", ["staff_id"], name: "index_personal_departament_attachments_on_staff_id", using: :btree
