@@ -4,13 +4,20 @@ pt-BR:
     deal: "Compras"
     access: "Acessos"
     purchase: "Compras"
+    personal_departament: "Departamento Pessoal"
   controllers:
     orders: "Pedidos"
     suppliers: "Fornecedores"
     users: "Usuários"
     purchases: "Compras"
     alerts: "Notificações"
+    staffs: "Funcionários"
   actions:
+    staffs:
+      index: "Listagem"
+      new: "Novo Funcionário"
+      edit: "Editar Funcionário"
+      show: "Visualizar Funcionário"
     alerts:
       index: "Listagem"
       new: "Nova Notificação"

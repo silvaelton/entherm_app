@@ -6745,14 +6745,14 @@ button:focus {
     -o-transition: all .35s ease
 }
 .am-top-header .navbar-header .navbar-brand {
-    background-color: #FFFFFF !important;
+    background-color: #3D3C3C !important;
     color: #fff;
     padding-top: 0;
     padding-bottom: 0;
     line-height: 80px;
     height: 80px;
     width: 100px;
-    background-image: url(/images/logo.png);
+    background-image: url(/images/logo3.png);
     background-size: 100px;
     background-repeat: no-repeat;
     background-position: center center;
