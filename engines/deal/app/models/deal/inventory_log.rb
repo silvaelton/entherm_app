@@ -4,7 +4,7 @@ module Deal
     belongs_to :contract, class_name: "Commercial::Contract"
     
 
-    scope :by_period,     -> date_start, end_date { where(created_at: date_start..end_date)}
+    scope :by_period,     -> date_start, end_date { where(created_at: Date.parse(date_start)..Date.parse(end_date))}
     scope :contract,      -> contract { where(contract_id: contract)}
     scope :item,          -> item { where(inventory_id: item)}
     scope :log_type,      -> log_type { where(log_type: log_type)}
