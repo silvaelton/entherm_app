@@ -21,7 +21,7 @@ module PersonalDepartament
     def create
       @staff = Staff.new(set_params)
 
-      if @staff.save!
+      if @staff.save
         flash[:success] = t :success
         redirect_to action: 'index'
       else
