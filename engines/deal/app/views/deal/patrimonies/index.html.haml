@@ -40,7 +40,7 @@
                         %td= number_to_currency (patrimony.estimated_value * patrimony.quantity)
                       - else
                         %td 
-                      %td= patrimony.buy_date.strftime('%d/%m/%Y')
+                      %td= patrimony.buy_date.strftime('%d/%m/%Y') if patrimony.buy_date.present?
                       %td= patrimony.state
                       %td.col-md-1
                         = link_to "", edit_patrimony_path(patrimony), class: 'btn btn-success btn-sm s7-edit', title: "Editar"
