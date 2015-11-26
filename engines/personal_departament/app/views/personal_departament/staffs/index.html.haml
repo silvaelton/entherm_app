@@ -44,7 +44,6 @@
                     %td= staff.admission.strftime('%d/%m/%Y') if staff.admission.present?
                     %td.col-md-2
                       = link_to "", edit_staff_path(staff), class: 'btn btn-success btn-sm s7-edit', title: "Editar"
-                      = link_to "", staff_annotations_path(staff), class: 'btn btn-info btn-sm s7-note', title: "Atividades"
                       = link_to "", staff_attachments_path(staff), class: 'btn btn-warning btn-sm s7-paperclip', title: "Anexos"
                       = link_to "", staff_path(staff),method: :delete, class: 'btn btn-danger btn-sm s7-trash', title: "Excluir", data: { confirm: t(:confirm_destroy)}
 

@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'personal_departament/dependent': "Dependente"
+    attributes:
+      'personal_departament/dependent':
+        name: "Nome"
+        born: "Data de nascimento"
+        kinship: "Parentesco"

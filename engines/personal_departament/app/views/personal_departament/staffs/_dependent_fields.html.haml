@@ -3,13 +3,9 @@
     .col-md-4
       = f.input :name
     .col-md-2
-      = f.input :cpf
-    .col-md-2
       = f.input :born, as: :string, input_html: { class: 'date' }
     .col-md-2
-      = f.input :special_condition_flag, as: :select, include_blank: false
-    .col-md-2
-      = f.input :kinship, as: :select, include_blank: false
+      = f.input :kinship, as: :select, collection: PersonalDepartament::Staff.kinships.map { |key, value| [key.humanize, key]}, include_blank: false
   = f.hidden_field :_destroy
   = link_to "remover", '#', class: "remove_fields btn btn-danger btn-xs"
 %br/

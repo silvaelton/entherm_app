@@ -46,6 +46,5 @@
                     %td= link_to "visualizar", att.file_path.url, target: "_blank"
                     %td= att.created_at.strftime('%d/%m/%Y às %H:%M')
                     %td
-                      = link_to "editar", edit_staff_attachment_path(@staff.id, att.id)
                       = link_to "remover", staff_attachment_path(@staff.id, att.id), method: :delete, data: { confirm: t(:confirm_destroy)}
                      

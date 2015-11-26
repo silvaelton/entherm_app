@@ -2,9 +2,12 @@ require_dependency 'personal_departament/application_controller'
 module PersonalDepartament
   class StaffsController < ApplicationController
     before_action :set_staff, only: [:edit, :update, :destroy, :show]
-
+    
+    has_scope :by_cpf
+    has_scope :status
+    
     def index
-      @staffs = Staff.all.order(:name)
+      @staffs = apply_scopes(Staff).all.order(:name)
     end
 
     def show
@@ -18,7 +21,7 @@ module PersonalDepartament
     def create
       @staff = Staff.new(set_params)
 
-      if @staff.save
+      if @staff.save!
         flash[:success] = t :success
         redirect_to action: 'index'
       else
@@ -56,12 +59,12 @@ module PersonalDepartament
                                     :ctps_serie, :pis, :voter_registration, :voter_zone, :voter_session, :reservist,
                                     :reservist_serial, :reservist_uf, :reservist_date, :height, :weight, :blood, 
                                     :special_condition_flag, :special_condition, :job_id, :sector_id, :salary, 
-                                    :bank, :bank_agency, :bank_account, :state_id, :city_id, :address, :burgh, :cep, 
+                                    :bank, :bank_agency, :bank_account, :state_id, :city_id,:city, :address, :burgh, :cep, 
                                     :transportation_line, :transportation_company, :transportation_voucher, :transportation_observation, 
                                     :telephone, :telephone_optional, :celphone, :name_father, :name_mother, :badge_name, :tshirt_size, 
                                     :pants_size, :skirt_size, :shoe_size, :drt, :registry, :number_book, :number_flet, :admission, 
                                     :medications, :diseases, :allergies, :staff_performance_observation, :name, :work_start, :work_end,
-                                    :education, :job_id, :sector_id, :naturality, dependents_attributes: [])
+                                    :education, :job_id, :sector_id, :naturality, dependents_attributes: [:name, :born, :kinship, :id,:_destroy])
     end
 
     def set_staff
