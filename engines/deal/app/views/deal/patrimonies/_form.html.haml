@@ -4,6 +4,8 @@
       = f.association :contract, as: :select, collection: Commercial::Contract.all, include_blank: false
     .col-md-3
       = f.input :code
+    .col-md-3
+      = f.input :buy_date, as: :string, input_html: { class: 'date', value: (f.object.buy_date.present?) ? localize(f.object.buy_date) : ''  }
   .row
     .col-md-8
       = f.input :title
@@ -20,9 +22,9 @@
     .col-md-4
       = f.input :state, as: :select, collection: Deal::Patrimony.states.keys.to_a, include_blank: false
     .col-md-2
-      = f.input :original_value, as: :string, input_html: { class: 'coin_mask'}
+      = f.input :original_value, as: :string, input_html: { class: 'coin_mask', value: 0.00}
     .col-md-2
-      = f.input :estimated_value, as: :string, input_html: { class: 'coin_mask'}
+      = f.input :estimated_value, as: :string, input_html: { class: 'coin_mask', value: 0.00}
     .col-md-2
       = f.input :quantity, as: :string
   %hr/

@@ -20,8 +20,10 @@
                     %th Patrimônio
                     %th Descrição
                     %th Localização
-                    %th Valor original
+                    %th Quantidade
                     %th Valor estimado
+                    %th Valor total
+                    %th Data de Compra
                     %th Estado
                     %th Ações
                 %tbody
@@ -32,10 +34,15 @@
                       %td= patrimony.title
                       %td= patrimony.description
                       %td= patrimony.location
-                      %td= number_to_currency patrimony.original_value
+                      %td= patrimony.quantity
                       %td= number_to_currency patrimony.estimated_value
+                      - if patrimony.estimated_value.present? && patrimony.quantity.present?
+                        %td= number_to_currency (patrimony.estimated_value * patrimony.quantity)
+                      - else
+                        %td 
+                      %td= patrimony.buy_date.strftime('%d/%m/%Y')
                       %td= patrimony.state
-                      %td.col-md-2
+                      %td.col-md-1
                         = link_to "", edit_patrimony_path(patrimony), class: 'btn btn-success btn-sm s7-edit', title: "Editar"
                         = link_to "", patrimony_path(patrimony), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm s7-trash', title: "Remover"
                  

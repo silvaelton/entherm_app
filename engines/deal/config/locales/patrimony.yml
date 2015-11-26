@@ -1,5 +1,11 @@
 pt-BR:
   activerecord:
+    errors:
+        models:
+            'deal/patrimony':
+                attributes:
+                    buy_date:
+                        invalid_date: "data inválida"
     models:
       'deal/patrimony': "Patrimônio"
     attributes:
@@ -14,5 +20,6 @@ pt-BR:
         image_path: "Imagem"
         quantity: "Quantidade"
         code: "Tombamento"
+        buy_date: "Data de Compra"
         
         

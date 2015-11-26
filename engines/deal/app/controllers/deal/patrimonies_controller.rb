@@ -64,7 +64,7 @@ module Deal
 
       # Only allow a trusted parameter "white list" through.
       def patrimony_params
-        params.require(:patrimony).permit(:contract_id, :code, :quantity, :title, :description, :location, :image_path, :state, :original_value, :estimated_value)
+        params.require(:patrimony).permit(:contract_id,:buy_date, :code, :quantity, :title, :description, :location, :image_path, :state, :original_value, :estimated_value)
       end
   end
 end
