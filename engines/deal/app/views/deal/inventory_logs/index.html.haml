@@ -1,7 +1,7 @@
 .row
   .col-sm-12
     %section.panel
-      %header.panel-heading
+      %header.panel-heading.not-print 
         .title
           Listagem Ações no Estoque
           %span.pull-right
@@ -12,7 +12,7 @@
             = link_to "Nova Saída", remove_item_inventory_logs_path
 
       .panel-body
-        .row
+        .row.not-print 
           .col-md-12
             = simple_form_for inventory_logs_path, method: :get do |f|
               .row
