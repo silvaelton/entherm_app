@@ -33,9 +33,9 @@
                       %td= patrimony.description
                       %td= patrimony.location
                       %td= patrimony.quantity
-                      %td.col-md-2= number_to_currency patrimony.estimated_value
+                      %td= number_to_currency patrimony.estimated_value
                       - if patrimony.estimated_value.present? && patrimony.quantity.present?
-                        %td= number_to_currency (patrimony.estimated_value * patrimony.quantity)
+                        %td.col-md-2= number_to_currency (patrimony.estimated_value * patrimony.quantity)
                       - else
                         %td 
                       %td= patrimony.buy_date.strftime('%d/%m/%Y') if patrimony.buy_date.present?
