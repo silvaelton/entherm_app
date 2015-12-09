@@ -9,7 +9,15 @@
             |
             = link_to "Novo Patrimônio", new_patrimony_path
       .panel-body
-        .adv-table          
+        .adv-table     
+          .row
+            .col-md-12
+              = simple_form_for patrimonies_path, method: :get do |f|
+                .row
+                  .col-md-2
+                    = f.input :contract, as: :select, label: "Contrato", collection: Commercial::Contract.all.order(:title).map { |key| [key.title.upcase, key.id]}, selected: params[:by_contract], include_blank: "Todos", input_html: { name: 'by_contract' }
+                  .col-md-2{style: 'margin-top: 30px'}
+                    = f.submit "Filtrar Compras", name: nil, class: 'btn btn-success'     
           .row
             .col-md-12
               %table.table.table-bordered.table-striped.datatable

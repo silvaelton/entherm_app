@@ -4,13 +4,11 @@ module Deal
   class PatrimoniesController < ApplicationController
     before_action :set_patrimony, only: [:show, :edit, :update, :destroy]
 
+    has_scope :by_contract
+
     # GET /patrimonies
     def index
-      if params[:search].present?
-        @patrimonies = Patrimony.search(params[:search])
-      else
-        @patrimonies = Patrimony.all
-      end
+      @patrimonies = apply_scopes(Patrimony).all
     end
 
     # GET /patrimonies/1
