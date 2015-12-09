@@ -36,7 +36,7 @@
                   %tr
                     %th Tipo
                     %th Contrato
-                    %th Quantidade
+                    %th Qtd
                     %th Data/Hora
                     %th Item
                     %th Descrição
@@ -54,14 +54,14 @@
                           %span.label.label-warning
                             = log.log_type.humanize if log.log_type.present?
                       %td.col-md-3= log.contract.title if log.contract.present?
-                      %td.col-md-2= log.quantity
+                      %td.col-md-1= log.quantity
                       %td.col-md-2= log.created_at.strftime('%d/%m/%Y')
                       %td.col-md-3
                         - if log.inventory.present? && log.inventory.product.present?
                           = log.inventory.product_title 
                         - else
                           Item excluído
-                      %td.col-md-3= log.description
+                      %td.col-md-5= log.description
                       %td.col-md-2= log.name
                       - if policy(:privilege).administrator?
                         %td 
