@@ -34,6 +34,7 @@
                     %th Estado
                     %th Ações
                 %tbody
+                  - @total = 0
                   - @patrimonies.each do |patrimony|
                     %tr
                       %td= patrimony.contract.title if patrimony.contract.present?
@@ -43,6 +44,7 @@
                       %td= patrimony.quantity
                       %td= number_to_currency patrimony.estimated_value
                       - if patrimony.estimated_value.present? && patrimony.quantity.present?
+                        - @total += (patrimony.estimated_value * patrimony.quantity)
                         %td.col-md-2= number_to_currency (patrimony.estimated_value * patrimony.quantity)
                       - else
                         %td 
@@ -51,4 +53,8 @@
                       %td.col-md-1
                         = link_to "", edit_patrimony_path(patrimony), class: 'btn btn-success btn-sm s7-edit', title: "Editar"
                         = link_to "", patrimony_path(patrimony), method: :delete, data: { confirm: t(:confirm_destroy)}, class: 'btn btn-danger btn-sm s7-trash', title: "Remover"
-                 
+                %tfoot
+                  %tr
+                    %th{colspan: 8}
+                      %b Total
+                    %td= number_to_currency @total
