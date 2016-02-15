@@ -21,7 +21,7 @@
                     %tr
                       %td= company.name
                       %td= company.cnpj
-                      %td= "#{company.city.name}/#{company.state.acronym}" if company.city.present? && company.state.present?
+                      %td= "#{company.state.acronym}" if company.state.present?
                       %td= company.cep
                       %td.col-md-2
                         = link_to "", edit_company_path(company), class: 'btn btn-primary btn-sm icon-edit', title: "Editar"
