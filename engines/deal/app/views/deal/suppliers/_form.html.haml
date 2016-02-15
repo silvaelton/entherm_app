@@ -14,8 +14,6 @@
 	.row
 		.col-md-3
 			= f.association :state, prompt: 'selecione...', input_html: { id: 'state'}
-		.col-md-3
-			= f.association :city, prompt: 'selecione o estado...', collection: @supplier.state_id.present? ? @supplier.state.cities : {}, input_html: { id: 'city'}
 	.row
 		.col-md-6
 			= f.input :address
