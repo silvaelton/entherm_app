@@ -24,7 +24,6 @@ gem 'fog'
 gem 'carrierwave',  '~> 0.10.0'
 
 gem 'has_scope'
-
 gem 'jquery-datatables-rails', '~> 3.3.0'
 
 group :development, :test do
@@ -43,12 +42,7 @@ group :production do
 end
 
 
-#init engines
-
 gem 'access', 		                path: 'engines/access'
 gem 'dashboard',                  path: 'engines/dashboard'
 gem 'commercial',                 path: 'engines/commercial'
 gem 'deal',                       path: 'engines/deal'
-gem 'information',                path: 'engines/information'
-gem 'report',                     path: 'engines/report'
-gem 'personal_departament',       path: 'engines/personal_departament'
