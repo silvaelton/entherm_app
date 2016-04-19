@@ -10,7 +10,7 @@
           RELATÓRIO GERAL DE CUSTOS
       .panel-body
         .row
-          = simple_form_for :search, url: dashboard_path, method: :get do |f|
+          = simple_form_for url_for, method: :get do |f|
             .col-md-2
               = f.label "Data início"
               = f.input :date_start, label: false, input_html: { value: (params[:search].present?) ? params[:search][:date_start] : Date.today.beginning_of_month.strftime('%d/%m/%Y') , class: 'date'}
@@ -23,7 +23,6 @@
         .row
           .col-md-6
             %h4 (%) de compras por contrato
-            = pie_chart Deal::Purchase.search(params[:search]).where(status: 1).joins(:contract).group('commercial_contracts.title').count
           .col-md-6
             %h4 Valor de compras por contrato
             %br/
