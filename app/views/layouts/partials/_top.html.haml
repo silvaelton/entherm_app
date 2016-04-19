@@ -1,0 +1,14 @@
+%nav.navbar.navbar-inverse
+  .container
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header{style: 'padding: 10px 15px !important; '}
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "#{dashboard.root_path}", style: 'padding: 0 !important'}
+        %img{:alt => "...", :src => "/images/logo3.png", width: 80}/
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+
+           

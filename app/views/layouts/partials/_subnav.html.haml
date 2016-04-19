@@ -1,0 +1,55 @@
+%nav.navbar.navbar-default
+  .container
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.active
+          %a{:href => "#"}
+            Visão geral
+            %span.sr-only (current)
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Compras
+            %span.caret
+          %ul.dropdown-menu
+            %li= link_to "Resumo de compras", deal.dashboard_path
+            %li= link_to "Lista de compras", deal.purchases_path
+            %li.divider
+            %li= link_to "Pedidos", deal.control_orders_path
+            %li.divider
+            %li= link_to "Estoque", deal.inventories_path
+            %li= link_to "Patrimônio", deal.patrimonies_path
+            %li.divider
+            %li= link_to "Fornecedores", deal.suppliers_path
+            %li= link_to "Categorias de fornecedor", deal.supplier_categories_path
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Financeiro
+            %span.caret
+          %ul.dropdown-menu
+            %li= link_to "Resumo"
+            %li= link_to "Contas à pagar"
+            %li= link_to "Contas à receber"
+            %li.divider
+            %li= link_to "Gestão de boletos"
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Comercial
+            %span.caret
+          %ul.dropdown-menu
+            %li= link_to "Empresas", commercial.companies_path
+            %li= link_to "Contratos", commercial.contracts_path
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Administração
+            %span.caret
+          %ul.dropdown-menu
+            %li= link_to "Usuários", access.users_path
+      %ul.nav.navbar-nav.navbar-right
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Nome do usuário
+            %span.caret
+          %ul.dropdown-menu
+            %li= link_to "Trocar minha senha"
+            %li.divider
+            %li= link_to "Sair"

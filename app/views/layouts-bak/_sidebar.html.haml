@@ -1,0 +1,109 @@
+.am-left-sidebar
+  .content
+    .am-logo
+    %ul.sidebar-elements
+      - if policy(:privilege).administrator?
+        %li.parent
+          %a{:href => "#{main_app.root_path}"}
+            %i.icon.s7-monitor
+            %span Visão Geral
+        - if policy(:privilege).deal?
+          %li.parent{class: (params[:module] == 'deal') ? 'active open' :  ''}
+            %a{:href => "#"}
+              %i.icon.s7-ribbon
+              %span Compras
+            %ul.sub-menu
+              %li.title Compras
+              %li.nav-items
+                .am-scroller.nano.has-scrollbar
+                  .content.nano-content{:style => "right: -15px;"}
+                    %ul
+                      - if policy(:deal).suppliers_view?
+                        %li
+                          %a{:href => "#{deal.suppliers_path}"} Fornecedores
+                      %li
+                        %a{:href => "#{deal.purchases_path}"} Compras
+                      %li
+                        %a{:href => "#{deal.control_orders_path}"} Pedidos
+                      %li.divider
+                      %li
+                        %a{:href => "#{deal.inventories_path}"} Estoque
+                      %li
+                        %a{:href => "#{deal.add_item_inventory_logs_path}"} Entrada de Material
+                      %li
+                        %a{:href => "#{deal.remove_item_inventory_logs_path}"} Saída de Material
+                      %li
+                        %a{:href => "#{deal.inventory_logs_path}"} Histórico de Entrada e Saída
+                      %li.divider
+                      %li
+                        %a{:href => "#{deal.patrimonies_path}"} Patrimônios
+                      %li
+                        %a{:href => "#{deal.patrimony_moviments_path}"} Movimentação de Patrimônios
+                      %li.divider
+                      %li
+                        %a{:href => "#{deal.searches_path}"} Pesquisa FPA ou Produto
+                  .nano-pane{:style => "display: none;"}
+                    .nano-slider{:style => "height: 20px; transform: translate(0px, 0px);"}
+        %li.parent
+          %a{:href => "#"}
+            %i.icon.s7-box2
+            %span Departamento Pessoal
+          %ul.sub-menu
+            %li.title Departamento Pessoal
+            %li.nav-items
+              .am-scroller.nano.has-scrollbar
+                .content.nano-content{:style => "right: -15px;"}
+                  %ul
+                    %li
+                      %a{:href => "#{personal_departament.staffs_path}"} Funcionários
+                    %li
+                      %a{:href => "#{personal_departament.jobs_path}"} Cargos
+                    %li
+                      %a{:href => "#{personal_departament.sectors_path}"} Setores
+                    %li.divider
+                    %li
+                      %a{:href => "#{personal_departament.sectors_path}"} Folha de Ponto
+                    %li
+                      %a{:href => "#{personal_departament.sectors_path}"} Vale de Transporte 
+                    %li
+                      %a{:href => "#{personal_departament.sectors_path}"} Vale Alimentação
+                    %li.divider
+                    %li
+                      %a{:href => "#{personal_departament.sectors_path}"} Relatório Geral
+                    %li
+                      %a{:href => "#{personal_departament.sectors_path}"} Relatório por Contrato
+                .nano-pane{:style => "display: none;"}
+                  .nano-slider{:style => "height: 20px; transform: translate(0px, 0px);"}
+        %li.parent
+          %a{:href => "#"}
+            %i.icon.s7-diamond
+            %span Relatórios
+          %ul.sub-menu
+            %li.title Relatórios
+            %li.nav-items
+              .am-scroller.nano.has-scrollbar
+                .content.nano-content{:style => "right: -15px;"}
+                  %ul
+                    %li
+                      %a{:href => "#{deal.contracts_reports_path}"} Compras Geral
+                    %li
+                      %a{:href => "#{deal.by_contract_reports_path}"} Compras por Contrato
+                .nano-pane{:style => "display: none;"}
+                  .nano-slider{:style => "height: 20px; transform: translate(0px, 0px);"}
+      - if policy(:privilege).requester?
+        %li.parent
+          %a{:href => "#"}
+            %i.icon.s7-diamond
+            %span Pedidos
+          %ul.sub-menu
+            %li.title Pedidos
+            %li.nav-items
+              .am-scroller.nano.has-scrollbar
+                .content.nano-content{:style => "right: -15px;"}
+                  %ul
+                    %li
+                      %a{:href => "#{deal.new_order_path}"} Realizar novo pedido
+                    %li
+                      %a{:href => "#{deal.orders_path}"} Ver meus pedidos
+                .nano-pane{:style => "display: none;"}
+                  .nano-slider{:style => "height: 20px; transform: translate(0px, 0px);"}

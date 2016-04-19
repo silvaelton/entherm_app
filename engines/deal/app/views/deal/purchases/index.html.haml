@@ -1,11 +1,10 @@
 .row
   .col-sm-12
-    %section.panel
-      %header.panel-heading
-        .title 
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title 
           Resumo de Compras
           = link_to "Nova Compra", new_purchase_path, class: 'pull-right'
-        %hr/
       .panel-body
         .row
           .col-md-12
@@ -19,11 +18,12 @@
                   = f.input :contract, as: :select, label: "Contrato", collection: Commercial::Contract.all.order(:title).map { |key| [key.title.upcase, key.id]}, selected: params[:by_contract], include_blank: "Todos", input_html: { name: 'by_contract' }
                 .col-md-2
                   = f.input :status, as: :select, label: "Situação", collection: Deal::Purchase.statuses.map { |key, value| [key.upcase, value]}, selected: params[:status], include_blank: "Todos", input_html: { name: 'status' }
-                .col-md-2{style: 'margin-top: 30px'}
-                  = f.submit "Filtrar Compras", name: nil, class: 'btn btn-success'
+                .col-md-2
+                  = f.submit "Filtrar Compras", name: nil, class: 'btn btn-success filter-button'
+        %hr/
         .row
           .col-md-12
-            %table.table.table-condensed.table-hover.table-bordered.table-striped.datatable
+            %table.table.table-hover.table-bordered.table-striped
               %thead
                 %tr
                   %th Nº
